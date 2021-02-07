@@ -18,14 +18,14 @@
 						if ($_SESSION["rol"] == "medico"){
 						?>
 						<div class="box-header with-border">
-							<a href="examen-create.php" class="btn btn-primary"><i class="fas fa-plus"></i> Nuevo</a>	
+							<a href="examen-create.php" class="btn btn-primary"><i class="fas fa-plus"></i> Nuevo</a>
 						</div>
 						<?php
 						}
 					?>
 					<div class="box-body table-responsive">
 						<table id="myTable" class="display table table-bordered table-striped table-condensed table-hover" width="100%">
-							<thead>								
+							<thead>
 								<tr>
 									<th>Id</th>
 									<th>Historial</th>
@@ -35,13 +35,7 @@
 									<th>Descripción</th>
 									<th>Resultado</th>
 									<th>Estado</th>
-									<?php
-										if ($_SESSION["rol"] == "medico"){
-										?>
-										<th style="width:65px">Opciones</th>
-										<?php
-										}
-									?>	
+									<th style="width:65px">Opciones</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -54,11 +48,6 @@
 										require_once("../modelo/Examen.php");
 										$res = Examen::read();
 									}
-								?> -->
-								
-								<!-- <?php
-									require_once("../modelo/Examen.php");
-									$res = Examen::read();
 								?> -->
 								
 								<?php
@@ -81,39 +70,37 @@
 											}
 										}
 										
-									// VARIABLE TIPO DATE
-									echo "<td>".$dato->fecha_exa."</td>";
-									
-									// VARIABLE TIPO TIME
-									echo "<td>".$dato->hora_exa."</td>";
-									
-									// VARIABLE TIPO TIME
-									echo "<td>".$dato->tipo_exa."</td>";
-									
-									// VARIABLE TIPO TEXTAREA
-									echo "<td>".$dato->descripcion_exa."</td>";
-									
-									// VARIABLE TIPO TEXTAREA
-									echo "<td>".$dato->resultado_exa."</td>";
-									
-									// VARIABLE TIPO RADIO
-									echo "<td>".$dato->estado_exa."</td>";
-									
-									// OPCIONES
-									echo "<td>";										
-									
-									if ($_SESSION["rol"] == "medico"){
-									echo "<a href='examen-update.php?id_examen=".$dato->id_examen."' title='Actualizar'><i class='fas fa-pen text-green'></i></a>&nbsp;&nbsp;";
-									echo "<a href='examen-delete.php?id_examen=".$dato->id_examen."' title='Eliminar'><i class='fas fa-trash text-red'></i></a>";
+										// VARIABLE TIPO DATE
+										echo "<td>".$dato->fecha_exa."</td>";
+										
+										// VARIABLE TIPO TIME
+										echo "<td>".$dato->hora_exa."</td>";
+										
+										// VARIABLE TIPO TIME
+										echo "<td>".$dato->tipo_exa."</td>";
+										
+										// VARIABLE TIPO TEXTAREA
+										echo "<td>".$dato->descripcion_exa."</td>";
+										
+										// VARIABLE TIPO TEXTAREA
+										echo "<td>".$dato->resultado_exa."</td>";
+										
+										// VARIABLE TIPO RADIO
+										echo "<td>".$dato->estado_exa."</td>";
+										
+										// OPCIONES
+										echo "<td>";
+										if ($_SESSION["rol"] == "medico"){
+											echo "<a href='examen-update.php?id_examen=".$dato->id_examen."' title='Actualizar'><i class='fas fa-pen text-green'></i></a>&nbsp;&nbsp;";
+											echo "<a href='examen-delete.php?id_examen=".$dato->id_examen."' title='Eliminar'><i class='fas fa-trash text-red'></i></a>";
+										}
+										echo "</td>";
+										echo "</tr>";
 									}
-									
-									echo "</td>";
-									echo "</tr>";
-									}
-									?>
-									</tbody>
-									<tfoot>
-									<tr>
+								?>
+							</tbody>
+							<tfoot>
+								<tr>
 									<th>Id</th>
 									<th>Historial</th>
 									<th>Fecha</th>
@@ -122,36 +109,29 @@
 									<th>Descripción</th>
 									<th>Resultado</th>
 									<th>Estado</th>
-									<?php
-									if ($_SESSION["rol"] == "medico"){
-									?>
 									<th style="width:65px">Opciones</th>
-									<?php
-									}
-									?>	
-									</tr>
-									</tfoot>
-									</table>
-									</div>
-									</div>
-									</section>
-									</div>
-									
-									<?php
-									}else{
-									require_once("noacceso.php");
-									}
-									require_once("footer.php");
-									?>
-									
-									<?php
-									if(isset($_GET["msg"]) and !empty($_GET["msg"])){
-									echo base64_decode($_GET["msg"]);
-									}
-									?>
-									
-									<?php
-									}
-									ob_end_flush();
-									?>
-																		
+								</tr>
+							</tfoot> 
+						</table>
+					</div>
+				</div>
+			</section>
+		</div>
+		
+		<?php
+			}else{
+			require_once("noacceso.php");
+		}
+		require_once("footer.php");
+	?>
+	
+	<?php
+		if(isset($_GET["msg"]) and !empty($_GET["msg"])){
+			echo base64_decode($_GET["msg"]);
+		}
+	?>
+	
+	<?php
+	}
+	ob_end_flush();
+?>

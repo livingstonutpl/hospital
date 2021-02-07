@@ -137,7 +137,12 @@
 					$nombre_usu = Connection::sanitize($_POST["nombre_usu"]);
 					$password_usu = md5(Connection::sanitize($_POST["password_usu"]));
 					$id_rol1 = Connection::sanitize($_POST["id_rol1"]);
-					$res = Varios::loginUsuario($nombre_usu, $password_usu, $id_rol1);
+					
+					if($id_rol1  == "3"){
+						$res = Varios::loginUsuarioMedico($nombre_usu, $password_usu, $id_rol1);
+						}else{
+						$res = Varios::loginUsuario($nombre_usu, $password_usu, $id_rol1);
+					}
 					
 					if($res){
 						// Variables de Sesión de la Tabla Usuario
@@ -166,19 +171,21 @@
 						// Variables de Sesión de la Tabla Rol
 						$_SESSION["id_personarol"] = $res->id_personarol;
 						$_SESSION["id_rol"] = $res->id_rol;
-						$_SESSION["nombre_rol"] = $res->nombre_rol;
-						
-						// Variables de Sesión de la Tabla Medico
+					$_SESSION["nombre_rol"] = $res->nombre_rol;
+					
+					// Variables de Sesión de la Tabla Medico
+					if($res->nombre_rol == "medico"){
 						$_SESSION["id_medico"] = $res->id_medico;
 						$_SESSION["id_persona2"] = $res->id_persona2;
-						
-						// Variables de Sesión 
-						$_SESSION["sesion"] = true;
-						$_SESSION["rol"] = $res->nombre_rol;
-						$_SESSION["token"] = md5(uniqid(mt_rand(), true));
-						
-						// Entrar a principal
-						header ("Location: principal.php");
+					}
+					
+					// Variables de Sesión 
+					$_SESSION["sesion"] = true;
+					$_SESSION["rol"] = $res->nombre_rol;
+					$_SESSION["token"] = md5(uniqid(mt_rand(), true));
+					
+					// Entrar a principal
+					header ("Location: principal.php");
 					}
 				}
 			?>
