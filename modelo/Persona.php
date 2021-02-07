@@ -16,6 +16,13 @@
 			return Connection::runQuery($sql);
 		}
 		
+		public static function read3($id_usuario){
+			$sql = "SELECT * FROM persona
+			WHERE id_usuario1 = $id_usuario
+			";
+			return Connection::runQuery($sql);
+		}
+		
 		public static function update($id_persona, $cedula_per, $nombre_per, $apellido_per, $email_per, $telefono_per, $direccion_per, $ciudadresi_per, $fechanaci_per, $genero_per, $id_usuario1){
 			$sql = "UPDATE persona SET
 			cedula_per = '$cedula_per',
@@ -42,12 +49,12 @@
 			return Connection::rowQuery($sql);
 		}
 		
-	public static function ultimo_id(){
-	$sql = "SELECT MAX(id_persona) AS id_persona FROM persona";
-	return Connection::rowQuery($sql);
-	}
-	
-	}
-	
-	?>
+		public static function ultimo_id(){
+			$sql = "SELECT MAX(id_persona) AS id_persona FROM persona";
+			return Connection::rowQuery($sql);
+		}
 		
+		}
+		
+		?>
+				

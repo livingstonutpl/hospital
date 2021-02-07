@@ -24,6 +24,24 @@
 			return Connection::runQuery($sql);
 		}
 		
+		public static function read3($estado, $id_usuario){
+			$sql = "SELECT * FROM historiaclinica
+			INNER JOIN Persona on Persona.id_persona = HistoriaClinica.id_persona3
+			WHERE estado_his = '$estado'
+			AND id_usuario1 = '$id_usuario'	
+			";
+			return Connection::runQuery($sql);
+		}
+		
+		public static function read4($estado, $id_medico){
+			$sql = "SELECT * FROM historiaclinica
+			INNER JOIN MedicoEspecialidad on MedicoEspecialidad.id_medicoespecialidad = HistoriaClinica.id_medicoespecialidad1
+			WHERE estado_his = '$estado'
+			AND id_medico1 = '$id_medico'	
+			";			
+			return Connection::runQuery($sql);
+		}
+		
 		//public static function update($id_historiaclinica, $id_persona3, $id_medicoespecialidad1, $anamnesis_his, $examenfisico_his, $tratamiento_his, $fechaatencion_his, $horaatencion_his, $estado_his, $verificador_his, $verificador2_his){
 		public static function update($id_historiaclinica, $anamnesis_his, $examenfisico_his, $tratamiento_his, $estado_his){
 			$sql = "UPDATE historiaclinica SET
@@ -52,11 +70,10 @@
 		}
 		
 		public static function ultimo_id(){
-		$sql = "SELECT MAX(id_historiaclinica) AS id_historiaclinica FROM historiaclinica";
-		return Connection::rowQuery($sql);
+			$sql = "SELECT MAX(id_historiaclinica) AS id_historiaclinica FROM historiaclinica";
+			return Connection::rowQuery($sql);
 		}
 		
-		}
-		
-		?>
-				
+	}
+	
+?>

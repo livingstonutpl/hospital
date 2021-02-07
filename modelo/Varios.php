@@ -9,6 +9,7 @@
 			INNER JOIN Persona on Persona.id_usuario1 = Usuario.id_usuario
 			INNER JOIN PersonaRol on PersonaRol.id_persona1 = Persona.id_persona 
 			INNER JOIN Rol on Rol.id_rol = PersonaRol.id_rol1
+			INNER JOIN Medico on Persona.id_persona = Medico.id_persona2			
 			WHERE nombre_usu = '$nombre_usu'
 			AND password_usu = '$password_usu'
 			AND id_rol1 = '$id_rol1'";

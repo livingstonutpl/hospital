@@ -17,6 +17,16 @@
 			return Connection::runQuery($sql);
 		}
 		
+		public static function read3($id_usuario){
+			$sql = "SELECT * FROM examen
+			INNER JOIN HistoriaClinica on HistoriaClinica.id_historiaclinica = Examen.id_historiaclinica3
+			INNER JOIN Persona on Persona.id_persona = HistoriaClinica.id_persona3
+			WHERE id_usuario1 = $id_usuario
+			ORDER BY fecha_exa DESC 
+			";
+			return Connection::runQuery($sql);
+		}
+		
 		public static function update($id_examen, $id_historiaclinica3, $fecha_exa, $hora_exa, $tipo_exa, $descripcion_exa, $resultado_exa, $estado_exa, $verificador_exa){
 			$sql = "UPDATE examen SET
 			id_historiaclinica3 = '$id_historiaclinica3',
@@ -45,7 +55,7 @@
 			$sql = "SELECT MAX(id_examen) AS id_examen FROM examen";
 			return Connection::rowQuery($sql);
 		}
-		
+	
 	}
 	
 	?>

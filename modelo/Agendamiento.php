@@ -24,6 +24,15 @@
 			return Connection::runQuery($sql);
 		}
 		
+		public static function read3($estado, $id_usuario){
+			$sql = "SELECT * FROM historiaclinica
+			INNER JOIN Persona on Persona.id_persona = HistoriaClinica.id_persona3
+			WHERE estado_his = '$estado'
+			AND id_usuario1 = '$id_usuario'			
+			";
+			return Connection::runQuery($sql);
+		}
+		
 		public static function update($id_historiaclinica, $id_persona3, $id_medicoespecialidad1, $anamnesis_his, $examenfisico_his, $tratamiento_his, $fechaatencion_his, $horaatencion_his, $estado_his, $verificador_his, $verificador2_his){
 			$sql = "UPDATE historiaclinica SET
 			id_persona3 = '$id_persona3',

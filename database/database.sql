@@ -110,7 +110,7 @@ CREATE TABLE IF NOT EXISTS especialidad (
 DROP TABLE IF EXISTS farmaco;
 CREATE TABLE IF NOT EXISTS farmaco (
 	id_farmaco INT NOT NULL AUTO_INCREMENT,
-	nombre_far VARCHAR(250) NOT NULL UNIQUE,
+	nombre_far VARCHAR(250) NOT NULL,
 	presentacion_far VARCHAR(250) NOT NULL,
 	administracion_far VARCHAR(250) NOT NULL,
 	PRIMARY KEY (id_farmaco)
@@ -133,16 +133,16 @@ ADD KEY fk_id_persona2_index (id_persona2),
 ADD CONSTRAINT fk_id_persona2 FOREIGN KEY (id_persona2) REFERENCES persona (id_persona) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 -- ======================================================================
--- CREAR TABLA "medicoespecialidad"
+	-- CREAR TABLA "medicoespecialidad"
 -- ======================================================================
 
 DROP TABLE IF EXISTS medicoespecialidad;
 CREATE TABLE IF NOT EXISTS medicoespecialidad (
-id_medicoespecialidad INT NOT NULL AUTO_INCREMENT,
-id_medico1 INT NOT NULL,
-id_especialidad1 INT NOT NULL,
-verificador_medesp VARCHAR(100) NOT NULL UNIQUE,
-PRIMARY KEY (id_medicoespecialidad)
+	id_medicoespecialidad INT NOT NULL AUTO_INCREMENT,
+	id_medico1 INT NOT NULL,
+	id_especialidad1 INT NOT NULL,
+	verificador_medesp VARCHAR(100) NOT NULL UNIQUE,
+	PRIMARY KEY (id_medicoespecialidad)
 ) ENGINE = InnoDb DEFAULT CHARACTER SET = utf8;
 
 -- CREAR CONSTRAINT "medico" -----> "medicoespecialidad"
@@ -156,23 +156,23 @@ ADD KEY fk_id_especialidad1_index (id_especialidad1),
 ADD CONSTRAINT fk_id_especialidad1 FOREIGN KEY (id_especialidad1) REFERENCES especialidad (id_especialidad) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 -- ======================================================================
--- CREAR TABLA "historiaclinica"
+	-- CREAR TABLA "historiaclinica"
 -- ======================================================================
 
 DROP TABLE IF EXISTS historiaclinica;
 CREATE TABLE IF NOT EXISTS historiaclinica (
-id_historiaclinica INT NOT NULL AUTO_INCREMENT,
-id_persona3 INT NOT NULL,
-id_medicoespecialidad1 INT NOT NULL,
-anamnesis_his VARCHAR(250),
-examenfisico_his VARCHAR(250),
-tratamiento_his VARCHAR(250),
-fechaatencion_his VARCHAR(10) NOT NULL,
-horaatencion_his VARCHAR(5) NOT NULL,
-estado_his VARCHAR(10) NOT NULL,	
-verificador_his VARCHAR(100) NOT NULL UNIQUE,
-verificador2_his VARCHAR(100) NOT NULL UNIQUE,
-PRIMARY KEY (id_historiaclinica)
+	id_historiaclinica INT NOT NULL AUTO_INCREMENT,
+	id_persona3 INT NOT NULL,
+	id_medicoespecialidad1 INT NOT NULL,
+	anamnesis_his VARCHAR(250),
+	examenfisico_his VARCHAR(250),
+	tratamiento_his VARCHAR(250),
+	fechaatencion_his VARCHAR(10) NOT NULL,
+	horaatencion_his VARCHAR(5) NOT NULL,
+	estado_his VARCHAR(10) NOT NULL,	
+	verificador_his VARCHAR(100) NOT NULL UNIQUE,
+	verificador2_his VARCHAR(100) NOT NULL UNIQUE,
+	PRIMARY KEY (id_historiaclinica)
 ) ENGINE = InnoDb DEFAULT CHARACTER SET = utf8;
 
 -- CREAR CONSTRAINT "persona" -----> "historiaclinica"
@@ -186,16 +186,16 @@ ADD KEY fk_id_medicoespecialidad1_index (id_medicoespecialidad1),
 ADD CONSTRAINT fk_id_medicoespecialidad1 FOREIGN KEY (id_medicoespecialidad1) REFERENCES medicoespecialidad (id_medicoespecialidad) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 -- ======================================================================
--- CREAR TABLA "historiaclinicadiagnostico"
+	-- CREAR TABLA "historiaclinicadiagnostico"
 -- ======================================================================
 
 DROP TABLE IF EXISTS historiaclinicadiagnostico;
 CREATE TABLE IF NOT EXISTS historiaclinicadiagnostico (
-id_historiaclinicadiagnostico INT NOT NULL AUTO_INCREMENT,
-id_historiaclinica2 INT NOT NULL,
-id_diagnostico1 INT NOT NULL,
-verificador_hisclidia VARCHAR(100) NOT NULL UNIQUE,
-PRIMARY KEY (id_historiaclinicadiagnostico)
+	id_historiaclinicadiagnostico INT NOT NULL AUTO_INCREMENT,
+	id_historiaclinica2 INT NOT NULL,
+	id_diagnostico1 INT NOT NULL,
+	verificador_hisclidia VARCHAR(100) NOT NULL UNIQUE,
+	PRIMARY KEY (id_historiaclinicadiagnostico)
 ) ENGINE = InnoDb DEFAULT CHARACTER SET = utf8;
 
 -- CREAR CONSTRAINT "historiaclinica" -----> "historiaclinicadiagnostico"
@@ -209,17 +209,17 @@ ADD KEY fk_id_diagnostico1_index (id_diagnostico1),
 ADD CONSTRAINT fk_id_diagnostico1 FOREIGN KEY (id_diagnostico1) REFERENCES diagnostico (id_diagnostico) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 -- ======================================================================
--- CREAR TABLA "receta"
+	-- CREAR TABLA "receta"
 -- ======================================================================
 
 DROP TABLE IF EXISTS receta;
 CREATE TABLE IF NOT EXISTS receta (
-id_receta INT NOT NULL AUTO_INCREMENT,
-id_historiaclinica1 INT NOT NULL,
-fecha_rec VARCHAR(10) NOT NULL,
-hora_rec VARCHAR(5) NOT NULL,
-estado_rec VARCHAR(9) NOT NULL,
-PRIMARY KEY (id_receta)
+	id_receta INT NOT NULL AUTO_INCREMENT,
+	id_historiaclinica1 INT NOT NULL,
+	fecha_rec VARCHAR(10) NOT NULL,
+	hora_rec VARCHAR(5) NOT NULL,
+	estado_rec VARCHAR(9) NOT NULL,
+	PRIMARY KEY (id_receta)
 ) ENGINE = InnoDb DEFAULT CHARACTER SET = utf8;
 
 -- CREAR CONSTRAINT "historiaclinica" -----> "receta"
@@ -228,19 +228,20 @@ ADD KEY fk_id_historiaclinica1_index (id_historiaclinica1),
 ADD CONSTRAINT fk_id_historiaclinica1 FOREIGN KEY (id_historiaclinica1) REFERENCES historiaclinica (id_historiaclinica) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 -- ======================================================================
--- CREAR TABLA "recetafarmaco"
+	-- CREAR TABLA "recetafarmaco"
 -- ======================================================================
 
 DROP TABLE IF EXISTS recetafarmaco;
 CREATE TABLE IF NOT EXISTS recetafarmaco (
-id_recetafarmaco INT NOT NULL AUTO_INCREMENT,
-id_receta1 INT NOT NULL,
-id_farmaco1 INT NOT NULL,
-cantidad_recfar INT NOT NULL,
-posologia_recfar VARCHAR(250) NOT NULL,
-duracion_recfar VARCHAR(250) NOT NULL,
-indicaciones_recfar VARCHAR(250) NOT NULL,
-PRIMARY KEY (id_recetafarmaco)
+	id_recetafarmaco INT NOT NULL AUTO_INCREMENT,
+	id_receta1 INT NOT NULL,
+	id_farmaco1 INT NOT NULL,
+	cantidad_recfar INT NOT NULL,
+	posologia_recfar VARCHAR(250) NOT NULL,
+	duracion_recfar VARCHAR(250) NOT NULL,
+	indicaciones_recfar VARCHAR(250) NOT NULL,
+	verificador_recfar VARCHAR(100) NOT NULL UNIQUE,	
+	PRIMARY KEY (id_recetafarmaco)
 ) ENGINE = InnoDb DEFAULT CHARACTER SET = utf8;
 
 -- CREAR CONSTRAINT "receta" -----> "recetafarmaco"
@@ -254,20 +255,20 @@ ADD KEY fk_id_farmaco1_index (id_farmaco1),
 ADD CONSTRAINT fk_id_farmaco1 FOREIGN KEY (id_farmaco1) REFERENCES farmaco (id_farmaco) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 -- ======================================================================
--- CREAR TABLA "examen"
+	-- CREAR TABLA "examen"
 -- ======================================================================
 
 DROP TABLE IF EXISTS examen;
 CREATE TABLE IF NOT EXISTS examen (
-id_examen INT NOT NULL AUTO_INCREMENT,
-id_historiaclinica3 INT NOT NULL,
-fecha_exa VARCHAR(10) NOT NULL,
-hora_exa VARCHAR(5) NOT NULL,
-tipo_exa VARCHAR(100) NOT NULL,
-descripcion_exa VARCHAR(250) NOT NULL,
-resultado_exa VARCHAR(250) NOT NULL,
-estado_exa VARCHAR(9) NOT NULL,
-verificador_exa VARCHAR(100) NOT NULL UNIQUE,
+	id_examen INT NOT NULL AUTO_INCREMENT,
+	id_historiaclinica3 INT NOT NULL,
+	fecha_exa VARCHAR(10) NOT NULL,
+	hora_exa VARCHAR(5) NOT NULL,
+	tipo_exa VARCHAR(100) NOT NULL,
+	descripcion_exa VARCHAR(250) NOT NULL,
+	resultado_exa VARCHAR(250) NOT NULL,
+	estado_exa VARCHAR(9) NOT NULL,
+	verificador_exa VARCHAR(100) NOT NULL UNIQUE,
 PRIMARY KEY (id_examen)
 ) ENGINE = InnoDb DEFAULT CHARACTER SET = utf8;
 
@@ -2401,31 +2402,31 @@ INSERT INTO farmaco (id_farmaco, nombre_far, presentacion_far, administracion_fa
 (NULL, 'Ácido tranexámico', 'Sólido oral 250 mg', 'Oral'),
 (NULL, 'Ácido tranexámico', 'Sólido oral 500 mg', 'Oral'),
 (NULL, 'Adalimumab', 'Líquido parenteral 40 mg', 'Parenteral'),
-(NULL, 'Adapaleno', 'Semisólido cutáneo 0,1 %', 'Tópico'),
+(NULL, 'Adapaleno', 'Semisólido cutáneo 0,1%', 'Tópico'),
 (NULL, 'Adenosina', 'Líquido parenteral 3 mg/mL', 'Parenteral'),
 (NULL, 'Afatinib', 'Sólido oral 20 mg', 'Oral'),
 (NULL, 'Afatinib', 'Sólido oral 30 mg', 'Oral'),
 (NULL, 'Afatinib', 'Sólido oral 40 mg', 'Oral'),
 (NULL, 'Afatinib', 'Sólido oral 50 mg', 'Oral'),
-(NULL, 'Agentes gelatinas', 'Líquido parenteral 3,5 %', 'Parenteral'),
+(NULL, 'Agentes gelatinas', 'Líquido parenteral 3,5%', 'Parenteral'),
 (NULL, 'Agentes gelatinas', 'Líquido parenteral 4 %', 'Parenteral'),
-(NULL, 'Agentes gelatinas', 'Líquido parenteral 5,5 %', 'Parenteral'),
-(NULL, 'Agua para inyección', 'Líquido parenteral 5 mL', 'Parenteral'),
+(NULL, 'Agentes gelatinas', 'Líquido parenteral 5,5%', 'Parenteral'),
 (NULL, 'Agua para inyección', 'Líquido parenteral 10 mL', 'Parenteral'),
 (NULL, 'Agua para inyección', 'Líquido parenteral 250 mL', 'Parenteral'),
+(NULL, 'Agua para inyección', 'Líquido parenteral 5 mL', 'Parenteral'),
 (NULL, 'Agua para irrigación', 'Líquido parenteral 3.000 mL', 'Parenteral'),
 (NULL, 'Albendazol', 'Líquido oral 20 mg/mL', 'Oral'),
 (NULL, 'Albendazol', 'Sólido oral 400 mg', 'Oral'),
 (NULL, 'Alopurinol', 'Sólido oral 100 mg', 'Oral'),
 (NULL, 'Alopurinol', 'Sólido oral 300 mg', 'Oral'),
-(NULL, 'Alprazolam', 'Sólido oral 0,25 mg', 'Oral'),
+(NULL, 'Alprazolam', 'Sólido oral 0,25mg', 'Oral'),
 (NULL, 'Alprazolam', 'Sólido oral 0,50 mg', 'Oral'),
 (NULL, 'Alprostadil', 'Líquido parenteral 20 mcg/mL', 'Parenteral'),
 (NULL, 'Alprostadil', 'Líquido parenteral 500 mcg/mL', 'Parenteral'),
 (NULL, 'Alquitrán de hulla', 'Líquido cutáneo 5 %', 'Tópico'),
 (NULL, 'Alteplasa', 'Sólido parenteral 50 mg', 'Parenteral'),
-(NULL, 'Amfotericina B', 'Sólido parenteral 50 mg', 'Parenteral'),
 (NULL, 'Amfotericina B liposomal', 'Líquido parenteral 50 mg', 'Parenteral'),
+(NULL, 'Amfotericina B', 'Sólido parenteral 50 mg', 'Parenteral'),
 (NULL, 'Amifostina', 'Sólido parenteral 500 mg', 'Parenteral'),
 (NULL, 'Amikacina', 'Líquido parenteral 250 mg/mL', 'Parenteral'),
 (NULL, 'Amikacina', 'Líquido parenteral 50 mg/mL', 'Parenteral'),
@@ -2450,7 +2451,7 @@ INSERT INTO farmaco (id_farmaco, nombre_far, presentacion_far, administracion_fa
 (NULL, 'Atorvastatina', 'Sólido oral 20 mg*', 'Oral'),
 (NULL, 'Atorvastatina', 'Sólido oral 40 mg*', 'Oral'),
 (NULL, 'Atorvastatina', 'Sólido oral 80 mg*', 'Oral'),
-(NULL, 'Atropina', 'Líquido oftálmico 0,5 %', 'Ocular'),
+(NULL, 'Atropina', 'Líquido oftálmico 0,0,05', 'Ocular'),
 (NULL, 'Atropina', 'Líquido oftálmico 1 %', 'Ocular'),
 (NULL, 'Atropina', 'Líquido parenteral 1 mg/mL', 'Parenteral'),
 (NULL, 'Azatioprina', 'Sólido oral 50 mg', 'Oral'),
@@ -2463,8 +2464,8 @@ INSERT INTO farmaco (id_farmaco, nombre_far, presentacion_far, administracion_fa
 (NULL, 'Beclometasona', 'Líquido para inhalación 50 mcg/dosis', 'Inhalación'),
 (NULL, 'Bendamustina', 'Sólido parenteral 100 mg', 'Parenteral'),
 (NULL, 'Bendamustina', 'Sólido parenteral 25 mg', 'Parenteral'),
-(NULL, 'Benznidazol', 'Sólido oral 50 mg', 'Oral'),
 (NULL, 'Benznidazol', 'Sólido oral 100 mg', 'Oral'),
+(NULL, 'Benznidazol', 'Sólido oral 50 mg', 'Oral'),
 (NULL, 'Betametasona', 'Líquido parenteral 4 mg/mL', 'Parenteral'),
 (NULL, 'Bevacizumab', 'Líquido parenteral 25 mg/mL', 'Parenteral'),
 (NULL, 'Bicalutamida', 'Sólido oral 50 mg', 'Oral'),
@@ -2473,13 +2474,12 @@ INSERT INTO farmaco (id_farmaco, nombre_far, presentacion_far, administracion_fa
 (NULL, 'Biperideno', 'Sólido oral 4 mg', 'Oral'),
 (NULL, 'Bleomicina', 'Sólido parenteral 15 UI', 'Parenteral'),
 (NULL, 'Bortezomib', 'Sólido parenteral 3,5 mg', 'Parenteral'),
-(NULL, 'Bupivacaína hiperbárica', 'Líquido parenteral 0,5 %', 'Parenteral'),
-(NULL, 'Bupivacaína hiperbárica', 'Líquido parenteral 0,75 %', 'Parenteral'),
+(NULL, 'Bupivacaína hiperbárica', 'Líquido parenteral 0,0,05', 'Parenteral'),
+(NULL, 'Bupivacaína hiperbárica', 'Líquido parenteral 0,0,75', 'Parenteral'),
 (NULL, 'Buprenorfina', 'Líquido parenteral 0,3 mg/mL', 'Parenteral'),
 (NULL, 'Buprenorfina', 'Parche transdérmico 10 mg', 'Tópico'),
 (NULL, 'Buprenorfina', 'Parche transdérmico 20 mg', 'Tópico'),
 (NULL, 'Buprenorfina', 'Parche transdérmico 5 mg', 'Tópico'),
-(NULL, 'Cabergolina', 'Sólido oral 0,5 mg', 'Oral'),
 (NULL, 'Cabergolina', 'Sólido oral 0,5 mg', 'Oral'),
 (NULL, 'Cafeína', 'Líquido parenteral 20 mg/mL', 'Parenteral'),
 (NULL, 'Cafeína', 'Sólido oral 100 mg', 'Oral'),
@@ -2521,7 +2521,7 @@ INSERT INTO farmaco (id_farmaco, nombre_far, presentacion_far, administracion_fa
 (NULL, 'Ciclosporina', 'Sólido oral 100 mg', 'Oral'),
 (NULL, 'Ciclosporina', 'Sólido oral 25 mg', 'Oral'),
 (NULL, 'Ciclosporina', 'Sólido oral 50 mg', 'Oral'),
-(NULL, 'Ciprofloxacina', 'Líquido oftálmico 0,3 %', 'Ocular'),
+(NULL, 'Ciprofloxacina', 'Líquido oftálmico 0,0,03', 'Ocular'),
 (NULL, 'Ciprofloxacina', 'Líquido parenteral 10 mg/mL', 'Parenteral'),
 (NULL, 'Ciprofloxacina', 'Líquido parenteral 2 mg/mL', 'Parenteral'),
 (NULL, 'Ciprofloxacina', 'Líquido parenteral 20 mg/mL', 'Parenteral'),
@@ -2548,8 +2548,8 @@ INSERT INTO farmaco (id_farmaco, nombre_far, presentacion_far, administracion_fa
 (NULL, 'Clopidogrel', 'Sólido oral 300 mg', 'Oral'),
 (NULL, 'Clopidogrel', 'Sólido oral 75 mg', 'Oral'),
 (NULL, 'Clorambucilo', 'Sólido oral 2 mg', 'Oral'),
-(NULL, 'Cloranfenicol', 'Líquido oftálmico 0,25 %', 'Ocular'),
-(NULL, 'Cloranfenicol', 'Líquido oftálmico 0,5 %', 'Ocular'),
+(NULL, 'Cloranfenicol', 'Líquido oftálmico 0,0,05', 'Ocular'),
+(NULL, 'Cloranfenicol', 'Líquido oftálmico 0,0,25', 'Ocular'),
 (NULL, 'Cloranfenicol', 'Semisólido oftálmico 1 %', 'Ocular'),
 (NULL, 'Cloroquina', 'Líquido parenteral 40 mg/mL', 'Parenteral'),
 (NULL, 'Cloroquina', 'Sólido oral 250 mg', 'Oral'),
@@ -2559,7 +2559,7 @@ INSERT INTO farmaco (id_farmaco, nombre_far, presentacion_far, administracion_fa
 (NULL, 'Clortalidona', 'Sólido oral 25 mg', 'Oral'),
 (NULL, 'Clortalidona', 'Sólido oral 50 mg', 'Oral'),
 (NULL, 'Cloruro de Potasio', 'Líquido parenteral 2 mEq/mL', 'Parenteral'),
-(NULL, 'Cloruro de sodio', 'Líquido parenteral 0,9 %', 'Parenteral'),
+(NULL, 'Cloruro de sodio', 'Líquido parenteral 0,0,09', 'Parenteral'),
 (NULL, 'Clotrimazol', 'Líquido cutáneo 1 %', 'Tópico'),
 (NULL, 'Clotrimazol', 'Semisólido cutáneo 1 %', 'Tópico'),
 (NULL, 'Clotrimazol', 'Semisólido vaginal 1 %', 'Vaginal'),
@@ -2595,7 +2595,7 @@ INSERT INTO farmaco (id_farmaco, nombre_far, presentacion_far, administracion_fa
 (NULL, 'Diazepam', 'Líquido parenteral 5 mg/mL', 'Parenteral'),
 (NULL, 'Diazepam', 'Sólido oral 10 mg', 'Oral'),
 (NULL, 'Diazepam', 'Sólido oral 5 mg', 'Oral'),
-(NULL, 'Diclofenaco', 'Líquido oftálmico 0,1 %', 'Ocular'),
+(NULL, 'Diclofenaco', 'Líquido oftálmico 0,0,01', 'Ocular'),
 (NULL, 'Diclofenaco', 'Líquido parenteral 25 mg/mL', 'Parenteral'),
 (NULL, 'Diclofenaco', 'Sólido oral 50 mg', 'Oral'),
 (NULL, 'Dicloxacilina', 'Sólido oral 500 mg', 'Oral'),
@@ -2638,7 +2638,7 @@ INSERT INTO farmaco (id_farmaco, nombre_far, presentacion_far, administracion_fa
 (NULL, 'Enzalutamida', 'Sólido oral 40 mg', 'Oral'),
 (NULL, 'Epirubicina', 'Sólido parenteral 10 mg', 'Parenteral'),
 (NULL, 'Epirubicina', 'Sólido parenteral 50 mg', 'Parenteral'),
-(NULL, 'Eritromicina', 'Semisólido oftálmico 0,5 %', 'Ocular'),
+(NULL, 'Eritromicina', 'Semisólido oftálmico 0,0,05', 'Ocular'),
 (NULL, 'Eritromicina', 'Sólido oral 250 mg', 'Oral'),
 (NULL, 'Eritromicina', 'Sólido oral 500 mg', 'Oral'),
 (NULL, 'Eritropoyetina', 'Sólido parenteral 10.000 UI', 'Parenteral'),
@@ -2696,7 +2696,7 @@ INSERT INTO farmaco (id_farmaco, nombre_far, presentacion_far, administracion_fa
 (NULL, 'Fludarabina', 'Sólido parenteral 50 mg', 'Parenteral'),
 (NULL, 'Fludrocortisona', 'Sólido oral 0,1 mg', 'Oral'),
 (NULL, 'Flumazenil', 'Líquido parenteral 0,1 mg/mL', 'Parenteral'),
-(NULL, 'Fluorometolona', 'Líquido oftálmico 0,1 %', 'Ocular'),
+(NULL, 'Fluorometolona', 'Líquido oftálmico 0,0,01', 'Ocular'),
 (NULL, 'Fluoruracilo', 'Semisólido cutáneo 5 %', 'Tópico'),
 (NULL, 'Fluoxetina', 'Sólido oral 20 mg', 'Oral'),
 (NULL, 'Flutamida', 'Sólido oral 125 mg', 'Oral'),
@@ -2731,8 +2731,6 @@ INSERT INTO farmaco (id_farmaco, nombre_far, presentacion_far, administracion_fa
 (NULL, 'Hidrocortisona', 'Sólido oral 10 mg', 'Oral'),
 (NULL, 'Hidrocortisona', 'Sólido oral 20 mg', 'Oral'),
 (NULL, 'Hidrocortisona', 'Sólido oral 5 mg', 'Oral'),
-(NULL, 'Hidrocortisona, succinato sódico', 'Sólido parenteral 100 mg', 'Parenteral'),
-(NULL, 'Hidrocortisona, succinato sódico', 'Sólido parenteral 500 mg', 'Parenteral'),
 (NULL, 'Hidromorfona', 'Líquido parenteral 2 mg/mL', 'Parenteral'),
 (NULL, 'Hidromorfona', 'Sólido oral 2,5 mg', 'Oral'),
 (NULL, 'Hidromorfona', 'Sólido oral 5 mg', 'Oral'),
@@ -2784,7 +2782,7 @@ INSERT INTO farmaco (id_farmaco, nombre_far, presentacion_far, administracion_fa
 (NULL, 'Lamotrigina', 'Sólido oral 100 mg', 'Oral'),
 (NULL, 'Lamotrigina', 'Sólido oral 25 mg', 'Oral'),
 (NULL, 'Lamotrigina', 'Sólido oral 50 mg', 'Oral'),
-(NULL, 'Latanoprost', 'Líquido oftálmico 0,005 %', 'Ocular'),
+(NULL, 'Latanoprost', 'Líquido oftálmico 0,0,05', 'Ocular'),
 (NULL, 'Leflunomida', 'Sólido oral 20 mg', 'Oral'),
 (NULL, 'Lenalidomida', 'Sólido oral 10 mg', 'Oral'),
 (NULL, 'Lenalidomida', 'Sólido oral 15 mg', 'Oral'),
@@ -2808,22 +2806,21 @@ INSERT INTO farmaco (id_farmaco, nombre_far, presentacion_far, administracion_fa
 (NULL, 'Levonorgestrel', 'Sólido oral 0,030 mg', 'Oral'),
 (NULL, 'Levonorgestrel', 'Sólido oral 0,75 mg', 'Oral'),
 (NULL, 'Levonorgestrel', 'Sólido oral 1,5 mg', 'Oral'),
-(NULL, 'Levotiroxina sódica', 'Sólido oral 25 mcg', 'Oral'),
-(NULL, 'Levotiroxina sódica', 'Sólido oral 50 mcg', 'Oral'),
-(NULL, 'Levotiroxina sódica', 'Sólido oral 75 mcg', 'Oral'),
-(NULL, 'Levotiroxina sódica', 'Sólido oral 88 mcg', 'Oral'),
 (NULL, 'Levotiroxina sódica', 'Sólido oral 100 mcg', 'Oral'),
 (NULL, 'Levotiroxina sódica', 'Sólido oral 112 mcg', 'Oral'),
 (NULL, 'Levotiroxina sódica', 'Sólido oral 125 mcg', 'Oral'),
 (NULL, 'Levotiroxina sódica', 'Sólido oral 150 mcg', 'Oral'),
 (NULL, 'Levotiroxina sódica', 'Sólido oral 175 mcg', 'Oral'),
 (NULL, 'Levotiroxina sódica', 'Sólido oral 200 mcg', 'Oral'),
+(NULL, 'Levotiroxina sódica', 'Sólido oral 25 mcg', 'Oral'),
+(NULL, 'Levotiroxina sódica', 'Sólido oral 50 mcg', 'Oral'),
+(NULL, 'Levotiroxina sódica', 'Sólido oral 75 mcg', 'Oral'),
+(NULL, 'Levotiroxina sódica', 'Sólido oral 88 mcg', 'Oral'),
 (NULL, 'Lidocaína', 'Líquido cutáneo 10 %', 'Tópico'),
 (NULL, 'Lidocaína', 'Semisólido cutáneo 2 %', 'Tópico'),
 (NULL, 'Lidocaína', 'Semisólido cutáneo 5 %', 'Tópico'),
 (NULL, 'Linezolid', 'Líquido parenteral 2 mg/mL', 'Parenteral'),
 (NULL, 'Linezolid', 'Sólido oral 600 mg', 'Oral'),
-(NULL, 'Litio, carbonato', 'Sólido oral 300 mg', 'Oral'),
 (NULL, 'Loperamida', 'Sólido oral 2 mg', 'Oral'),
 (NULL, 'Loratadina', 'Líquido oral 5 mg/5 mL', 'Oral'),
 (NULL, 'Loratadina', 'Sólido oral 10 mg', 'Oral'),
@@ -2849,16 +2846,12 @@ INSERT INTO farmaco (id_farmaco, nombre_far, presentacion_far, administracion_fa
 (NULL, 'Metformina', 'Sólido oral 500 mg', 'Oral'),
 (NULL, 'Metformina', 'Sólido oral 750 mg', 'Oral'),
 (NULL, 'Metformina', 'Sólido oral 850 mg', 'Oral'),
-(NULL, 'Metilprednisolona, acetato', 'Sólido parenteral 40 mg', 'Parenteral'),
-(NULL, 'Metilprednisolona, acetato', 'Sólido parenteral 80 mg', 'Parenteral'),
-(NULL, 'Metilprednisolona, succinato', 'Sólido parenteral 125 mg', 'Parenteral'),
-(NULL, 'Metilprednisolona, succinato', 'Sólido parenteral 500 mg', 'Parenteral'),
 (NULL, 'Metoclopramida', 'Líquido parenteral 5 mg/mL', 'Parenteral'),
 (NULL, 'Metoclopramida', 'Sólido oral 10 mg', 'Oral'),
 (NULL, 'Metotrexato', 'Líquido parenteral 25 mg/mL', 'Parenteral'),
+(NULL, 'Metotrexato', 'Sólido oral 2,5 mg', 'Oral'),
 (NULL, 'Metotrexato', 'Sólido parenteral 50 mg', 'Parenteral'),
 (NULL, 'Metotrexato', 'Sólido parenteral 500 mg', 'Parenteral'),
-(NULL, 'Metotrexato', 'Sólido oral 2,5 mg', 'Oral'),
 (NULL, 'Metronidazol', 'Líquido oral 125 mg/5 mL', 'Oral'),
 (NULL, 'Metronidazol', 'Líquido oral 250 mg/5 mL', 'Oral'),
 (NULL, 'Metronidazol', 'Líquido parenteral 5 mg/mL', 'Parenteral'),
@@ -2896,8 +2889,8 @@ INSERT INTO farmaco (id_farmaco, nombre_far, presentacion_far, administracion_fa
 (NULL, 'Nitrofurantoína', 'Sólido oral 100 mg', 'Oral'),
 (NULL, 'Nitroprusiato sódico', 'Sólido parenteral 50 mg', 'Parenteral'),
 (NULL, 'Norepinefrina', 'Líquido parenteral 1 mg/mL', 'Parenteral'),
-(NULL, 'Olopatadina', 'Líquido oftálmico 0,1 %', 'Ocular'),
-(NULL, 'Olopatadina', 'Líquido oftálmico 0,2 %', 'Ocular'),
+(NULL, 'Olopatadina', 'Líquido oftálmico 0,0,01', 'Ocular'),
+(NULL, 'Olopatadina', 'Líquido oftálmico 0,0,02', 'Ocular'),
 (NULL, 'Omeprazol', 'Sólido oral 20 mg', 'Oral'),
 (NULL, 'Omeprazol', 'Sólido parenteral 40 mg', 'Parenteral'),
 (NULL, 'Ondansetrón', 'Líquido parenteral 2 mg/mL', 'Parenteral'),
@@ -2930,7 +2923,7 @@ INSERT INTO farmaco (id_farmaco, nombre_far, presentacion_far, administracion_fa
 (NULL, 'Polidocanol', 'Líquido parenteral 3 %', 'Parenteral'),
 (NULL, 'Pralidoxima', 'Líquido parenteral 50 mg/mL', 'Parenteral'),
 (NULL, 'Praziquantel', 'Sólido oral 600 mg', 'Oral'),
-(NULL, 'Prednisolona', 'Líquido oftálmico 0,12 %', 'Ocular'),
+(NULL, 'Prednisolona', 'Líquido oftálmico 0,0,12', 'Ocular'),
 (NULL, 'Prednisolona', 'Líquido oftálmico 1 %', 'Ocular'),
 (NULL, 'Prednisolona', 'Sólido oral 20 mg', 'Oral'),
 (NULL, 'Prednisolona', 'Sólido oral 5 mg', 'Oral'),
@@ -2974,7 +2967,6 @@ INSERT INTO farmaco (id_farmaco, nombre_far, presentacion_far, administracion_fa
 (NULL, 'Rivaroxabán', 'Sólido oral 15 mg', 'Oral'),
 (NULL, 'Rivaroxabán', 'Sólido oral 2,5 mg', 'Oral'),
 (NULL, 'Rivaroxabán', 'Sólido oral 20 mg', 'Oral'),
-(NULL, 'Rocuronio, bromuro', 'Líquido parenteral 10 mg/mL', 'Parenteral'),
 (NULL, 'Ruxolitinib', 'Sólido oral 10 mg', 'Oral'),
 (NULL, 'Ruxolitinib', 'Sólido oral 15 mg', 'Oral'),
 (NULL, 'Ruxolitinib', 'Sólido oral 20 mg', 'Oral'),
@@ -3023,18 +3015,18 @@ INSERT INTO farmaco (id_farmaco, nombre_far, presentacion_far, administracion_fa
 (NULL, 'Ticagrelor', 'Sólido oral 60 mg', 'Oral'),
 (NULL, 'Ticagrelor', 'Sólido oral 90 mg', 'Oral'),
 (NULL, 'Tigeciclina', 'Sólido parenteral 50 mg', 'Parenteral'),
-(NULL, 'Timolol', 'Líquido oftálmico 0,25 %', 'Ocular'),
-(NULL, 'Timolol', 'Líquido oftálmico 0,5 %', 'Ocular'),
+(NULL, 'Timolol', 'Líquido oftálmico 0,0,05', 'Ocular'),
+(NULL, 'Timolol', 'Líquido oftálmico 0,0,25', 'Ocular'),
 (NULL, 'Tinidazol', 'Sólido oral 1.000 mg', 'Oral'),
 (NULL, 'Tinidazol', 'Sólido vaginal 150 mg', 'Vaginal'),
 (NULL, 'Tioguanina', 'Sólido oral 40 mg', 'Oral'),
 (NULL, 'Tiopental sódico', 'Sólido parenteral 1 g', 'Parenteral'),
 (NULL, 'Tirofibán', 'Líquido parenteral 0,25 mg/mL', 'Parenteral'),
 (NULL, 'Tirotropina Alfa', 'Sólido parenteral 0,9 mg', 'Parenteral'),
+(NULL, 'Tobramicina', 'Líquido oftálmico 0,0,03', 'Ocular'),
 (NULL, 'Tobramicina', 'Líquido para inhalación 60 mg/mL', 'Inhalación'),
+(NULL, 'Tobramicina', 'Semisólido oftálmico 0,0,03', 'Ocular'),
 (NULL, 'Tobramicina', 'Sólido para inhalación 28 mg', 'Inhalación'),
-(NULL, 'Tobramicina', 'Líquido oftálmico 0,3 %', 'Ocular'),
-(NULL, 'Tobramicina', 'Semisólido oftálmico 0,3 %', 'Ocular'),
 (NULL, 'Tocilizumab', 'Líquido parenteral 162 mg/0,9 mL', 'Parenteral'),
 (NULL, 'Tocilizumab', 'Líquido parenteral 20 mg/mL', 'Parenteral'),
 (NULL, 'Toxina botulínica', 'Sólido parenteral 100 U', 'Parenteral'),

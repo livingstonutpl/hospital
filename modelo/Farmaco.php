@@ -16,6 +16,13 @@
 			return Connection::runQuery($sql);
 		}
 		
+		public static function read2(){
+			$sql = "SELECT * FROM farmaco
+			
+			";
+			return Connection::runQuery($sql);
+		}
+		
 		public static function update($id_farmaco, $nombre_far, $presentacion_far, $administracion_far){
 			$sql = "UPDATE farmaco SET
 			nombre_far = '$nombre_far',

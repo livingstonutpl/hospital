@@ -12,6 +12,17 @@
 		
 		public static function read(){
 			$sql = "SELECT * FROM receta
+			ORDER BY fecha_rec DESC 
+			";
+			return Connection::runQuery($sql);
+		}
+		
+		public static function read3($id_usuario){
+			$sql = "SELECT * FROM receta
+			INNER JOIN HistoriaClinica on HistoriaClinica.id_historiaclinica = Receta.id_historiaclinica1
+			INNER JOIN Persona on Persona.id_persona = HistoriaClinica.id_persona3
+			WHERE id_usuario1 = $id_usuario
+			ORDER BY fecha_rec DESC 
 			";
 			return Connection::runQuery($sql);
 		}

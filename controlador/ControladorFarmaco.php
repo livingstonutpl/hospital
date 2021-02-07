@@ -56,16 +56,17 @@
 					$res = Farmaco::delete($id_farmaco);
 					if($res){
 						$msg = base64_encode("<script>toastr.success('Registro eliminado correctamente');</script>");
-						}else{
-						$msg = base64_encode("<script>toastr.error('El registro no se pudo eliminar');</script>");
+					}else{
+					$msg = base64_encode("<script>toastr.error('El registro no se pudo eliminar');</script>");
 					}
 					header ("Location: farmaco-read.php?msg=$msg");
 					}else{
 					echo "<script>toastr.error('El registro no se pudo eliminar');</script>";
-				}
-			}
-		}
-		
-	}
-	
-?>
+					}
+					}
+					}
+					
+					}
+					
+					?>
+										
