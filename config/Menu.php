@@ -55,8 +55,8 @@
 			</span>
 		</a>
 		<ul class="treeview-menu">
-			<li><a href="historiaclinica-read.php"><i class="fas fa-laptop-medical"></i> <span>Historias Clínicas</span></a></li>
-			<li><a href="historiaclinicadiagnostico-read.php"><i class="fas fa-book-medical"></i> <span>Historias Clínicas Diagnósticos</span></a></li>
+			<li><a href="historiaclinica-read.php"><i class="fas fa-laptop-medical"></i> <span>Historial</span></a></li>
+			<li><a href="historiaclinicadiagnostico-read.php"><i class="fas fa-book-medical"></i> <span>Historial Diagnósticos</span></a></li>
 		</ul>
 	</li>
 	
@@ -78,10 +78,10 @@
 	
 	<li><a href="principal.php"><i class="fas fa-home"></i> <span>Principal</span></a></li>
 	<li><a href="paciente-read.php"><i class="fas fa-user-circle"></i> <span>Pacientes</span></a></li>
+	<li><a href="agendamiento-read.php"><i class="fas fa-book"></i> <span>Citas Médicas</span></a></li>
+	<li><a href="historiaclinica-read.php"><i class="fas fa-laptop-medical"></i> <span>Historial</span></a></li>
 	<li><a href="examen-read.php"><i class="fas fa-microscope"></i> <span>Exámenes</span></a></li>
 	<li><a href="receta-read.php"><i class="fas fa-file-medical"></i> <span>Recetas</span></a></li>
-	<li><a href="historiaclinica-read.php"><i class="fas fa-laptop-medical"></i> <span>Historias Clínicas</span></a></li>
-	<li><a href="agendamiento-read.php"><i class="fas fa-book"></i> <span>Citas Médicas</span></a></li>
 	
 	<?php
 	}
@@ -94,9 +94,10 @@
 	?>
 	
 	<li><a href="principal.php"><i class="fas fa-home"></i> <span>Principal</span></a></li>
-	<li><a href="historiaclinica-read.php"><i class="fas fa-comment-medical"></i> <span>Historias Clínicas</span></a></li>	
+	<li><a href="historiaclinica-read.php"><i class="fas fa-comment-medical"></i> <span>Historial</span></a></li>	
 	<li><a href="agendamiento-read.php"><i class="fas fa-book"></i> <span>Citas Médicas</span></a></li>
 	<li><a href="examen-read.php"><i class="fas fa-microscope"></i> <span>Exámenes</span></a></li>
+	<li><a href="historiaclinicadiagnostico-read.php"><i class="fas fa-book-medical"></i> <span>Diagnósticos</span></a></li>
 	
 	<?php
 	}

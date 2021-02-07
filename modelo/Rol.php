@@ -11,8 +11,7 @@
 		}
 		
 		public static function read(){
-			$sql = "SELECT * FROM rol
-			";
+			$sql = "SELECT * FROM rol";
 			return Connection::runQuery($sql);
 		}
 		

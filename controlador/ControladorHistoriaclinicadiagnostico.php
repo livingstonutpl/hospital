@@ -5,6 +5,7 @@
 		//id_historiaclinicadiagnostico
 		//id_historiaclinica2
 		//id_diagnostico1
+		//verificador_hisclidia
 		
 		function create(){
 			if(isset($_POST) && !empty($_POST)){
@@ -12,7 +13,8 @@
 					require_once("../modelo/Historiaclinicadiagnostico.php");
 					$id_historiaclinica2 = Connection::sanitize($_POST["id_historiaclinica2"]);
 					$id_diagnostico1 = Connection::sanitize($_POST["id_diagnostico1"]);
-					$res = Historiaclinicadiagnostico::create($id_historiaclinica2, $id_diagnostico1);
+					$verificador_hisclidia = $id_historiaclinica2."-".$id_diagnostico1;
+					$res = Historiaclinicadiagnostico::create($id_historiaclinica2, $id_diagnostico1, $verificador_hisclidia);
 					if($res){
 						$msg = base64_encode("<script>toastr.success('Registro guardado correctamente');</script>");
 						}else{
@@ -32,7 +34,8 @@
 					$id_historiaclinicadiagnostico = Connection::sanitize($_POST["id_historiaclinicadiagnostico"]);
 					$id_historiaclinica2 = Connection::sanitize($_POST["id_historiaclinica2"]);
 					$id_diagnostico1 = Connection::sanitize($_POST["id_diagnostico1"]);
-					$res = Historiaclinicadiagnostico::update($id_historiaclinicadiagnostico, $id_historiaclinica2, $id_diagnostico1);
+					$verificador_hisclidia = $id_historiaclinica2."-".$id_diagnostico1;
+					$res = Historiaclinicadiagnostico::update($id_historiaclinicadiagnostico, $id_historiaclinica2, $id_diagnostico1, $verificador_hisclidia);
 					if($res){
 						$msg = base64_encode("<script>toastr.success('Registro actualizado correctamente');</script>");
 						}else{
