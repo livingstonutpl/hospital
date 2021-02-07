@@ -136,61 +136,61 @@
 			
 			
 			<?php
-			if(isset($_POST) && !empty($_POST)){
-			require_once("../modelo/Varios.php");
-			$nombre_usu = Connection::sanitize($_POST["nombre_usu"]);
-			$password_usu = md5(Connection::sanitize($_POST["password_usu"]));
-			$id_rol1 = Connection::sanitize($_POST["id_rol1"]);
-			$res = Varios::loginUsuario($nombre_usu, $password_usu, $id_rol1);
-			
-			if($res){
-			// Variables de Sesión de la Tabla Usuario
-			$_SESSION["id_usuario"] = $res->id_usuario;
-			$_SESSION["nombre_usu"] = $res->nombre_usu;
-			$_SESSION["password_usu"] = $res->password_usu;
-			
-			// Variables de Sesión de la Tabla Persona
-			$_SESSION["id_persona"] = $res->id_persona;
-			$_SESSION["cedula_per"] = $res->cedula_per;
-			$_SESSION["nombre_per"] = $res->nombre_per;
-			$_SESSION["apellido_per"] = $res->apellido_per;
-			$_SESSION["email_per"] = $res->email_per;
-			$_SESSION["telefono_per"] = $res->telefono_per;
-			$_SESSION["direccion_per"] = $res->direccion_per;
-			$_SESSION["ciudadresi_per"] = $res->ciudadresi_per;
-			$_SESSION["fechanaci_per"] = $res->fechanaci_per;
-			$_SESSION["genero_per"] = $res->genero_per;
-			$_SESSION["id_usuario1"] = $res->id_usuario1;
-			
-			// Variables de Sesión de la Tabla PersonaRol
-			$_SESSION["id_personarol"] = $res->id_personarol;
-			$_SESSION["id_persona1"] = $res->id_persona1;
-			$_SESSION["id_rol1"] = $res->id_rol1;
-			
-			// Variables de Sesión de la Tabla Rol
-			$_SESSION["id_personarol"] = $res->id_personarol;
-			$_SESSION["id_rol"] = $res->id_rol;
-			$_SESSION["nombre_rol"] = $res->nombre_rol;
-			
-			// Variables de Sesión 
-			$_SESSION["sesion"] = true;
-			$_SESSION["rol"] = $res->nombre_rol;
-			$_SESSION["token"] = md5(uniqid(mt_rand(), true));
-			
-			// Entrar a principal
-			header ("Location: principal.php");
-			}
-			}
+				if(isset($_POST) && !empty($_POST)){
+					require_once("../modelo/Varios.php");
+					$nombre_usu = Connection::sanitize($_POST["nombre_usu"]);
+					$password_usu = md5(Connection::sanitize($_POST["password_usu"]));
+					$id_rol1 = Connection::sanitize($_POST["id_rol1"]);
+					$res = Varios::loginUsuario($nombre_usu, $password_usu, $id_rol1);
+					
+					if($res){
+						// Variables de Sesión de la Tabla Usuario
+						$_SESSION["id_usuario"] = $res->id_usuario;
+						$_SESSION["nombre_usu"] = $res->nombre_usu;
+						$_SESSION["password_usu"] = $res->password_usu;
+						
+						// Variables de Sesión de la Tabla Persona
+						$_SESSION["id_persona"] = $res->id_persona;
+						$_SESSION["cedula_per"] = $res->cedula_per;
+						$_SESSION["nombre_per"] = $res->nombre_per;
+						$_SESSION["apellido_per"] = $res->apellido_per;
+						$_SESSION["email_per"] = $res->email_per;
+						$_SESSION["telefono_per"] = $res->telefono_per;
+						$_SESSION["direccion_per"] = $res->direccion_per;
+						$_SESSION["ciudadresi_per"] = $res->ciudadresi_per;
+						$_SESSION["fechanaci_per"] = $res->fechanaci_per;
+						$_SESSION["genero_per"] = $res->genero_per;
+						$_SESSION["id_usuario1"] = $res->id_usuario1;
+						
+						// Variables de Sesión de la Tabla PersonaRol
+						$_SESSION["id_personarol"] = $res->id_personarol;
+						$_SESSION["id_persona1"] = $res->id_persona1;
+						$_SESSION["id_rol1"] = $res->id_rol1;
+						
+						// Variables de Sesión de la Tabla Rol
+						$_SESSION["id_personarol"] = $res->id_personarol;
+						$_SESSION["id_rol"] = $res->id_rol;
+						$_SESSION["nombre_rol"] = $res->nombre_rol;
+						
+						// Variables de Sesión 
+						$_SESSION["sesion"] = true;
+						$_SESSION["rol"] = $res->nombre_rol;
+						$_SESSION["token"] = md5(uniqid(mt_rand(), true));
+						
+						// Entrar a principal
+						header ("Location: principal.php");
+					}
+				}
 			?>
 			
 			
-			</body>
-			</html>
-			
-			
-			<?php
-			}else{
-			header ("Location: principal.php");
-			}
-			ob_end_flush();
-			?>																																																														
+		</body>
+	</html>
+	
+	
+	<?php
+		}else{
+		header ("Location: principal.php");
+	}
+	ob_end_flush();
+?>																																																																								

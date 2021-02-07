@@ -12,6 +12,7 @@
 		
 		public static function read(){
 			$sql = "SELECT * FROM examen
+			ORDER BY fecha_exa DESC 
 			";
 			return Connection::runQuery($sql);
 		}
@@ -47,4 +48,5 @@
 		
 	}
 	
-?>
+	?>
+		

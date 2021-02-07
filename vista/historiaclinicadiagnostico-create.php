@@ -5,14 +5,14 @@
 		header("Location: login.php");
 		}else{
 		require_once("header.php");
-		if ($_SESSION["rol"] == "administrador"){
+		if ($_SESSION["rol"] == "administrador" or $_SESSION["rol"] == "medico" or $_SESSION["rol"] == "cliente"){
 		?>
 		
 		<div class="content-wrapper">
 			<section class="content">
 				<div class="box box-primary">
 					<div class="box-header with-border">
-						<h3 class="box-title">Nueva Historia Clínica Diagnóstico</h3>
+						<h3 class="box-title">Nueva Historial Diagnósticos</h3>
 					</div>
 					
 					<form action="#" class="form-horizontal" method="POST" enctype="multipart/form-data">
@@ -21,15 +21,18 @@
 							<input type="hidden" name="token" value="<?php echo $_SESSION["token"]; ?>">
 							
 							<div class="form-group">
-								<label class="col-sm-2 control-label">Historia Clínica:</label>
+								<label class="col-sm-2 control-label">Historial:</label>
 								<div class="col-sm-10">
 									<select name="id_historiaclinica2" class="form-control select2" style="width: 100%;" required autofocus>
-										<option value=''>Historia Clínica</option>
+										<option value=''>Historial</option>
 										<?php
 											require_once("../modelo/Historiaclinica.php");
 											$res2 = Historiaclinica::read();
 											while ($dato2 = mysqli_fetch_object($res2)){
-												echo "<option value='".$dato2->id_historiaclinica."'>".$dato2->id_historiaclinica." - ".$dato2->fechaatencion_his."</option>";
+												echo "<option value='".$dato2->id_historiaclinica."'>".$dato2->cedula_per." - "
+												.$dato2->nombre_per." ".$dato2->apellido_per." - "
+												.$dato2->fechaatencion_his." - "
+												.$dato2->horaatencion_his."</option>";
 											}
 										?>
 									</select>
@@ -45,7 +48,7 @@
 											require_once("../modelo/Diagnostico.php");
 											$res2 = Diagnostico::read();
 											while ($dato2 = mysqli_fetch_object($res2)){
-												echo "<option value='".$dato2->id_diagnostico."'>".$dato2->id_diagnostico." - ".$dato2->cie10_dia."</option>";
+												echo "<option value='".$dato2->id_diagnostico."'>".$dato2->cie10_dia." - ".$dato2->descripcion_dia."</option>";
 											}
 										?>
 									</select>
@@ -60,22 +63,22 @@
 					</form> 
 				</div>
 			</section>
-		</div>
-		
-		<?php
-		}else{
-		require_once("noacceso.php");
-		}
-		require_once("footer.php");
-		?>
-		
-		<?php
-		require_once("../controlador/ControladorHistoriaclinicadiagnostico.php");
-		ControladorHistoriaclinicadiagnostico::create();
-		?>
-		
-		<?php
-		}
-		ob_end_flush();
-		?>
-				
+			</div>
+			
+						<?php
+						}else{
+						require_once("noacceso.php");
+						}
+						require_once("footer.php");
+						?>
+						
+						<?php
+						require_once("../controlador/ControladorHistoriaclinicadiagnostico.php");
+						ControladorHistoriaclinicadiagnostico::create();
+						?>
+						
+						<?php
+						}
+						ob_end_flush();
+						?>
+												

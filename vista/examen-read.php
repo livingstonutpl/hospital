@@ -24,7 +24,7 @@
 						?>
 					</div>
 					<div class="box-body table-responsive">
-						<table id="myTable" class="display table table-bordered table-striped table-condensed table-hover" width="100%">
+						<table id="myTableExamen" class="display table table-bordered table-striped table-condensed table-hover" width="100%">
 							<thead>
 								
 								<tr>
@@ -45,102 +45,102 @@
 									?>	
 								</tr>
 							</thead>
-							<tbody>
-								<!-- <?php
-									require_once("../modelo/Examen.php");
-									$res = Examen::read();
-								?> -->
-								<?php
-									while ($dato = mysqli_fetch_object($res)){
-										echo "<tr>";
-										
-										// VARIABLE TIPO TEXTO
-										echo "<td>".$dato->id_examen."</td>";
-										
-										// VARIABLE TIPO FK
-										require_once("../modelo/Historiaclinica.php");
-										$res2 = Historiaclinica::read();
-										while ($dato2 = mysqli_fetch_object($res2)){
-											if ($dato->id_historiaclinica3 == $dato2->id_historiaclinica){
-												echo "<td>"
-												.$dato2->cedula_per." - "
-												.$dato2->nombre_per." ".$dato2->apellido_per." - "
-												.$dato2->fechaatencion_his." - "
-												.$dato2->horaatencion_his."</td>";
-											}
-										}
-										
-										// VARIABLE TIPO DATE
-										echo "<td>".$dato->fecha_exa."</td>";
-										
-										// VARIABLE TIPO TIME
-										echo "<td>".$dato->hora_exa."</td>";
-										
-										// VARIABLE TIPO TIME
-										echo "<td>".$dato->tipo_exa."</td>";
-										
-										// VARIABLE TIPO TEXTAREA
-										echo "<td>".$dato->descripcion_exa."</td>";
-										
-										// VARIABLE TIPO TEXTAREA
-										echo "<td>".$dato->resultado_exa."</td>";
-										
-										// VARIABLE TIPO RADIO
-										echo "<td>".$dato->estado_exa."</td>";
-										
-										// OPCIONES
-										echo "<td>";										
-										
-										if ($_SESSION["rol"] == "medico"){
-											echo "<a href='examen-update.php?id_examen=".$dato->id_examen."' title='Actualizar'><i class='fas fa-pen text-green'></i></a>&nbsp;&nbsp;";
-											echo "<a href='examen-delete.php?id_examen=".$dato->id_examen."' title='Eliminar'><i class='fas fa-trash text-red'></i></a>";
-										}
-										
-										echo "</td>";
-										echo "</tr>";
-									}
-								?>
-							</tbody>
-							<tfoot>
-								<tr>
-									<th>Id</th>
-									<th>Historia Clínica</th>
-									<th>Fecha Examen</th>
-									<th>Hora Examen</th>
-									<th>Tipo</th>
-									<th>Descripción</th>
-									<th>Resultado</th>
-									<th>Estado</th>
-									<?php
-										if ($_SESSION["rol"] == "medico"){
-										?>
-										<th style="width:65px">Opciones</th>
-										<?php
-										}
-									?>	
-								</tr>
-							</tfoot>
+						<tbody>
+						<!-- <?php
+						require_once("../modelo/Examen.php");
+						$res = Examen::read();
+						?> -->
+						<?php
+						while ($dato = mysqli_fetch_object($res)){
+						echo "<tr>";
+						
+						// VARIABLE TIPO TEXTO
+						echo "<td>".$dato->id_examen."</td>";
+						
+						// VARIABLE TIPO FK
+						require_once("../modelo/Historiaclinica.php");
+						$res2 = Historiaclinica::read();
+						while ($dato2 = mysqli_fetch_object($res2)){
+						if ($dato->id_historiaclinica3 == $dato2->id_historiaclinica){
+						echo "<td>"
+						.$dato2->cedula_per." - "
+						.$dato2->nombre_per." ".$dato2->apellido_per." - "
+						.$dato2->fechaatencion_his." - "
+						.$dato2->horaatencion_his."</td>";
+						}
+						}
+						
+						// VARIABLE TIPO DATE
+						echo "<td>".$dato->fecha_exa."</td>";
+						
+						// VARIABLE TIPO TIME
+						echo "<td>".$dato->hora_exa."</td>";
+						
+						// VARIABLE TIPO TIME
+						echo "<td>".$dato->tipo_exa."</td>";
+						
+						// VARIABLE TIPO TEXTAREA
+						echo "<td>".$dato->descripcion_exa."</td>";
+						
+						// VARIABLE TIPO TEXTAREA
+						echo "<td>".$dato->resultado_exa."</td>";
+						
+						// VARIABLE TIPO RADIO
+						echo "<td>".$dato->estado_exa."</td>";
+						
+						// OPCIONES
+						echo "<td>";										
+						
+						if ($_SESSION["rol"] == "medico"){
+						echo "<a href='examen-update.php?id_examen=".$dato->id_examen."' title='Actualizar'><i class='fas fa-pen text-green'></i></a>&nbsp;&nbsp;";
+						echo "<a href='examen-delete.php?id_examen=".$dato->id_examen."' title='Eliminar'><i class='fas fa-trash text-red'></i></a>";
+						}
+						
+						echo "</td>";
+						echo "</tr>";
+						}
+						?>
+						</tbody>
+						<tfoot>
+						<tr>
+						<th>Id</th>
+						<th>Historia Clínica</th>
+						<th>Fecha Examen</th>
+						<th>Hora Examen</th>
+						<th>Tipo</th>
+						<th>Descripción</th>
+						<th>Resultado</th>
+						<th>Estado</th>
+						<?php
+						if ($_SESSION["rol"] == "medico"){
+						?>
+						<th style="width:65px">Opciones</th>
+						<?php
+						}
+						?>	
+						</tr>
+						</tfoot>
 						</table>
-					</div>
-				</div>
-			</section>
-		</div>
-		
-	<?php
-	}else{
-	require_once("noacceso.php");
-	}
-	require_once("footer.php");
-	?>
-	
-	<?php
-	if(isset($_GET["msg"]) && !empty($_GET["msg"])){
-	echo base64_decode($_GET["msg"]);
-	}
-	?>
-	
-	<?php
-	}
-	ob_end_flush();
-	?>
-		
+						</div>
+						</div>
+						</section>
+						</div>
+						
+						<?php
+						}else{
+						require_once("noacceso.php");
+						}
+						require_once("footer.php");
+						?>
+						
+						<?php
+						if(isset($_GET["msg"]) && !empty($_GET["msg"])){
+						echo base64_decode($_GET["msg"]);
+						}
+						?>
+						
+						<?php
+						}
+						ob_end_flush();
+						?>
+												

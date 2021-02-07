@@ -2,11 +2,13 @@
 	
 	require_once("../config/Connection.php");
 	
+	//verificador_hisclidia
+	
 	class Historiaclinicadiagnostico{
 		
-		public static function create($id_historiaclinica2, $id_diagnostico1){
-			$sql = "INSERT INTO historiaclinicadiagnostico (id_historiaclinica2, id_diagnostico1)
-			VALUES ('$id_historiaclinica2', '$id_diagnostico1')";
+		public static function create($id_historiaclinica2, $id_diagnostico1, $verificador_hisclidia){
+			$sql = "INSERT INTO historiaclinicadiagnostico (id_historiaclinica2, id_diagnostico1, verificador_hisclidia)
+			VALUES ('$id_historiaclinica2', '$id_diagnostico1', '$verificador_hisclidia')";
 			return Connection::runQuery($sql);
 		}
 		
@@ -16,10 +18,18 @@
 			return Connection::runQuery($sql);
 		}
 		
-		public static function update($id_historiaclinicadiagnostico, $id_historiaclinica2, $id_diagnostico1){
+		public static function read2($id_historiaclinica){
+			$sql = "SELECT * FROM historiaclinicadiagnostico
+			WHERE id_historiaclinica2 = $id_historiaclinica
+			";
+			return Connection::runQuery($sql);
+		}
+		
+		public static function update($id_historiaclinicadiagnostico, $id_historiaclinica2, $id_diagnostico1, $verificador_hisclidia){
 			$sql = "UPDATE historiaclinicadiagnostico SET
 			id_historiaclinica2 = '$id_historiaclinica2',
-			id_diagnostico1 = '$id_diagnostico1'
+			id_diagnostico1 = '$id_diagnostico1',
+			verificador_hisclidia = '$verificador_hisclidia'
 			WHERE id_historiaclinicadiagnostico = $id_historiaclinicadiagnostico";
 			return Connection::runQuery($sql);
 		}

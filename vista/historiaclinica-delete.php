@@ -12,7 +12,7 @@
 			<section class="content">
 				<div class="box box-danger">
 					<div class="box-header with-border">
-						<h3 class="box-title">Eliminar Historia Cl&iacute;nica</h3>
+						<h3 class="box-title">Eliminar Historial</h3>
 					</div>
 					
 					<!-- <?php

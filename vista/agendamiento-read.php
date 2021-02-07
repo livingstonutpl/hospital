@@ -15,7 +15,19 @@
 			<section class="content">
 				<div class="box box-primary">
 					<div class="box-header with-border">
-						<a href="agendamiento-create.php" class="btn btn-primary"><i class="fas fa-plus"></i> Nuevo</a>
+						<a href="agendamiento-create.php" class="btn btn-primary"><i class="fas fa-plus"></i> Nuevo</a>						
+						<a href="agendamiento-read.php?estado=agendado" class="btn btn-success"><i class="fas fa-user-clock"></i> Agendado</a>
+						<a href="agendamiento-read.php?estado=atendido" class="btn btn-danger"><i class="fas fa-user-check"></i> Atendido</a>
+						<a href="agendamiento-read.php?estado=ausente" class="btn btn-warning"><i class="fas fa-user-alt-slash"></i> Ausente</a>
+						
+						<?php
+							if(isset($_GET["estado"]) && !empty($_GET["estado"])){
+								$estado = $_GET["estado"];
+								}else{
+								$estado = "agendado";
+								}
+						?>
+						
 					</div>
 					<div class="box-body table-responsive">
 						<table id="myTable" class="display table table-bordered table-striped table-condensed table-hover" width="100%">
@@ -36,7 +48,7 @@
 								
 								<!-- <?php
 									require_once("../modelo/Agendamiento.php");
-									$res = Agendamiento::read();
+									$res = Agendamiento::read2($estado);
 								?> -->
 								
 								
@@ -71,13 +83,23 @@
 										// VARIABLE TIPO TIME
 										echo "<td>".$dato->horaatencion_his."</td>";
 										
-										// VARIABLE TIPO RADIO
-										echo "<td>".$dato->estado_his."</td>";
+										// VARIABLE TIPO RADIO										
+										if ($dato->estado_his == "agendado"){
+											echo "<td><span class='label label-success'>agendado</span></td>";
+										}
+										if ($dato->estado_his == "atendido"){
+											echo "<td><span class='label label-danger'>atendido</span></td>";
+										}
+										if ($dato->estado_his == "ausente"){										
+											echo "<td><span class='label label-warning'>ausente</span></td>";
+										}
 										
 										// OPCIONES
-										echo "<td>";
-										echo "<a href='agendamiento-update.php?id_historiaclinica=".$dato->id_historiaclinica."' title='Actualizar'><i class='fas fa-pen text-green'></i></a>&nbsp;&nbsp;";
-										echo "<a href='agendamiento-delete.php?id_historiaclinica=".$dato->id_historiaclinica."' title='Eliminar'><i class='fas fa-trash text-red'></i></a>";
+										echo "<td>";										
+										if ($dato->estado_his <> "atendido"){
+											echo "<a href='agendamiento-update.php?id_historiaclinica=".$dato->id_historiaclinica."' title='Actualizar'><i class='fas fa-pen text-green'></i></a>&nbsp;&nbsp;";
+											echo "<a href='agendamiento-delete.php?id_historiaclinica=".$dato->id_historiaclinica."' title='Eliminar'><i class='fas fa-trash text-red'></i></a>";
+										}	
 										echo "</td>";
 										echo "</tr>";
 									}
@@ -90,7 +112,7 @@
 									<th>Médico</th>
 									<th>Fecha de Atención</th>
 									<th>Hora de Atención</th>
-									<th>Estado</th>
+									<th>Estado</th>									
 									<th style="width:65px">Opciones</th>
 								</tr>
 							</tfoot>
@@ -107,13 +129,13 @@
 		require_once("footer.php");
 	?>
 	
-<?php
-if(isset($_GET["msg"]) && !empty($_GET["msg"])){
-echo base64_decode($_GET["msg"]);
-}
-?>
-
-<?php
-}
-ob_end_flush();
+	<?php
+		if(isset($_GET["msg"]) && !empty($_GET["msg"])){
+			echo base64_decode($_GET["msg"]);
+		}
+	?>
+	
+	<?php
+	}
+	ob_end_flush();
 ?>

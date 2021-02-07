@@ -10,12 +10,24 @@
 		
 		<div class="content-wrapper">
 			<section class="content-header">
-				<h1>Historias Cl&iacute;nicas</h1>
+				<h1>Historial</h1>
 			</section>
 			<section class="content">
 				<div class="box box-primary">
 					<div class="box-header with-border">
 						<!-- <a href="historiaclinica-create.php" class="btn btn-primary"><i class="fas fa-plus"></i> Nuevo</a> -->
+						<a href="historiaclinica-read.php?estado=agendado" class="btn btn-success"><i class="fas fa-user-clock"></i> Agendado</a>
+						<a href="historiaclinica-read.php?estado=atendido" class="btn btn-danger"><i class="fas fa-user-check"></i> Atendido</a>
+						<a href="historiaclinica-read.php?estado=ausente" class="btn btn-warning"><i class="fas fa-user-alt-slash"></i> Ausente</a>
+						
+						<?php
+							if(isset($_GET["estado"]) && !empty($_GET["estado"])){
+								$estado = $_GET["estado"];
+								}else{
+								$estado = "agendado";
+							}
+						?>
+						
 					</div>
 					<div class="box-body table-responsive">
 						<table id="myTable" class="display table table-bordered table-striped table-condensed table-hover" width="100%">
@@ -30,20 +42,14 @@
 									<th>Tratamiento</th>
 									<th>Fecha de Atención</th>
 									<th>Hora de Atención</th>
-									<th>Estado</th>
-									<?php
-										if ($_SESSION["rol"] == "medico"){
-										?>
-										<th style="width:65px">Opciones</th>
-										<?php
-										}
-									?>									
+									<th>Estado</th>						
+									<th style="width:65px">Opciones</th>
 								</tr>
 							</thead>
 							<tbody>
 								<!-- <?php
 									require_once("../modelo/Historiaclinica.php");
-									$res = Historiaclinica::read();
+									$res = Historiaclinica::read2($estado);
 								?> -->
 								<?php
 									while ($dato = mysqli_fetch_object($res)){
@@ -86,13 +92,26 @@
 										echo "<td>".$dato->horaatencion_his."</td>";
 										
 										// VARIABLE TIPO RADIO
-										echo "<td>".$dato->estado_his."</td>";
+										if ($dato->estado_his == "agendado"){
+											echo "<td><span class='label label-success'>agendado</span></td>";
+										}
+										if ($dato->estado_his == "atendido"){
+											echo "<td><span class='label label-danger'>atendido</span></td>";
+										}
+										if ($dato->estado_his == "ausente"){
+											echo "<td><span class='label label-warning'>ausente</span></td>";
+										}
 										
 										// OPCIONES
 										echo "<td>";
 										if ($_SESSION["rol"] == "medico"){
 											echo "<a href='historiaclinica-update.php?id_historiaclinica=".$dato->id_historiaclinica."' title='Actualizar'><i class='fas fa-pen text-green'></i></a>&nbsp;&nbsp;";
 											echo "<a href='historiaclinica-delete.php?id_historiaclinica=".$dato->id_historiaclinica."' title='Eliminar'><i class='fas fa-trash text-red'></i></a>";
+										}
+										if ($_SESSION["rol"] == "cliente"){
+											echo "<a href='historiaclinicadiagnostico-read2.php?id_historiaclinica=".$dato->id_historiaclinica."' title='Diagnósticos'><i class='fas fa-book-medical'></i></a>&nbsp;&nbsp;";
+											echo "<a href='historiaclinica-update.php?id_historiaclinica=".$dato->id_historiaclinica."' title='Recetas'><i class='fas fa-file-medical'></i></a>&nbsp;&nbsp;";
+											echo "<a href='historiaclinica-delete.php?id_historiaclinica=".$dato->id_historiaclinica."' title='Exámenes'><i class='fas fa-microscope'></i></a>";
 										}										
 										echo "</td>";
 										echo "</tr>";
@@ -110,13 +129,7 @@
 									<th>Fecha de Atención</th>
 									<th>Hora de Atención</th>
 									<th>Estado</th>
-									<?php
-										if ($_SESSION["rol"] == "medico"){
-										?>
-										<th style="width:65px">Opciones</th>
-										<?php
-										}
-									?>	
+									<th style="width:65px">Opciones</th>
 								</tr>
 							</tfoot>
 						</table>
@@ -134,12 +147,11 @@
 	
 	<?php
 		if(isset($_GET["msg"]) && !empty($_GET["msg"])){
-		echo base64_decode($_GET["msg"]);
+			echo base64_decode($_GET["msg"]);
 		}
-		?>
-		
-		<?php
-		}
-		ob_end_flush();
-		?>
-				
+	?>
+	
+	<?php
+	}
+	ob_end_flush();
+?>

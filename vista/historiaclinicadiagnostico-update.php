@@ -5,14 +5,14 @@
 		header("Location: login.php");
 		}else{
 		require_once("header.php");
-		if ($_SESSION["rol"] == "administrador"){
+		if ($_SESSION["rol"] == "administrador" or $_SESSION["rol"] == "medico" or $_SESSION["rol"] == "cliente"){
 		?>
 		
 		<div class="content-wrapper">
 			<section class="content">
 				<div class="box box-success">
 					<div class="box-header with-border">
-						<h3 class="box-title">Actualizar Historia Cl&iacute;nica Diagn&oacute;sticos</h3>
+						<h3 class="box-title">Actualizar Historial Diagnósticos</h3>
 					</div>
 					
 					<!-- <?php
@@ -36,10 +36,10 @@
 							</div>
 							
 							<div class="form-group">
-								<label class="col-sm-2 control-label">Historia Clínica:</label>
+								<label class="col-sm-2 control-label">Historial:</label>
 								<div class="col-sm-10">
 									<select name="id_historiaclinica2" class="form-control select2" style="width: 100%;" required autofocus>
-										<option value=''>Historia Clínica</option>
+										<option value=''>Historia</option>
 										<?php
 											require_once("../modelo/Historiaclinica.php");
 											$res2 = Historiaclinica::read();
@@ -78,21 +78,20 @@
 				</div>
 			</section>
 		</div>
-	
-	<?php
-	}else{
-	require_once("noacceso.php");
-	}
-	require_once("footer.php");
+		
+		<?php
+			}else{
+			require_once("noacceso.php");
+		}
+		require_once("footer.php");
 	?>
 	
 	<?php
-	require_once("../controlador/ControladorHistoriaclinicadiagnostico.php");
-	ControladorHistoriaclinicadiagnostico::update();
+		require_once("../controlador/ControladorHistoriaclinicadiagnostico.php");
+		ControladorHistoriaclinicadiagnostico::update();
 	?>
 	
 	<?php
 	}
 	ob_end_flush();
-	?>
-		
+?>

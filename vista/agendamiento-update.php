@@ -99,13 +99,26 @@
 									<input type="date" name="fechaatencion_his" min="<?php echo gmdate("Y-m-d",time() + 3600*(-5+date("I"))); ?>" value="<?php echo $res->fechaatencion_his;?>" class="form-control" required>
 								</div>
 							</div>
-							
+													
 							<div class="form-group">
 								<label class="col-sm-2 control-label">Hora de Atención:</label>
 								<div class="col-sm-10">
-									<input type="time" name="horaatencion_his" value="<?php echo $res->horaatencion_his;?>" class="form-control" required>
+									<select name="horaatencion_his" class="form-control select2" style="width: 100%;" required>
+										<option value=''>Hora</option>
+										<option <?php if($res->horaatencion_his == "09:00"){ echo "selected"; } ?> value="09:00">09:00</option>
+										<option <?php if($res->horaatencion_his == "09:30"){ echo "selected"; } ?> value="09:30">09:30</option>
+										<option <?php if($res->horaatencion_his == "10:00"){ echo "selected"; } ?> value="10:00">10:00</option>
+										<option <?php if($res->horaatencion_his == "10:30"){ echo "selected"; } ?> value="10:30">10:30</option>
+										<option <?php if($res->horaatencion_his == "11:00"){ echo "selected"; } ?> value="11:00">11:00</option>
+										<option <?php if($res->horaatencion_his == "11:30"){ echo "selected"; } ?> value="11:30">11:30</option>
+										<option <?php if($res->horaatencion_his == "16:00"){ echo "selected"; } ?> value="16:00">16:00</option>
+										<option <?php if($res->horaatencion_his == "16:30"){ echo "selected"; } ?> value="16:30">16:30</option>
+										<option <?php if($res->horaatencion_his == "17:00"){ echo "selected"; } ?> value="17:00">17:00</option>
+										<option <?php if($res->horaatencion_his == "17:30"){ echo "selected"; } ?> value="17:30">17:30</option>
+									</select>
 								</div>
 							</div>
+							
 							
 							<input type="hidden" name="estado_his" value="agendado">
 							

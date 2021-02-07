@@ -12,8 +12,15 @@
 		
 		public static function read(){
 			$sql = "SELECT * FROM historiaclinica
-			INNER JOIN Persona on Persona.id_persona = HistoriaClinica.id_persona3 
+			INNER JOIN Persona on Persona.id_persona = HistoriaClinica.id_persona3
 			";
+			return Connection::runQuery($sql);
+		}
+		
+		public static function read2($estado){
+			$sql = "SELECT * FROM historiaclinica
+			INNER JOIN Persona on Persona.id_persona = HistoriaClinica.id_persona3
+			WHERE estado_his = '$estado'";
 			return Connection::runQuery($sql);
 		}
 		
@@ -45,7 +52,7 @@
 		}
 		
 		public static function ultimo_id(){
-			$sql = "SELECT MAX(id_historiaclinica) AS id_historiaclinica FROM historiaclinica";
+		$sql = "SELECT MAX(id_historiaclinica) AS id_historiaclinica FROM historiaclinica";
 		return Connection::rowQuery($sql);
 		}
 		

@@ -125,12 +125,12 @@
 		require_once("footer.php");
 	?>
 	
-	<?php
-		require_once("../controlador/ControladorAgendamiento.php");
-		ControladorAgendamiento::create();
-	?>
-	
-	<?php
-	}
-	ob_end_flush();
+<?php
+require_once("../controlador/ControladorAgendamiento.php");
+ControladorAgendamiento::create();
+?>
+
+<?php
+}
+ob_end_flush();
 ?>

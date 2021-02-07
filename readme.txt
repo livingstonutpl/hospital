@@ -35,7 +35,11 @@ CITAS MEDICAS / EXAMENES / RECETAS / DIAGNOSTICOS
   - ADMIN   REPORTAR POR MEDICO
   - CLIENTE REPORTAR SOLO DE SUS PROPIOS PACIENTES
   - MEDICO  REPORTAR SOLO DE SUS PROPIOS PACIENTES
+
+QUITAR TODAS LAS ENTIDADES HTML
 ********************************************
+
+
 
 
 min="<?php echo gmdate("Y-m-d",time() + 3600*(-5+date("I"))); ?>"
