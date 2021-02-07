@@ -20,14 +20,6 @@
 						<a href="historiaclinica-read.php?estado=atendido" class="btn btn-danger"><i class="fas fa-user-check"></i> Atendido</a>
 						<a href="historiaclinica-read.php?estado=ausente" class="btn btn-warning"><i class="fas fa-user-alt-slash"></i> Ausente</a>
 						
-						<?php
-							if(isset($_GET["estado"]) && !empty($_GET["estado"])){
-								$estado = $_GET["estado"];
-								}else{
-								$estado = "agendado";
-							}
-						?>
-						
 					</div>
 					<div class="box-body table-responsive">
 						<table id="myTable" class="display table table-bordered table-striped table-condensed table-hover" width="100%">
@@ -47,10 +39,31 @@
 								</tr>
 							</thead>
 							<tbody>
+								
+								<?php
+									if(isset($_GET["estado"]) and !empty($_GET["estado"])){
+										$estado = $_GET["estado"];
+										}else{
+										$estado = "agendado";
+									}
+									
+								?>
+								
 								<!-- <?php
-									require_once("../modelo/Historiaclinica.php");
-									$res = Historiaclinica::read2($estado);
+									if ($_SESSION["rol"] == "administrador"){
+										require_once("../modelo/Historiaclinica.php");
+										$res = Historiaclinica::read2($estado);
+									}
+									if ($_SESSION["rol"] == "cliente"){
+										require_once("../modelo/Historiaclinica.php");
+										$res = Historiaclinica::read3($estado, $_SESSION["id_usuario1"]);
+									}
+									if ($_SESSION["rol"] == "medico"){
+										require_once("../modelo/Historiaclinica.php");
+										$res = Historiaclinica::read4($estado, $_SESSION["id_medico"]);
+									}
 								?> -->
+								
 								<?php
 									while ($dato = mysqli_fetch_object($res)){
 										echo "<tr>";
@@ -76,50 +89,52 @@
 											}
 										}
 										
-										// VARIABLE TIPO TEXTAREA
-										echo "<td>".$dato->anamnesis_his."</td>";
-										
-										// VARIABLE TIPO TEXTAREA
-										echo "<td>".$dato->examenfisico_his."</td>";
-										
-										// VARIABLE TIPO TEXTAREA
-										echo "<td>".$dato->tratamiento_his."</td>";
-										
-										// VARIABLE TIPO DATE
-										echo "<td>".$dato->fechaatencion_his."</td>";
-										
-										// VARIABLE TIPO TIME
-										echo "<td>".$dato->horaatencion_his."</td>";
-										
-										// VARIABLE TIPO RADIO
-										if ($dato->estado_his == "agendado"){
-											echo "<td><span class='label label-success'>agendado</span></td>";
-										}
-										if ($dato->estado_his == "atendido"){
-											echo "<td><span class='label label-danger'>atendido</span></td>";
-										}
-										if ($dato->estado_his == "ausente"){
-											echo "<td><span class='label label-warning'>ausente</span></td>";
-										}
-										
-										// OPCIONES
-										echo "<td>";
-										if ($_SESSION["rol"] == "medico"){
-											echo "<a href='historiaclinica-update.php?id_historiaclinica=".$dato->id_historiaclinica."' title='Actualizar'><i class='fas fa-pen text-green'></i></a>&nbsp;&nbsp;";
-											echo "<a href='historiaclinica-delete.php?id_historiaclinica=".$dato->id_historiaclinica."' title='Eliminar'><i class='fas fa-trash text-red'></i></a>";
-										}
-										if ($_SESSION["rol"] == "cliente"){
-											echo "<a href='historiaclinicadiagnostico-read2.php?id_historiaclinica=".$dato->id_historiaclinica."' title='Diagnósticos'><i class='fas fa-book-medical'></i></a>&nbsp;&nbsp;";
-											echo "<a href='historiaclinica-update.php?id_historiaclinica=".$dato->id_historiaclinica."' title='Recetas'><i class='fas fa-file-medical'></i></a>&nbsp;&nbsp;";
-											echo "<a href='historiaclinica-delete.php?id_historiaclinica=".$dato->id_historiaclinica."' title='Exámenes'><i class='fas fa-microscope'></i></a>";
-										}										
-										echo "</td>";
-										echo "</tr>";
+									// VARIABLE TIPO TEXTAREA
+									echo "<td>".$dato->anamnesis_his."</td>";
+									
+									// VARIABLE TIPO TEXTAREA
+									echo "<td>".$dato->examenfisico_his."</td>";
+									
+									// VARIABLE TIPO TEXTAREA
+									echo "<td>".$dato->tratamiento_his."</td>";
+									
+									// VARIABLE TIPO DATE
+									echo "<td>".$dato->fechaatencion_his."</td>";
+									
+									// VARIABLE TIPO TIME
+									echo "<td>".$dato->horaatencion_his."</td>";
+									
+									// VARIABLE TIPO RADIO
+									if ($dato->estado_his == "agendado"){
+									echo "<td><span class='label label-success'>agendado</span></td>";
 									}
-								?>
-							</tbody>
-							<tfoot>
-								<tr>
+									if ($dato->estado_his == "atendido"){
+									echo "<td><span class='label label-danger'>atendido</span></td>";
+									}
+									if ($dato->estado_his == "ausente"){
+									echo "<td><span class='label label-warning'>ausente</span></td>";
+									}
+									
+									// OPCIONES
+									echo "<td>";
+									if ($_SESSION["rol"] == "medico"){
+									echo "<a href='historiaclinica-update.php?id_historiaclinica=".$dato->id_historiaclinica."' title='Actualizar'><i class='fas fa-pen text-green'></i></a>&nbsp;&nbsp;";
+									echo "<a href='historiaclinica-delete.php?id_historiaclinica=".$dato->id_historiaclinica."' title='Eliminar'><i class='fas fa-trash text-red'></i></a>";
+									}
+									
+									if ($_SESSION["rol"] == "cliente"){
+									if ($dato->estado_his == "atendido"){
+									echo "<a href='historiaclinicadiagnostico-read2.php?id_historiaclinica=".$dato->id_historiaclinica."' title='Diagnósticos'> Diagnósticos</a>";
+									}										
+									}
+									
+									echo "</td>";
+									echo "</tr>";
+									}
+									?>
+									</tbody>
+									<tfoot>
+									<tr>
 									<th>Id</th>
 									<th>Paciente</th>
 									<th>Médico</th>
@@ -130,28 +145,29 @@
 									<th>Hora de Atención</th>
 									<th>Estado</th>
 									<th style="width:65px">Opciones</th>
-								</tr>
-							</tfoot>
-						</table>
-					</div>
-				</div>
-			</section>
-		</div>
-		
-		<?php
-			}else{
-			require_once("noacceso.php");
-		}
-		require_once("footer.php");
-	?>
-	
-	<?php
-		if(isset($_GET["msg"]) && !empty($_GET["msg"])){
-			echo base64_decode($_GET["msg"]);
-		}
-	?>
-	
-	<?php
-	}
-	ob_end_flush();
-?>
+									</tr>
+									</tfoot>
+									</table>
+									</div>
+									</div>
+									</section>
+									</div>
+									
+									<?php
+									}else{
+									require_once("noacceso.php");
+									}
+									require_once("footer.php");
+									?>
+									
+									<?php
+									if(isset($_GET["msg"]) and !empty($_GET["msg"])){
+									echo base64_decode($_GET["msg"]);
+									}
+									?>
+									
+									<?php
+									}
+									ob_end_flush();
+									?>
+																		

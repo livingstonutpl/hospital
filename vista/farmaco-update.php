@@ -12,11 +12,11 @@
 			<section class="content">
 				<div class="box box-success">
 					<div class="box-header with-border">
-						<h3 class="box-title">Actualizar F&aacute;rmaco</h3>
+						<h3 class="box-title">Actualizar Fármaco</h3>
 					</div>
 					
 					<!-- <?php
-						if(isset($_GET["id_farmaco"]) && !empty($_GET["id_farmaco"])){
+						if(isset($_GET["id_farmaco"]) and !empty($_GET["id_farmaco"])){
 							require_once("../modelo/Farmaco.php");
 							$id_farmaco = Connection::sanitize($_GET["id_farmaco"]);
 							$res = farmaco::single_row($id_farmaco);

@@ -12,7 +12,7 @@
 			<section class="content">
 				<div class="box box-primary">
 					<div class="box-header with-border">
-						<h3 class="box-title">Nuevo M&eacute;dico</h3>
+						<h3 class="box-title">Nuevo Médico</h3>
 					</div>
 					
 					<form action="#" class="form-horizontal" method="POST" enctype="multipart/form-data">

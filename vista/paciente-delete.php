@@ -16,7 +16,7 @@
 					</div>
 					
 					<!-- <?php
-						if(isset($_GET["id_persona"]) && !empty($_GET["id_persona"])){
+						if(isset($_GET["id_persona"]) and !empty($_GET["id_persona"])){
 							require_once("../modelo/Persona.php");
 							$id_persona = Connection::sanitize($_GET["id_persona"]);
 							$res = persona::single_row($id_persona);
@@ -45,83 +45,84 @@
 							<div class="form-group">
 								<label class="col-sm-2 control-label">Nombre:</label>
 								<div class="col-sm-10">
-									<input type="text" name="nombre_per" value="<?php echo $res->nombre_per;?>" class="form-control" readonly>
+								<input type="text" name="nombre_per" value="<?php echo $res->nombre_per;?>" class="form-control" readonly>
 								</div>
-							</div>
-							
-							<div class="form-group">
+								</div>
+								
+								<div class="form-group">
 								<label class="col-sm-2 control-label">Apellido:</label>
 								<div class="col-sm-10">
-									<input type="text" name="apellido_per" value="<?php echo $res->apellido_per;?>" class="form-control" readonly>
+								<input type="text" name="apellido_per" value="<?php echo $res->apellido_per;?>" class="form-control" readonly>
 								</div>
-							</div>
-							
-							<div class="form-group">
+								</div>
+								
+								<div class="form-group">
 								<label class="col-sm-2 control-label">Email:</label>
 								<div class="col-sm-10">
-									<input type="text" name="email_per" value="<?php echo $res->email_per;?>" class="form-control" readonly>
+								<input type="text" name="email_per" value="<?php echo $res->email_per;?>" class="form-control" readonly>
 								</div>
-							</div>
-							
-							<div class="form-group">
+								</div>
+								
+								<div class="form-group">
 								<label class="col-sm-2 control-label">Teléfono:</label>
 								<div class="col-sm-10">
-									<input type="text" name="telefono_per" value="<?php echo $res->telefono_per;?>" class="form-control" readonly>
+								<input type="text" name="telefono_per" value="<?php echo $res->telefono_per;?>" class="form-control" readonly>
 								</div>
-							</div>
-							
-							<div class="form-group">
+								</div>
+								
+								<div class="form-group">
 								<label class="col-sm-2 control-label">Dirección:</label>
 								<div class="col-sm-10">
-									<textarea rows="3" name="direccion_per" class="form-control" readonly><?php echo $res->direccion_per;?></textarea>
+								<textarea rows="3" name="direccion_per" class="form-control" readonly><?php echo $res->direccion_per;?></textarea>
 								</div>
-							</div>
-							
-							<div class="form-group">
+								</div>
+								
+								<div class="form-group">
 								<label class="col-sm-2 control-label">Ciudad de Residencia:</label>
 								<div class="col-sm-10">
-									<input type="text" name="ciudadresi_per" value="<?php echo $res->ciudadresi_per;?>" class="form-control" readonly>
+								<input type="text" name="ciudadresi_per" value="<?php echo $res->ciudadresi_per;?>" class="form-control" readonly>
 								</div>
-							</div>
-							
-							<div class="form-group">
+								</div>
+								
+								<div class="form-group">
 								<label class="col-sm-2 control-label">Fecha de Nacimiento:</label>
 								<div class="col-sm-10">
-									<input type="text" name="fechanaci_per" value="<?php echo $res->fechanaci_per;?>" class="form-control" readonly>
+								<input type="text" name="fechanaci_per" value="<?php echo $res->fechanaci_per;?>" class="form-control" readonly>
 								</div>
-							</div>
-							
-							<div class="form-group">
+								</div>
+								
+								<div class="form-group">
 								<label class="col-sm-2 control-label">Género:</label>
 								<div class="col-sm-10">
-									<input type="text" name="genero_per" value="<?php echo $res->genero_per;?>" class="form-control" readonly>
+								<input type="text" name="genero_per" value="<?php echo $res->genero_per;?>" class="form-control" readonly>
 								</div>
-							</div>
-							
-						</div>
-						<div class="box-footer">
-							<p>&iquest;Est&aacute; seguro que desea eliminar el registro?</p>
-							<button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i> Eliminar</button>
-							<a class="btn btn-info" href="paciente-read.php" role="button"><i class="fas fa-times"></i> Cancelar</a>
-						</div>
-					</form>
-				</div>
-			</section>
-		</div>
-		
-		<?php
-			}else{
-			require_once("noacceso.php");
-		}
-		require_once("footer.php");
-	?>
-	
-	<?php
-		require_once("../controlador/ControladorPaciente.php");
-		ControladorPaciente::delete();
-	?>
-	
-	<?php
-	}
-	ob_end_flush();
-?>
+								</div>
+								
+								</div>
+								<div class="box-footer">
+								<p>¿Está seguro que desea eliminar el registro?</p>
+								<button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i> Eliminar</button>
+								<a class="btn btn-info" href="paciente-read.php" role="button"><i class="fas fa-times"></i> Cancelar</a>
+								</div>
+								</form>
+								</div>
+								</section>
+								</div>
+								
+								<?php
+								}else{
+								require_once("noacceso.php");
+								}
+								require_once("footer.php");
+								?>
+								
+								<?php
+								require_once("../controlador/ControladorPaciente.php");
+								ControladorPaciente::delete();
+								?>
+								
+								<?php
+								}
+								ob_end_flush();
+								?>
+																

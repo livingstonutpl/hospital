@@ -16,7 +16,7 @@
 					</div>
 					
 					<!-- <?php
-						if(isset($_GET["id_diagnostico"]) && !empty($_GET["id_diagnostico"])){
+						if(isset($_GET["id_diagnostico"]) and !empty($_GET["id_diagnostico"])){
 							require_once("../modelo/Diagnostico.php");
 							$id_diagnostico = Connection::sanitize($_GET["id_diagnostico"]);
 							$res = diagnostico::single_row($id_diagnostico);
@@ -51,7 +51,7 @@
 							
 						</div>
 						<div class="box-footer">
-							<p>&iquest;Est&aacute; seguro que desea eliminar el registro?</p>
+							<p>¿Está seguro que desea eliminar el registro?</p>
 							<button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i> Eliminar</button>
 							<a class="btn btn-info" href="diagnostico-read.php" role="button"><i class="fas fa-times"></i> Cancelar</a>
 						</div>
@@ -60,20 +60,19 @@
 			</section>
 		</div>
 		
-	<?php
-	}else{
-	require_once("noacceso.php");
-	}
-	require_once("footer.php");
+		<?php
+			}else{
+			require_once("noacceso.php");
+		}
+		require_once("footer.php");
 	?>
 	
 	<?php
-	require_once("../controlador/ControladorDiagnostico.php");
-	ControladorDiagnostico::delete();
+		require_once("../controlador/ControladorDiagnostico.php");
+		ControladorDiagnostico::delete();
 	?>
 	
 	<?php
 	}
 	ob_end_flush();
-	?>
-		
+?>

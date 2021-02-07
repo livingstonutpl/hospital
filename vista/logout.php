@@ -9,7 +9,7 @@
 		?>
 		
 		<?php
-			if(isset($_GET["msg"]) && !empty($_GET["msg"])){
+			if(isset($_GET["msg"]) and !empty($_GET["msg"])){
 				if($_GET["msg"]=="salir"){
 					session_start();
 					session_unset();

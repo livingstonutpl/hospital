@@ -16,7 +16,7 @@
 					</div>
 					
 					<!-- <?php
-						if(isset($_GET["id_historiaclinicadiagnostico"]) && !empty($_GET["id_historiaclinicadiagnostico"])){
+						if(isset($_GET["id_historiaclinicadiagnostico"]) and !empty($_GET["id_historiaclinicadiagnostico"])){
 							require_once("../modelo/Historiaclinicadiagnostico.php");
 							$id_historiaclinicadiagnostico = Connection::sanitize($_GET["id_historiaclinicadiagnostico"]);
 							$res = historiaclinicadiagnostico::single_row($id_historiaclinicadiagnostico);

@@ -16,7 +16,7 @@
 					</div>
 					
 					<!-- <?php
-						if(isset($_GET["id_examen"]) && !empty($_GET["id_examen"])){
+						if(isset($_GET["id_examen"]) and !empty($_GET["id_examen"])){
 							require_once("../modelo/Examen.php");
 							$id_examen = Connection::sanitize($_GET["id_examen"]);
 							$res = examen::single_row($id_examen);
@@ -36,7 +36,7 @@
 							</div>
 							
 							<div class="form-group">
-								<label class="col-sm-2 control-label">Historia Clínica:</label>
+								<label class="col-sm-2 control-label">Historial:</label>
 								<div class="col-sm-10">
 									<?php
 										require_once("../modelo/Historiaclinica.php");
@@ -76,52 +76,51 @@
 							</div>
 							
 							
-						<div class="form-group">
-						<label class="col-sm-2 control-label">Descripción:</label>
-						<div class="col-sm-10">
-						<textarea rows="3" name="descripcion_exa" class="form-control" readonly><?php echo $res->descripcion_exa;?></textarea>
-						</div>
-						</div>
-						
-						<div class="form-group">
-						<label class="col-sm-2 control-label">Resultado:</label>
-						<div class="col-sm-10">
-						<textarea rows="3" name="resultado_exa" class="form-control" readonly><?php echo $res->resultado_exa;?></textarea>
-						</div>
-						</div>
-						
-						<div class="form-group">
-						<label class="col-sm-2 control-label">Estado:</label>
-						<div class="col-sm-10">
-						<input type="text" name="estado_exa" value="<?php echo $res->estado_exa;?>" class="form-control" readonly>
-						</div>
-						</div>
-						
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Descripción:</label>
+								<div class="col-sm-10">
+									<textarea rows="3" name="descripcion_exa" class="form-control" readonly><?php echo $res->descripcion_exa;?></textarea>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Resultado:</label>
+								<div class="col-sm-10">
+									<textarea rows="3" name="resultado_exa" class="form-control" readonly><?php echo $res->resultado_exa;?></textarea>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Estado:</label>
+								<div class="col-sm-10">
+									<input type="text" name="estado_exa" value="<?php echo $res->estado_exa;?>" class="form-control" readonly>
+								</div>
+							</div>
+							
 						</div>
 						<div class="box-footer">
-						<p>&iquest;Est&aacute; seguro que desea eliminar el registro?</p>
-						<button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i> Eliminar</button>
-						<a class="btn btn-info" href="examen-read.php" role="button"><i class="fas fa-times"></i> Cancelar</a>
+							<p>¿Está seguro que desea eliminar el registro?</p>
+							<button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i> Eliminar</button>
+							<a class="btn btn-info" href="examen-read.php" role="button"><i class="fas fa-times"></i> Cancelar</a>
 						</div>
-						</form>
-						</div>
-						</section>
-						</div>
-						
-						<?php
-						}else{
-						require_once("noacceso.php");
-						}
-						require_once("footer.php");
-						?>
-						
-						<?php
-						require_once("../controlador/ControladorExamen.php");
-						ControladorExamen::delete();
-						?>
-						
-						<?php
-						}
-						ob_end_flush();
-						?>
-												
+					</form>
+				</div>
+			</section>
+		</div>
+		
+		<?php
+			}else{
+			require_once("noacceso.php");
+		}
+		require_once("footer.php");
+	?>
+	
+	<?php
+		require_once("../controlador/ControladorExamen.php");
+		ControladorExamen::delete();
+	?>
+	
+	<?php
+	}
+	ob_end_flush();
+?>

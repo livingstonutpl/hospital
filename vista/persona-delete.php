@@ -16,7 +16,7 @@
 					</div>
 					
 					<!-- <?php
-						if(isset($_GET["id_persona"]) && !empty($_GET["id_persona"])){
+						if(isset($_GET["id_persona"]) and !empty($_GET["id_persona"])){
 							require_once("../modelo/Persona.php");
 							$id_persona = Connection::sanitize($_GET["id_persona"]);
 							$res = persona::single_row($id_persona);
@@ -116,7 +116,7 @@
 							
 						</div>
 						<div class="box-footer">
-							<p>&iquest;Est&aacute; seguro que desea eliminar el registro?</p>
+							<p>¿Está seguro que desea eliminar el registro?</p>
 							<button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i> Eliminar</button>
 							<a class="btn btn-info" href="persona-read.php" role="button"><i class="fas fa-times"></i> Cancelar</a>
 						</div>
@@ -127,18 +127,17 @@
 		
 		<?php
 			}else{
-		require_once("noacceso.php");
+			require_once("noacceso.php");
 		}
 		require_once("footer.php");
-		?>
-		
-		<?php
+	?>
+	
+	<?php
 		require_once("../controlador/ControladorPersona.php");
 		ControladorPersona::delete();
-		?>
-		
-		<?php
-		}
-		ob_end_flush();
-		?>
-				
+	?>
+	
+	<?php
+	}
+	ob_end_flush();
+?>

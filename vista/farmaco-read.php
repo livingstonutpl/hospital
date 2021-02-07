@@ -44,50 +44,50 @@
 										echo "<td>".$dato->nombre_far."</td>";
 										
 										// VARIABLE TIPO TEXTAREA
-									echo "<td>".$dato->presentacion_far."</td>";
-									
-									// VARIABLE TIPO TEXTAREA
-									echo "<td>".$dato->administracion_far."</td>";
-									
-									// OPCIONES
-									echo "<td>";
-									echo "<a href='farmaco-update.php?id_farmaco=".$dato->id_farmaco."' title='Actualizar'><i class='fas fa-pen text-green'></i></a>&nbsp;&nbsp;";
-									echo "<a href='farmaco-delete.php?id_farmaco=".$dato->id_farmaco."' title='Eliminar'><i class='fas fa-trash text-red'></i></a>";
-									echo "</td>";
-									echo "</tr>";
+										echo "<td>".$dato->presentacion_far."</td>";
+										
+										// VARIABLE TIPO TEXTAREA
+										echo "<td>".$dato->administracion_far."</td>";
+										
+										// OPCIONES
+										echo "<td>";
+										echo "<a href='farmaco-update.php?id_farmaco=".$dato->id_farmaco."' title='Actualizar'><i class='fas fa-pen text-green'></i></a>&nbsp;&nbsp;";
+										echo "<a href='farmaco-delete.php?id_farmaco=".$dato->id_farmaco."' title='Eliminar'><i class='fas fa-trash text-red'></i></a>";
+										echo "</td>";
+										echo "</tr>";
 									}
-									?>
-									</tbody>
-									<tfoot>
-									<tr>
+								?>
+							</tbody>
+							<tfoot>
+								<tr>
 									<th>Id</th>
 									<th>Nombre</th>
-									<th>Presentación</th>
-									<th>Administración</th>
-									<th style="width:65px">Opciones</th>
-									</tr>
-									</tfoot>
-									</table>
-									</div>
-									</div>
-									</section>
-									</div>
-									
-									<?php
-									}else{
-									require_once("noacceso.php");
-									}
-									require_once("footer.php");
-									?>
-									
-									<?php
-									if(isset($_GET["msg"]) && !empty($_GET["msg"])){
-									echo base64_decode($_GET["msg"]);
-									}
-									?>
-									
-									<?php
-									}
-									ob_end_flush();
-									?>
-																		
+								<th>Presentación</th>
+								<th>Administración</th>
+								<th style="width:65px">Opciones</th>
+								</tr>
+								</tfoot>
+								</table>
+								</div>
+								</div>
+								</section>
+								</div>
+								
+								<?php
+								}else{
+								require_once("noacceso.php");
+								}
+								require_once("footer.php");
+								?>
+								
+								<?php
+								if(isset($_GET["msg"]) and !empty($_GET["msg"])){
+								echo base64_decode($_GET["msg"]);
+								}
+								?>
+								
+								<?php
+								}
+								ob_end_flush();
+								?>
+																

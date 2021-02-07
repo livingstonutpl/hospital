@@ -16,7 +16,7 @@
 					</div>
 					
 					<!-- <?php
-						if(isset($_GET["id_especialidad"]) && !empty($_GET["id_especialidad"])){
+						if(isset($_GET["id_especialidad"]) and !empty($_GET["id_especialidad"])){
 							require_once("../modelo/Especialidad.php");
 							$id_especialidad = Connection::sanitize($_GET["id_especialidad"]);
 							$res = especialidad::single_row($id_especialidad);
@@ -51,7 +51,7 @@
 							
 						</div>
 						<div class="box-footer">
-							<p>&iquest;Est&aacute; seguro que desea eliminar el registro?</p>
+							<p>¿Está seguro que desea eliminar el registro?</p>
 							<button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i> Eliminar</button>
 							<a class="btn btn-info" href="especialidad-read.php" role="button"><i class="fas fa-times"></i> Cancelar</a>
 						</div>

@@ -51,7 +51,7 @@
 								<label class="col-sm-2 control-label">Hora Examen:</label>
 								<div class="col-sm-10">
 									<select name="hora_exa" class="form-control select2" style="width: 100%;" required>
-										<option value=''>Hora de Atención</option>
+										<option value=''>Hora Examen</option>
 										<option value='09:00'>09:00</option>
 										<option value='09:30'>09:30</option>
 										<option value='10:00'>10:00</option>
@@ -76,69 +76,69 @@
 										<option value='Ecocardiograma'>Ecocardiograma</option>
 										<option value='Ecografía'>Ecografía</option>
 										<option value='Electrocardiograma'>Electrocardiograma</option>
-									<option value='Electroencefalograma'>Electroencefalograma</option>
-									<option value='Endoscopía'>Endoscopía</option>
-									<option value='Imagen'>Imagen</option>
-									<option value='Laboratorio'>Laboratorio</option>
-									<option value='Mamografía'>Mamografía</option>
-									<option value='Tomografía'>Tomografía</option>
+										<option value='Electroencefalograma'>Electroencefalograma</option>
+										<option value='Endoscopía'>Endoscopía</option>
+										<option value='Imagen'>Imagen</option>
+										<option value='Laboratorio'>Laboratorio</option>
+										<option value='Mamografía'>Mamografía</option>
+										<option value='Tomografía'>Tomografía</option>
 									</select>
-									</div>
-									</div>
-									
-									<div class="form-group">
-									<label class="col-sm-2 control-label">Descripción:</label>
-									<div class="col-sm-10">
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Descripción:</label>
+								<div class="col-sm-10">
 									<textarea rows="3" name="descripcion_exa" class="form-control" placeholder="Descripción" required></textarea>
-									</div>
-									</div>
-									
-									<div class="form-group">
-									<label class="col-sm-2 control-label">Resultado:</label>
-									<div class="col-sm-10">
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Resultado:</label>
+								<div class="col-sm-10">
 									<textarea rows="3" name="resultado_exa" class="form-control" placeholder="Resultado" required></textarea>
-									</div>
-									</div>
-									
-									<div class="form-group">
-									<label class="col-sm-2 control-label">Estado:</label>
-									<div class="col-sm-10">
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Estado:</label>
+								<div class="col-sm-10">
 									<div class="radio">
-									<label><input type="radio" name="estado_exa" value="pendiente" required>pendiente</label>
-									</div>
-									<div class="radio">
-									<label><input type="radio" name="estado_exa" value="elaborado" required>elaborado</label>
+										<label><input type="radio" name="estado_exa" value="pendiente" required>pendiente</label>
 									</div>
 									<div class="radio">
-									<label><input type="radio" name="estado_exa" value="anulado" required>anulado</label>
+										<label><input type="radio" name="estado_exa" value="elaborado" required>elaborado</label>
 									</div>
+									<div class="radio">
+										<label><input type="radio" name="estado_exa" value="anulado" required>anulado</label>
 									</div>
-									</div>
-									
-									</div>
-									<div class="box-footer">
-									<button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Guardar</button>
-									<a class="btn btn-info" href="examen-read.php" role="button"><i class="fas fa-times"></i> Cancelar</a>
-									</div>
-									</form> 
-									</div>
-									</section>
-									</div>
-									
-									<?php
-									}else{
-									require_once("noacceso.php");
-									}
-									require_once("footer.php");
-									?>
-									
-									<?php
-									require_once("../controlador/ControladorExamen.php");
-									ControladorExamen::create();
-									?>
-									
-									<?php
-									}
-									ob_end_flush();
-									?>
-																		
+								</div>
+							</div>
+							
+						</div>
+						<div class="box-footer">
+						<button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Guardar</button>
+						<a class="btn btn-info" href="examen-read.php" role="button"><i class="fas fa-times"></i> Cancelar</a>
+						</div>
+						</form> 
+						</div>
+						</section>
+						</div>
+						
+						<?php
+						}else{
+						require_once("noacceso.php");
+						}
+						require_once("footer.php");
+						?>
+						
+						<?php
+						require_once("../controlador/ControladorExamen.php");
+						ControladorExamen::create();
+						?>
+						
+						<?php
+						}
+						ob_end_flush();
+						?>
+												

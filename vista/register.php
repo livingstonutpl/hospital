@@ -178,7 +178,7 @@
 			
 			
 			<?php
-				if(isset($_POST) && !empty($_POST)){
+				if(isset($_POST) and !empty($_POST)){
 					require_once("../modelo/Usuario.php");
 					$nombre_usu = Connection::sanitize($_POST["nombre_usu"]);
 					$password_usu = md5(Connection::sanitize($_POST["password_usu"]));
@@ -205,25 +205,25 @@
 					$id_persona1 = $ultimo_id_persona;
 					$id_rol1 = 2;
 					$res3 = Personarol::create($id_persona1, $id_rol1, $id_persona1."-2");
-					
-					if($res1 and $res2 and res3){
-						$msg = base64_encode("<script>toastr.success('Registro guardado correctamente');</script>");
-						}else{
-						$msg = base64_encode("<script>toastr.error('El registro no se pudo guardar');</script>");
-					}
-					
-					header ("Location: login.php?msg=$msg");
+				
+				if($res1 and $res2 and res3){
+				$msg = base64_encode("<script>toastr.success('Registro guardado correctamente');</script>");
+				}else{
+				$msg = base64_encode("<script>toastr.error('El registro no se pudo guardar');</script>");
 				}
-			?>
-			
-			
-		</body>
-	</html>
-	
-	
-	<?php
-		}else{
-		header ("Location: principal.php");
-	}
-	ob_end_flush();
-?>																																																																																																																																																																																																																																																																																																																																																																																																																																																																	
+				
+				header ("Location: login.php?msg=$msg");
+				}
+				?>
+				
+				
+				</body>
+				</html>
+				
+				
+				<?php
+				}else{
+				header ("Location: principal.php");
+				}
+				ob_end_flush();
+				?>																																																																																																																																																																																																																																																																																																																																																																																																																																																																					

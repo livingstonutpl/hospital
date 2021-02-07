@@ -46,24 +46,25 @@
 							<button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Guardar</button>
 							<a class="btn btn-info" href="farmaco-read.php" role="button"><i class="fas fa-times"></i> Cancelar</a>
 						</div>
-					</form> 
-				</div>
-			</section>
-		</div>
-		
-		<?php
-			}else{
-			require_once("noacceso.php");
-		}
-		require_once("footer.php");
-	?>
-	
-	<?php
-		require_once("../controlador/ControladorFarmaco.php");
-		ControladorFarmaco::create();
-	?>
-	
-	<?php
-	}
-	ob_end_flush();
-?>
+						</form> 
+						</div>
+						</section>
+						</div>
+						
+						<?php
+						}else{
+						require_once("noacceso.php");
+						}
+						require_once("footer.php");
+						?>
+						
+						<?php
+						require_once("../controlador/ControladorFarmaco.php");
+						ControladorFarmaco::create();
+						?>
+						
+						<?php
+						}
+						ob_end_flush();
+						?>
+												

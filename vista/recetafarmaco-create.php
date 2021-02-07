@@ -5,14 +5,14 @@
 		header("Location: login.php");
 		}else{
 		require_once("header.php");
-		if ($_SESSION["rol"] == "administrador"){
+		if ($_SESSION["rol"] == "administrador" or $_SESSION["rol"] == "medico" or $_SESSION["rol"] == "cliente"){
 		?>
 		
 		<div class="content-wrapper">
 			<section class="content">
 				<div class="box box-primary">
 					<div class="box-header with-border">
-						<h3 class="box-title">Nueva Receta F&aacute;rmaco</h3>
+						<h3 class="box-title">Nueva Receta Fármaco</h3>
 					</div>
 					
 					<form action="#" class="form-horizontal" method="POST" enctype="multipart/form-data">
@@ -45,7 +45,7 @@
 											require_once("../modelo/Farmaco.php");
 											$res2 = Farmaco::read();
 											while ($dato2 = mysqli_fetch_object($res2)){
-												echo "<option value='".$dato2->id_farmaco."'>".$dato2->id_farmaco." - ".$dato2->nombre_far."</option>";
+												echo "<option value='".$dato2->id_farmaco."'>".$dato2->nombre_far." - ".$dato2->presentacion_far." - ".$dato2->administracion_far."</option>";
 											}
 										?>
 									</select>
@@ -61,49 +61,49 @@
 							
 							<div class="form-group">
 								<label class="col-sm-2 control-label">Posologia:</label>
-								<div class="col-sm-10">
-									<textarea rows="3" name="posologia_recfar" class="form-control" placeholder="Posologia" required></textarea>
-								</div>
+							<div class="col-sm-10">
+							<textarea rows="3" name="posologia_recfar" class="form-control" placeholder="Posologia" required></textarea>
+							</div>
 							</div>
 							
 							<div class="form-group">
-								<label class="col-sm-2 control-label">Duracion:</label>
-								<div class="col-sm-10">
-									<textarea rows="3" name="duracion_recfar" class="form-control" placeholder="Duracion" required></textarea>
-								</div>
+							<label class="col-sm-2 control-label">Duracion:</label>
+							<div class="col-sm-10">
+							<textarea rows="3" name="duracion_recfar" class="form-control" placeholder="Duracion" required></textarea>
+							</div>
 							</div>
 							
 							<div class="form-group">
-								<label class="col-sm-2 control-label">Indicaciones:</label>
-								<div class="col-sm-10">
-									<textarea rows="3" name="indicaciones_recfar" class="form-control" placeholder="Indicaciones" required></textarea>
-								</div>
+							<label class="col-sm-2 control-label">Indicaciones:</label>
+							<div class="col-sm-10">
+							<textarea rows="3" name="indicaciones_recfar" class="form-control" placeholder="Indicaciones" required></textarea>
+							</div>
 							</div>
 							
-						</div>
-						<div class="box-footer">
+							</div>
+							<div class="box-footer">
 							<button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Guardar</button>
 							<a class="btn btn-info" href="recetafarmaco-read.php" role="button"><i class="fas fa-times"></i> Cancelar</a>
-						</div>
-						</form> 
-						</div>
-						</section>
-						</div>
-						
-						<?php
-						}else{
-						require_once("noacceso.php");
-						}
-						require_once("footer.php");
-						?>
-						
-						<?php
-						require_once("../controlador/ControladorRecetafarmaco.php");
-						ControladorRecetafarmaco::create();
-						?>
-						
-						<?php
-						}
-						ob_end_flush();
-						?>
-												
+							</div>
+							</form> 
+							</div>
+							</section>
+							</div>
+							
+							<?php
+							}else{
+							require_once("noacceso.php");
+							}
+							require_once("footer.php");
+							?>
+							
+							<?php
+							require_once("../controlador/ControladorRecetafarmaco.php");
+							ControladorRecetafarmaco::create();
+							?>
+							
+							<?php
+							}
+							ob_end_flush();
+							?>
+														

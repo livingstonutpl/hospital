@@ -16,7 +16,7 @@
 					</div>
 					
 					<!-- <?php
-						if(isset($_GET["id_personarol"]) && !empty($_GET["id_personarol"])){
+						if(isset($_GET["id_personarol"]) and !empty($_GET["id_personarol"])){
 							require_once("../modelo/Personarol.php");
 							$id_personarol = Connection::sanitize($_GET["id_personarol"]);
 							$res = personarol::single_row($id_personarol);
@@ -69,7 +69,7 @@
 							
 						</div>
 						<div class="box-footer">
-							<p>&iquest;Est&aacute; seguro que desea eliminar el registro?</p>
+							<p>¿Está seguro que desea eliminar el registro?</p>
 							<button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i> Eliminar</button>
 							<a class="btn btn-info" href="personarol-read.php" role="button"><i class="fas fa-times"></i> Cancelar</a>
 						</div>

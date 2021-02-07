@@ -16,7 +16,7 @@
 					</div>
 
 					<!-- <?php
-						if(isset($_GET["id_rol"]) && !empty($_GET["id_rol"])){
+						if(isset($_GET["id_rol"]) and !empty($_GET["id_rol"])){
 							require_once("../modelo/Rol.php");
 							$id_rol = Connection::sanitize($_GET["id_rol"]);
 							$res = rol::single_row($id_rol);

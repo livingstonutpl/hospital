@@ -45,40 +45,40 @@
 									<select name="id_diagnostico1" class="form-control select2" style="width: 100%;" required>
 										<option value=''>Diagnóstico</option>
 										<?php
-											require_once("../modelo/Diagnostico.php");
-											$res2 = Diagnostico::read();
-											while ($dato2 = mysqli_fetch_object($res2)){
-												echo "<option value='".$dato2->id_diagnostico."'>".$dato2->cie10_dia." - ".$dato2->descripcion_dia."</option>";
-											}
+										require_once("../modelo/Diagnostico.php");
+										$res2 = Diagnostico::read();
+										while ($dato2 = mysqli_fetch_object($res2)){
+										echo "<option value='".$dato2->id_diagnostico."'>".$dato2->cie10_dia." - ".$dato2->descripcion_dia."</option>";
+										}
 										?>
-									</select>
-								</div>
-							</div>
-							
-						</div>
-						<div class="box-footer">
-							<button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Guardar</button>
-							<a class="btn btn-info" href="historiaclinicadiagnostico-read.php" role="button"><i class="fas fa-times"></i> Cancelar</a>
-						</div>
-					</form> 
-				</div>
-			</section>
-			</div>
-			
-						<?php
-						}else{
-						require_once("noacceso.php");
-						}
-						require_once("footer.php");
-						?>
-						
-						<?php
-						require_once("../controlador/ControladorHistoriaclinicadiagnostico.php");
-						ControladorHistoriaclinicadiagnostico::create();
-						?>
-						
-						<?php
-						}
-						ob_end_flush();
-						?>
-												
+										</select>
+										</div>
+										</div>
+										
+										</div>
+										<div class="box-footer">
+										<button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Guardar</button>
+										<a class="btn btn-info" href="historiaclinicadiagnostico-read.php" role="button"><i class="fas fa-times"></i> Cancelar</a>
+										</div>
+										</form> 
+										</div>
+										</section>
+										</div>
+										
+										<?php
+										}else{
+										require_once("noacceso.php");
+										}
+										require_once("footer.php");
+										?>
+										
+										<?php
+										require_once("../controlador/ControladorHistoriaclinicadiagnostico.php");
+										ControladorHistoriaclinicadiagnostico::create();
+										?>
+										
+										<?php
+										}
+										ob_end_flush();
+										?>
+																				

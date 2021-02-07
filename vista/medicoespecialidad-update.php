@@ -16,7 +16,7 @@
 					</div>
 					
 					<!-- <?php
-						if(isset($_GET["id_medicoespecialidad"]) && !empty($_GET["id_medicoespecialidad"])){
+						if(isset($_GET["id_medicoespecialidad"]) and !empty($_GET["id_medicoespecialidad"])){
 							require_once("../modelo/Medicoespecialidad.php");
 							$id_medicoespecialidad = Connection::sanitize($_GET["id_medicoespecialidad"]);
 							$res = medicoespecialidad::single_row($id_medicoespecialidad);

@@ -14,35 +14,38 @@
 			</section>
 			<section class="content">
 				<div class="box box-primary">
-					<div class="box-header with-border">
+					<!-- <div class="box-header with-border">
 						<a href="recetafarmaco-create.php" class="btn btn-primary"><i class="fas fa-plus"></i> Nuevo</a>
-					</div>
+					</div> -->
 					<div class="box-body table-responsive">
-						<table id="myTable" class="display table table-bordered table-striped table-condensed table-hover" width="100%">
+						<table id="myTableNODATATABLES" class="display table table-bordered table-striped table-condensed table-hover" width="100%">
 							<thead>
 								
 								<tr>
-									<th>Id</th>
+									<!-- <th>Id</th> -->
 									<th>Receta</th>
 									<th>Farmaco</th>
 									<th>Cantidad</th>
 									<th>Posologia</th>
 									<th>Duracion</th>
 									<th>Indicaciones</th>
-									<th style="width:65px">Opciones</th>
+									<!-- <th style="width:65px">Opciones</th> -->
 								</tr>
 							</thead>
 							<tbody>
 								<!-- <?php
+									if(isset($_GET["id_receta"]) and !empty($_GET["id_receta"])){
+										$id_receta = $_GET["id_receta"];
+									}		
 									require_once("../modelo/Recetafarmaco.php");
-									$res = Recetafarmaco::read();
+									$res = Recetafarmaco::read2($id_receta);
 								?> -->
 								<?php
 									while ($dato = mysqli_fetch_object($res)){
 										echo "<tr>";
 										
 										// VARIABLE TIPO TEXTO
-										echo "<td>".$dato->id_recetafarmaco."</td>";
+										// echo "<td>".$dato->id_recetafarmaco."</td>";
 										
 										// VARIABLE TIPO FK
 										require_once("../modelo/Receta.php");
@@ -75,27 +78,30 @@
 										echo "<td>".$dato->indicaciones_recfar."</td>";
 										
 										// OPCIONES
-										echo "<td>";
-										echo "<a href='recetafarmaco-update.php?id_recetafarmaco=".$dato->id_recetafarmaco."' title='Actualizar'><i class='fas fa-pen text-green'></i></a>&nbsp;&nbsp;";
-										echo "<a href='recetafarmaco-delete.php?id_recetafarmaco=".$dato->id_recetafarmaco."' title='Eliminar'><i class='fas fa-trash text-red'></i></a>";
-										echo "</td>";
-										echo "</tr>";
+										// echo "<td>";
+										// echo "<a href='recetafarmaco-update.php?id_recetafarmaco=".$dato->id_recetafarmaco."' title='Actualizar'><i class='fas fa-pen text-green'></i></a>&nbsp;&nbsp;";
+										// echo "<a href='recetafarmaco-delete.php?id_recetafarmaco=".$dato->id_recetafarmaco."' title='Eliminar'><i class='fas fa-trash text-red'></i></a>";
+										// echo "</td>";
+										// echo "</tr>";
 									}
 								?>
 							</tbody>
-							<tfoot>
-								<tr>
-									<th>Id</th>
-									<th>Receta</th>
-									<th>Farmaco</th>
-									<th>Cantidad</th>
-									<th>Posologia</th>
-									<th>Duracion</th>
-									<th>Indicaciones</th>
-									<th style="width:65px">Opciones</th>
-								</tr>
-							</tfoot>
+							<!-- <tfoot>
+							<tr> -->
+							<!-- <th>Id</th> -->
+							<!-- <th>Receta</th>
+								<th>Farmaco</th>
+								<th>Cantidad</th>
+								<th>Posologia</th>
+								<th>Duracion</th>
+							<th>Indicaciones</th> -->
+							<!-- <th style="width:65px">Opciones</th> -->
+							<!-- </tr>
+							</tfoot> -->
 						</table>
+					</div>
+					<div class="box-footer">
+						<a class="btn btn-info" href="receta-read.php" role="button"><i class="fas fa-undo-alt"></i> Regresar</a>
 					</div>
 				</div>
 			</section>

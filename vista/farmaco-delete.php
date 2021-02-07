@@ -16,7 +16,7 @@
 					</div>
 					
 					<!-- <?php
-						if(isset($_GET["id_farmaco"]) && !empty($_GET["id_farmaco"])){
+						if(isset($_GET["id_farmaco"]) and !empty($_GET["id_farmaco"])){
 							require_once("../modelo/Farmaco.php");
 							$id_farmaco = Connection::sanitize($_GET["id_farmaco"]);
 							$res = farmaco::single_row($id_farmaco);
@@ -58,7 +58,7 @@
 							
 						</div>
 						<div class="box-footer">
-							<p>&iquest;Est&aacute; seguro que desea eliminar el registro?</p>
+							<p>¿Está seguro que desea eliminar el registro?</p>
 							<button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i> Eliminar</button>
 							<a class="btn btn-info" href="farmaco-read.php" role="button"><i class="fas fa-times"></i> Cancelar</a>
 						</div>
@@ -78,8 +78,8 @@
 		require_once("../controlador/ControladorFarmaco.php");
 		ControladorFarmaco::delete();
 	?>
-
-<?php
-}
-ob_end_flush();
+	
+	<?php
+	}
+	ob_end_flush();
 ?>

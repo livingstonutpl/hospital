@@ -81,13 +81,9 @@
 							<label>Rol:</label>
 							<select name="id_rol1" class="form-control select2" style="width: 100%;" required>
 								<option value=''>Seleccione su rol</option>
-								<?php
-									require_once("../modelo/Rol.php");
-									$res_rol = Rol::read();
-									while ($dato2 = mysqli_fetch_object($res_rol)){
-										echo "<option value='".$dato2->id_rol."'>".$dato2->id_rol." - ".$dato2->nombre_rol."</option>";
-									}
-								?>
+								<option value='1'>Administrador</option>
+								<option value='2'>Cliente</option>								
+								<option value='3'>Médico</option>
 							</select>
 						</div>
 						
@@ -129,14 +125,14 @@
 			</script>
 			
 			<?php
-				if(isset($_GET["msg"]) && !empty($_GET["msg"])){
+				if(isset($_GET["msg"]) and !empty($_GET["msg"])){
 					echo base64_decode($_GET["msg"]);
 				}
 			?>
 			
 			
 			<?php
-				if(isset($_POST) && !empty($_POST)){
+				if(isset($_POST) and !empty($_POST)){
 					require_once("../modelo/Varios.php");
 					$nombre_usu = Connection::sanitize($_POST["nombre_usu"]);
 					$password_usu = md5(Connection::sanitize($_POST["password_usu"]));
@@ -172,6 +168,10 @@
 						$_SESSION["id_rol"] = $res->id_rol;
 						$_SESSION["nombre_rol"] = $res->nombre_rol;
 						
+						// Variables de Sesión de la Tabla Medico
+						$_SESSION["id_medico"] = $res->id_medico;
+						$_SESSION["id_persona2"] = $res->id_persona2;
+						
 						// Variables de Sesión 
 						$_SESSION["sesion"] = true;
 						$_SESSION["rol"] = $res->nombre_rol;
@@ -193,4 +193,4 @@
 		header ("Location: principal.php");
 	}
 	ob_end_flush();
-?>																																																																								
+?>																																																																																																																		

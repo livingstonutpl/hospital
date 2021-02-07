@@ -5,18 +5,18 @@
 		header("Location: login.php");
 		}else{
 		require_once("header.php");
-		if ($_SESSION["rol"] == "administrador"){
+		if ($_SESSION["rol"] == "administrador" or $_SESSION["rol"] == "medico" or $_SESSION["rol"] == "cliente"){
 		?>
 		
 		<div class="content-wrapper">
 			<section class="content">
 				<div class="box box-danger">
 					<div class="box-header with-border">
-						<h3 class="box-title">Eliminar Receta F&aacute;rmacos</h3>
+						<h3 class="box-title">Eliminar Receta Fármacos</h3>
 					</div>
 					
 					<!-- <?php
-						if(isset($_GET["id_recetafarmaco"]) && !empty($_GET["id_recetafarmaco"])){
+						if(isset($_GET["id_recetafarmaco"]) and !empty($_GET["id_recetafarmaco"])){
 							require_once("../modelo/Recetafarmaco.php");
 							$id_recetafarmaco = Connection::sanitize($_GET["id_recetafarmaco"]);
 							$res = recetafarmaco::single_row($id_recetafarmaco);
@@ -59,13 +59,13 @@
 										$res2 = Farmaco::read();
 										while ($dato2 = mysqli_fetch_object($res2)){
 											if ($res->id_farmaco1 == $dato2->id_farmaco){
-												$id_farmaco1 = $dato2->id_farmaco." - ".$dato2->nombre_far;
+												$id_farmaco1 = $dato2->nombre_far." - ".$dato2->presentacion_far." - ".$dato2->administracion_far;
 											}
 										}
 									?>
 									<input type="text" name="id_farmaco1" value="<?php echo $id_farmaco1;?>" class="form-control" readonly>
 								</div>
-							</div>
+							</div>							
 							
 							<div class="form-group">
 								<label class="col-sm-2 control-label">Cantidad:</label>
@@ -97,7 +97,7 @@
 							
 						</div>
 						<div class="box-footer">
-							<p>&iquest;Est&aacute; seguro que desea eliminar el registro?</p>
+							<p>¿Está seguro que desea eliminar el registro?</p>
 							<button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i> Eliminar</button>
 							<a class="btn btn-info" href="recetafarmaco-read.php" role="button"><i class="fas fa-times"></i> Cancelar</a>
 						</div>
@@ -122,3 +122,4 @@
 	}
 	ob_end_flush();
 ?>
++

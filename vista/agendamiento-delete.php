@@ -16,7 +16,7 @@
 					</div>
 					
 					<!-- <?php
-						if(isset($_GET["id_historiaclinica"]) && !empty($_GET["id_historiaclinica"])){
+						if(isset($_GET["id_historiaclinica"]) and !empty($_GET["id_historiaclinica"])){
 							require_once("../modelo/Agendamiento.php");
 							$id_historiaclinica = Connection::sanitize($_GET["id_historiaclinica"]);
 							$res = Agendamiento::single_row($id_historiaclinica);
@@ -111,7 +111,7 @@
 							
 						</div>
 						<div class="box-footer">
-							<p>&iquest;Est&aacute; seguro que desea eliminar el registro?</p>
+							<p>¿Está seguro que desea eliminar el registro?</p>
 							<button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i> Eliminar</button>
 							<a class="btn btn-info" href="agendamiento-read.php" role="button"><i class="fas fa-times"></i> Cancelar</a>
 						</div>

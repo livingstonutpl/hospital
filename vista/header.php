@@ -42,7 +42,7 @@
 						<ul class="nav navbar-nav">
 							
 							<li class="user">
-								<a href="#">
+								<a href="principal.php">
 									<i class="fas fa-user fa-1x"></i>
 									<span class="hidden-xs">
 										<?php echo ucfirst($_SESSION["rol"]); ?>
@@ -73,4 +73,4 @@
 						
 					</ul>
 				</section>
-			</aside>																																																																																																																																																																																																																																																			
+			</aside>																																																																																																																																																																																																																																																															

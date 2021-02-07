@@ -16,7 +16,7 @@
 					</div>
 					
 					<!-- <?php
-						if(isset($_GET["id_usuario"]) && !empty($_GET["id_usuario"])){
+						if(isset($_GET["id_usuario"]) and !empty($_GET["id_usuario"])){
 							require_once("../modelo/Usuario.php");
 							$id_usuario = Connection::sanitize($_GET["id_usuario"]);
 							$res = usuario::single_row($id_usuario);
@@ -45,35 +45,35 @@
 							<div class="form-group">
 								<label class="col-sm-2 control-label">Password:</label>
 								<div class="col-sm-10">
-								<input type="password" name="password_usu" value="<?php echo $res->password_usu;?>" class="form-control" readonly>
+									<input type="password" name="password_usu" value="<?php echo $res->password_usu;?>" class="form-control" readonly>
 								</div>
-								</div>
-								
-								</div>
-								<div class="box-footer">
-								<p>&iquest;Est&aacute; seguro que desea eliminar el registro?</p>
-								<button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i> Eliminar</button>
-								<a class="btn btn-info" href="usuario-read.php" role="button"><i class="fas fa-times"></i> Cancelar</a>
-								</div>
-								</form>
-								</div>
-								</section>
-								</div>
-								
-								<?php
-								}else{
-								require_once("noacceso.php");
-								}
-								require_once("footer.php");
-								?>
-								
-								<?php
-								require_once("../controlador/ControladorUsuario.php");
-								ControladorUsuario::delete();
-								?>
-								
-								<?php
-								}
-								ob_end_flush();
-								?>
-																
+							</div>
+							
+						</div>
+						<div class="box-footer">
+							<p>¿Está seguro que desea eliminar el registro?</p>
+							<button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i> Eliminar</button>
+							<a class="btn btn-info" href="usuario-read.php" role="button"><i class="fas fa-times"></i> Cancelar</a>
+						</div>
+					</form>
+				</div>
+			</section>
+		</div>
+		
+		<?php
+			}else{
+			require_once("noacceso.php");
+		}
+		require_once("footer.php");
+		?>
+		
+		<?php
+		require_once("../controlador/ControladorUsuario.php");
+		ControladorUsuario::delete();
+		?>
+		
+		<?php
+		}
+		ob_end_flush();
+		?>
+				

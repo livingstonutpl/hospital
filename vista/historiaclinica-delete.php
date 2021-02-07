@@ -16,7 +16,7 @@
 					</div>
 					
 					<!-- <?php
-						if(isset($_GET["id_historiaclinica"]) && !empty($_GET["id_historiaclinica"])){
+						if(isset($_GET["id_historiaclinica"]) and !empty($_GET["id_historiaclinica"])){
 							require_once("../modelo/Historiaclinica.php");
 							$id_historiaclinica = Connection::sanitize($_GET["id_historiaclinica"]);
 							$res = historiaclinica::single_row($id_historiaclinica);
@@ -74,45 +74,45 @@
 								</div>
 							</div>
 							
-						<div class="form-group">
-						<label class="col-sm-2 control-label">Examen Físico:</label>
-						<div class="col-sm-10">
-						<textarea rows="3" name="examenfisico_his" class="form-control" readonly><?php echo $res->examenfisico_his;?></textarea>
-						</div>
-						</div>
-						
-						<div class="form-group">
-						<label class="col-sm-2 control-label">Tratamiento:</label>
-						<div class="col-sm-10">
-						<textarea rows="3" name="tratamiento_his" class="form-control" readonly><?php echo $res->tratamiento_his;?></textarea>
-						</div>
-						</div>
-						
-						<div class="form-group">
-						<label class="col-sm-2 control-label">Fecha de Atención:</label>
-						<div class="col-sm-10">
-						<input type="text" name="fechaatencion_his" value="<?php echo $res->fechaatencion_his;?>" class="form-control" readonly>
-						</div>
-						</div>
-						
-						<div class="form-group">
-						<label class="col-sm-2 control-label">Hora de Atención:</label>
-						<div class="col-sm-10">
-						<input type="text" name="horaatencion_his" value="<?php echo $res->horaatencion_his;?>" class="form-control" readonly>
-						</div>
-						</div>
-						
-						<div class="form-group">
-						<label class="col-sm-2 control-label">Estado:</label>
-						<div class="col-sm-10">
-						<input type="text" name="estado_his" value="<?php echo $res->estado_his;?>" class="form-control" readonly>
-						</div>
-						</div>
-						
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Examen Físico:</label>
+								<div class="col-sm-10">
+									<textarea rows="3" name="examenfisico_his" class="form-control" readonly><?php echo $res->examenfisico_his;?></textarea>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Tratamiento:</label>
+								<div class="col-sm-10">
+									<textarea rows="3" name="tratamiento_his" class="form-control" readonly><?php echo $res->tratamiento_his;?></textarea>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Fecha de Atención:</label>
+								<div class="col-sm-10">
+									<input type="text" name="fechaatencion_his" value="<?php echo $res->fechaatencion_his;?>" class="form-control" readonly>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Hora de Atención:</label>
+								<div class="col-sm-10">
+									<input type="text" name="horaatencion_his" value="<?php echo $res->horaatencion_his;?>" class="form-control" readonly>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Estado:</label>
+								<div class="col-sm-10">
+									<input type="text" name="estado_his" value="<?php echo $res->estado_his;?>" class="form-control" readonly>
+								</div>
+							</div>
+							
 						</div>
 						<div class="box-footer">
-						<p>&iquest;Est&aacute; seguro que desea eliminar el registro?</p>
-						<button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i> Eliminar</button>
+							<p>¿Está seguro que desea eliminar el registro?</p>
+							<button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i> Eliminar</button>
 						<a class="btn btn-info" href="historiaclinica-read.php" role="button"><i class="fas fa-times"></i> Cancelar</a>
 						</div>
 						</form>

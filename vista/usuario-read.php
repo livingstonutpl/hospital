@@ -81,7 +81,7 @@
 	?>
 	
 	<?php
-		if(isset($_GET["msg"]) && !empty($_GET["msg"])){
+		if(isset($_GET["msg"]) and !empty($_GET["msg"])){
 			echo base64_decode($_GET["msg"]);
 		}
 	?>

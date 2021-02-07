@@ -16,7 +16,7 @@
 					</div>
 					
 					<!-- <?php
-						if(isset($_GET["id_historiaclinica"]) && !empty($_GET["id_historiaclinica"])){
+						if(isset($_GET["id_historiaclinica"]) and !empty($_GET["id_historiaclinica"])){
 							require_once("../modelo/Historiaclinica.php");
 							$id_historiaclinica = Connection::sanitize($_GET["id_historiaclinica"]);
 							$res = historiaclinica::single_row($id_historiaclinica);
@@ -128,26 +128,14 @@
 							<div class="form-group">
 								<label class="col-sm-2 control-label">Fecha de Atención:</label>
 								<div class="col-sm-10">
-									<input type="date" name="fechaatencion_his" value="<?php echo $res->fechaatencion_his;?>" class="form-control" readonly>
+									<input type="text" name="fechaatencion_his" value="<?php echo $res->fechaatencion_his;?>" class="form-control" readonly>
 								</div>
-							</div>							
+							</div>
 							
 							<div class="form-group">
 								<label class="col-sm-2 control-label">Hora de Atención:</label>
 								<div class="col-sm-10">
-									<select name="horaatencion_his" class="form-control select2" style="width: 100%;" required>
-										<option value=''>Hora</option>
-										<option <?php if($res->horaatencion_his == "09:00"){ echo "selected"; } ?> value="09:00">09:00</option>
-										<option <?php if($res->horaatencion_his == "09:30"){ echo "selected"; } ?> value="09:30">09:30</option>
-										<option <?php if($res->horaatencion_his == "10:00"){ echo "selected"; } ?> value="10:00">10:00</option>
-										<option <?php if($res->horaatencion_his == "10:30"){ echo "selected"; } ?> value="10:30">10:30</option>
-										<option <?php if($res->horaatencion_his == "11:00"){ echo "selected"; } ?> value="11:00">11:00</option>
-										<option <?php if($res->horaatencion_his == "11:30"){ echo "selected"; } ?> value="11:30">11:30</option>
-										<option <?php if($res->horaatencion_his == "16:00"){ echo "selected"; } ?> value="16:00">16:00</option>
-										<option <?php if($res->horaatencion_his == "16:30"){ echo "selected"; } ?> value="16:30">16:30</option>
-										<option <?php if($res->horaatencion_his == "17:00"){ echo "selected"; } ?> value="17:00">17:00</option>
-										<option <?php if($res->horaatencion_his == "17:30"){ echo "selected"; } ?> value="17:30">17:30</option>
-									</select>
+									<input type="text" name="horaatencion_his" value="<?php echo $res->horaatencion_his;?>" class="form-control" readonly>
 								</div>
 							</div>
 							
@@ -175,20 +163,21 @@
 				</div>
 			</section>
 		</div>
-		
-		<?php
-			}else{
-			require_once("noacceso.php");
-		}
-		require_once("footer.php");
+	
+	<?php
+	}else{
+	require_once("noacceso.php");
+	}
+	require_once("footer.php");
 	?>
 	
 	<?php
-		require_once("../controlador/ControladorHistoriaclinica.php");
-		ControladorHistoriaclinica::update();
+	require_once("../controlador/ControladorHistoriaclinica.php");
+	ControladorHistoriaclinica::update();
 	?>
 	
 	<?php
 	}
 	ob_end_flush();
-?>
+	?>
+		

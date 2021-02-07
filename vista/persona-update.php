@@ -16,7 +16,7 @@
 					</div>
 					
 					<!-- <?php
-						if(isset($_GET["id_persona"]) && !empty($_GET["id_persona"])){
+						if(isset($_GET["id_persona"]) and !empty($_GET["id_persona"])){
 							require_once("../modelo/Persona.php");
 							$id_persona = Connection::sanitize($_GET["id_persona"]);
 							$res = persona::single_row($id_persona);

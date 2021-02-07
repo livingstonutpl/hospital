@@ -57,75 +57,75 @@
 								<div class="col-sm-10">
 									<textarea rows="3" name="anamnesis_his" class="form-control" placeholder="Anamnesis" required></textarea>
 								</div>
-							</div>
-							
-							<div class="form-group">
+								</div>
+								
+								<div class="form-group">
 								<label class="col-sm-2 control-label">Examen Físico:</label>
 								<div class="col-sm-10">
-									<textarea rows="3" name="examenfisico_his" class="form-control" placeholder="Examen Físico" required></textarea>
+								<textarea rows="3" name="examenfisico_his" class="form-control" placeholder="Examen Físico" required></textarea>
 								</div>
-							</div>
-							
-							<div class="form-group">
+								</div>
+								
+								<div class="form-group">
 								<label class="col-sm-2 control-label">Tratamiento:</label>
 								<div class="col-sm-10">
-									<textarea rows="3" name="tratamiento_his" class="form-control" placeholder="Tratamiento" required></textarea>
+								<textarea rows="3" name="tratamiento_his" class="form-control" placeholder="Tratamiento" required></textarea>
 								</div>
-							</div>
-							
-							<div class="form-group">
+								</div>
+								
+								<div class="form-group">
 								<label class="col-sm-2 control-label">Fecha de Atención:</label>
 								<div class="col-sm-10">
-									<input type="date" name="fechaatencion_his" class="form-control" required>
+								<input type="date" name="fechaatencion_his" class="form-control" required>
 								</div>
-							</div>
-							
-							<div class="form-group">
+								</div>
+								
+								<div class="form-group">
 								<label class="col-sm-2 control-label">Hora de Atención:</label>
 								<div class="col-sm-10">
-									<input type="time" name="horaatencion_his" class="form-control" required>
+								<input type="time" name="horaatencion_his" class="form-control" required>
 								</div>
-							</div>
-							
-							<div class="form-group">
+								</div>
+								
+								<div class="form-group">
 								<label class="col-sm-2 control-label">Estado:</label>
 								<div class="col-sm-10">
-									<div class="radio">
-										<label><input type="radio" name="estado_his" value="agendado" required>agendado</label>
-									</div>
-									<div class="radio">
-										<label><input type="radio" name="estado_his" value="atendido" required>atendido</label>
-									</div>
-									<div class="radio">
-										<label><input type="radio" name="estado_his" value="ausente" required>ausente</label>
-									</div>
+								<div class="radio">
+								<label><input type="radio" name="estado_his" value="agendado" required>agendado</label>
 								</div>
-							</div>
-							
-						</div>
-						<div class="box-footer">
-							<button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Guardar</button>
-							<a class="btn btn-info" href="historiaclinica-read.php" role="button"><i class="fas fa-times"></i> Cancelar</a>
-						</div>
-					</form> 
-				</div>
-			</section>
-		</div>
-		
-		<?php
-			}else{
-			require_once("noacceso.php");
-		}
-		require_once("footer.php");
-	?>
-	
-	<?php
-	require_once("../controlador/ControladorHistoriaclinica.php");
-	ControladorHistoriaclinica::create();
-	?>
-	
-	<?php
-	}
-	ob_end_flush();
-	?>
-		
+								<div class="radio">
+								<label><input type="radio" name="estado_his" value="atendido" required>atendido</label>
+								</div>
+								<div class="radio">
+								<label><input type="radio" name="estado_his" value="ausente" required>ausente</label>
+								</div>
+								</div>
+								</div>
+								
+								</div>
+								<div class="box-footer">
+								<button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Guardar</button>
+								<a class="btn btn-info" href="historiaclinica-read.php" role="button"><i class="fas fa-times"></i> Cancelar</a>
+								</div>
+								</form> 
+								</div>
+								</section>
+								</div>
+								
+								<?php
+								}else{
+								require_once("noacceso.php");
+								}
+								require_once("footer.php");
+								?>
+								
+								<?php
+								require_once("../controlador/ControladorHistoriaclinica.php");
+								ControladorHistoriaclinica::create();
+								?>
+								
+								<?php
+								}
+								ob_end_flush();
+								?>
+																
