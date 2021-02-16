@@ -1,6 +1,6 @@
 <?php
 	
-	class ControladorPersona{
+	class ControladorPersonaCliente{
 		
 		//id_persona
 		//cedula_per
@@ -34,7 +34,7 @@
 						}else{
 						$msg = base64_encode("<script>toastr.error('Registro duplicado');</script>");
 					}
-					header ("Location: persona-read.php?msg=$msg");
+					header ("Location: persona-read-cliente.php?msg=$msg");
 					}else{
 					echo "<script>toastr.error('El registro no se pudo guardar');</script>";
 				}
@@ -62,7 +62,7 @@
 						}else{
 						$msg = base64_encode("<script>toastr.error('Registro duplicado');</script>");
 					}
-					header ("Location: persona-read.php?msg=$msg");
+					header ("Location: persona-read-cliente.php?msg=$msg");
 					}else{
 					echo "<script>toastr.error('El registro no se pudo actualizar');</script>";
 				}
@@ -80,14 +80,13 @@
 						}else{
 						$msg = base64_encode("<script>toastr.error('El registro no se pudo eliminar');</script>");
 					}
-					header ("Location: persona-read.php?msg=$msg");
+					header ("Location: persona-read-cliente.php?msg=$msg");
 					}else{
 					echo "<script>toastr.error('El registro no se pudo eliminar');</script>";
-					}
-					}
-					}
-					
-					}
-					
-					?>
-										
+				}
+			}
+		}
+		
+	}
+	
+?>

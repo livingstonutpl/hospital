@@ -51,18 +51,19 @@
 					require_once("../modelo/Usuario.php");
 					$id_usuario = Connection::sanitize($_POST["id_usuario"]);
 					$res = Usuario::delete($id_usuario);
-					if($res){
-						$msg = base64_encode("<script>toastr.success('Registro eliminado correctamente');</script>");
-						}else{
-						$msg = base64_encode("<script>toastr.error('El registro no se pudo eliminar');</script>");
-					}
-					header ("Location: usuario-read.php?msg=$msg");
-					}else{
-					echo "<script>toastr.error('El registro no se pudo eliminar');</script>";
+				if($res){
+				$msg = base64_encode("<script>toastr.success('Registro eliminado correctamente');</script>");
+				}else{
+				$msg = base64_encode("<script>toastr.error('El registro no se pudo eliminar');</script>");
 				}
-			}
-		}
-		
-	}
-	
-?>
+				header ("Location: usuario-read.php?msg=$msg");
+				}else{
+				echo "<script>toastr.error('El registro no se pudo eliminar');</script>";
+				}
+				}
+				}
+				
+				}
+				
+				?>
+								

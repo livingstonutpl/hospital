@@ -83,10 +83,11 @@
 					header ("Location: paciente-read.php?msg=$msg");
 					}else{
 					echo "<script>toastr.error('El registro no se pudo eliminar');</script>";
-				}
-			}
-		}
-		
-	}
-	
-?>
+					}
+					}
+					}
+					
+					}
+					
+					?>
+										

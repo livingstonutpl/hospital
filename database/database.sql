@@ -170,7 +170,7 @@ CREATE TABLE IF NOT EXISTS historiaclinica (
 	fechaatencion_his VARCHAR(10) NOT NULL,
 	horaatencion_his VARCHAR(5) NOT NULL,
 	estado_his VARCHAR(10) NOT NULL,	
-	verificador_his VARCHAR(100) NOT NULL UNIQUE,
+	verificador_his VARCHAR(100) NOT NULL,
 	verificador2_his VARCHAR(100) NOT NULL UNIQUE,
 	PRIMARY KEY (id_historiaclinica)
 ) ENGINE = InnoDb DEFAULT CHARACTER SET = utf8;
@@ -186,16 +186,16 @@ ADD KEY fk_id_medicoespecialidad1_index (id_medicoespecialidad1),
 ADD CONSTRAINT fk_id_medicoespecialidad1 FOREIGN KEY (id_medicoespecialidad1) REFERENCES medicoespecialidad (id_medicoespecialidad) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 -- ======================================================================
-	-- CREAR TABLA "historiaclinicadiagnostico"
+-- CREAR TABLA "historiaclinicadiagnostico"
 -- ======================================================================
 
 DROP TABLE IF EXISTS historiaclinicadiagnostico;
 CREATE TABLE IF NOT EXISTS historiaclinicadiagnostico (
-	id_historiaclinicadiagnostico INT NOT NULL AUTO_INCREMENT,
-	id_historiaclinica2 INT NOT NULL,
-	id_diagnostico1 INT NOT NULL,
-	verificador_hisclidia VARCHAR(100) NOT NULL UNIQUE,
-	PRIMARY KEY (id_historiaclinicadiagnostico)
+id_historiaclinicadiagnostico INT NOT NULL AUTO_INCREMENT,
+id_historiaclinica2 INT NOT NULL,
+id_diagnostico1 INT NOT NULL,
+verificador_hisclidia VARCHAR(100) NOT NULL UNIQUE,
+PRIMARY KEY (id_historiaclinicadiagnostico)
 ) ENGINE = InnoDb DEFAULT CHARACTER SET = utf8;
 
 -- CREAR CONSTRAINT "historiaclinica" -----> "historiaclinicadiagnostico"
@@ -209,17 +209,17 @@ ADD KEY fk_id_diagnostico1_index (id_diagnostico1),
 ADD CONSTRAINT fk_id_diagnostico1 FOREIGN KEY (id_diagnostico1) REFERENCES diagnostico (id_diagnostico) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 -- ======================================================================
-	-- CREAR TABLA "receta"
+-- CREAR TABLA "receta"
 -- ======================================================================
 
 DROP TABLE IF EXISTS receta;
 CREATE TABLE IF NOT EXISTS receta (
-	id_receta INT NOT NULL AUTO_INCREMENT,
-	id_historiaclinica1 INT NOT NULL,
-	fecha_rec VARCHAR(10) NOT NULL,
-	hora_rec VARCHAR(5) NOT NULL,
-	estado_rec VARCHAR(9) NOT NULL,
-	PRIMARY KEY (id_receta)
+id_receta INT NOT NULL AUTO_INCREMENT,
+id_historiaclinica1 INT NOT NULL,
+fecha_rec VARCHAR(10) NOT NULL,
+hora_rec VARCHAR(5) NOT NULL,
+estado_rec VARCHAR(9) NOT NULL,
+PRIMARY KEY (id_receta)
 ) ENGINE = InnoDb DEFAULT CHARACTER SET = utf8;
 
 -- CREAR CONSTRAINT "historiaclinica" -----> "receta"
@@ -228,20 +228,20 @@ ADD KEY fk_id_historiaclinica1_index (id_historiaclinica1),
 ADD CONSTRAINT fk_id_historiaclinica1 FOREIGN KEY (id_historiaclinica1) REFERENCES historiaclinica (id_historiaclinica) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 -- ======================================================================
-	-- CREAR TABLA "recetafarmaco"
+-- CREAR TABLA "recetafarmaco"
 -- ======================================================================
 
 DROP TABLE IF EXISTS recetafarmaco;
 CREATE TABLE IF NOT EXISTS recetafarmaco (
-	id_recetafarmaco INT NOT NULL AUTO_INCREMENT,
-	id_receta1 INT NOT NULL,
-	id_farmaco1 INT NOT NULL,
-	cantidad_recfar INT NOT NULL,
-	posologia_recfar VARCHAR(250) NOT NULL,
-	duracion_recfar VARCHAR(250) NOT NULL,
-	indicaciones_recfar VARCHAR(250) NOT NULL,
-	verificador_recfar VARCHAR(100) NOT NULL UNIQUE,	
-	PRIMARY KEY (id_recetafarmaco)
+id_recetafarmaco INT NOT NULL AUTO_INCREMENT,
+id_receta1 INT NOT NULL,
+id_farmaco1 INT NOT NULL,
+cantidad_recfar INT NOT NULL,
+posologia_recfar VARCHAR(250) NOT NULL,
+duracion_recfar VARCHAR(250) NOT NULL,
+indicaciones_recfar VARCHAR(250) NOT NULL,
+verificador_recfar VARCHAR(100) NOT NULL UNIQUE,	
+PRIMARY KEY (id_recetafarmaco)
 ) ENGINE = InnoDb DEFAULT CHARACTER SET = utf8;
 
 -- CREAR CONSTRAINT "receta" -----> "recetafarmaco"
@@ -255,20 +255,20 @@ ADD KEY fk_id_farmaco1_index (id_farmaco1),
 ADD CONSTRAINT fk_id_farmaco1 FOREIGN KEY (id_farmaco1) REFERENCES farmaco (id_farmaco) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 -- ======================================================================
-	-- CREAR TABLA "examen"
+-- CREAR TABLA "examen"
 -- ======================================================================
 
 DROP TABLE IF EXISTS examen;
 CREATE TABLE IF NOT EXISTS examen (
-	id_examen INT NOT NULL AUTO_INCREMENT,
-	id_historiaclinica3 INT NOT NULL,
-	fecha_exa VARCHAR(10) NOT NULL,
-	hora_exa VARCHAR(5) NOT NULL,
-	tipo_exa VARCHAR(100) NOT NULL,
-	descripcion_exa VARCHAR(250) NOT NULL,
-	resultado_exa VARCHAR(250) NOT NULL,
-	estado_exa VARCHAR(9) NOT NULL,
-	verificador_exa VARCHAR(100) NOT NULL UNIQUE,
+id_examen INT NOT NULL AUTO_INCREMENT,
+id_historiaclinica3 INT NOT NULL,
+fecha_exa VARCHAR(10) NOT NULL,
+hora_exa VARCHAR(5) NOT NULL,
+tipo_exa VARCHAR(100) NOT NULL,
+descripcion_exa VARCHAR(250) NOT NULL,
+resultado_exa VARCHAR(250) NOT NULL,
+estado_exa VARCHAR(9) NOT NULL,
+verificador_exa VARCHAR(100) NOT NULL UNIQUE,
 PRIMARY KEY (id_examen)
 ) ENGINE = InnoDb DEFAULT CHARACTER SET = utf8;
 
@@ -293,7 +293,7 @@ INSERT INTO rol (id_rol, nombre_rol) VALUES
 USE dbhospital;
 
 INSERT INTO diagnostico (id_diagnostico, cie10_dia, descripcion_dia) VALUES
-(NULL, 'A00', 'Colera'),
+(NULL, 'A00', 'Covid19'),
 (NULL, 'A01', 'Fiebres Tifoidea Y Paratifoidea'),
 (NULL, 'A02', 'Otras Infecciones Debidas Salmonella'),
 (NULL, 'A03', 'Shigelosis'),

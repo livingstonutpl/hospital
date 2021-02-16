@@ -15,3 +15,13 @@ PENDIENTES
 - CREAR 5 ATENCIONES EJEMPLO
 - SOLUCIONAR DATATABLES EXAMENES (CLIENTE)
 ********************************************
+
+
+
+min="<?php echo gmdate("Y-m-d",time() + 3600*(-5+date("I"))); ?>"
+
+<?php
+// date_default_timezone_set('America/Bogota');
+// $fechaval = date('Y-m-d', time());
+// $horavali = date('H:i', time());
+?>
