@@ -10,6 +10,7 @@
 			return Connection::runQuery($sql);
 		}
 		
+		// ADMINISTRADOR
 		public static function read(){
 			$sql = "SELECT * FROM examen
 			ORDER BY fecha_exa DESC 
@@ -17,6 +18,18 @@
 			return Connection::runQuery($sql);
 		}
 		
+		// MEDICO
+		public static function read2($id_historiaclinica3){
+			$sql = "SELECT * FROM examen
+			INNER JOIN HistoriaClinica on HistoriaClinica.id_historiaclinica = Examen.id_historiaclinica3
+			INNER JOIN Persona on Persona.id_persona = HistoriaClinica.id_persona3
+			WHERE id_historiaclinica3 = $id_historiaclinica3
+			ORDER BY fecha_exa DESC 
+			";
+			return Connection::runQuery($sql);
+		}
+		
+		// CLIENTE
 		public static function read3($id_usuario){
 			$sql = "SELECT * FROM examen
 			INNER JOIN HistoriaClinica on HistoriaClinica.id_historiaclinica = Examen.id_historiaclinica3
@@ -45,16 +58,16 @@
 			$sql = "DELETE FROM examen WHERE id_examen = $id_examen";
 			return Connection::runQuery($sql);
 		}
-		
-		public static function single_row($id_examen){
-			$sql = "SELECT * FROM examen WHERE id_examen = '$id_examen'";
-			return Connection::rowQuery($sql);
-		}
-		
-		public static function ultimo_id(){
-			$sql = "SELECT MAX(id_examen) AS id_examen FROM examen";
-			return Connection::rowQuery($sql);
-		}
+	
+	public static function single_row($id_examen){
+	$sql = "SELECT * FROM examen WHERE id_examen = '$id_examen'";
+	return Connection::rowQuery($sql);
+	}
+	
+	public static function ultimo_id(){
+	$sql = "SELECT MAX(id_examen) AS id_examen FROM examen";
+	return Connection::rowQuery($sql);
+	}
 	
 	}
 	

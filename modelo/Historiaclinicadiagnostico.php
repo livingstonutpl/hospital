@@ -25,6 +25,14 @@
 			return Connection::runQuery($sql);
 		}
 		
+		// MEDICO Y PACIENTE PARA REPORTAR LOS DIAGNOSTICOS EN PANEL HISTORIA CLINICA
+		public static function read3($id_historiaclinica){
+			$sql = "SELECT * FROM historiaclinicadiagnostico
+			WHERE id_historiaclinica2 = $id_historiaclinica
+			";
+			return Connection::runQuery($sql);
+		}
+		
 		public static function update($id_historiaclinicadiagnostico, $id_historiaclinica2, $id_diagnostico1, $verificador_hisclidia){
 			$sql = "UPDATE historiaclinicadiagnostico SET
 			id_historiaclinica2 = '$id_historiaclinica2',
@@ -40,15 +48,18 @@
 		}
 		
 		public static function single_row($id_historiaclinicadiagnostico){
-			$sql = "SELECT * FROM historiaclinicadiagnostico WHERE id_historiaclinicadiagnostico = '$id_historiaclinicadiagnostico'";
-			return Connection::rowQuery($sql);
+		$sql = "SELECT * FROM historiaclinicadiagnostico
+		WHERE id_historiaclinicadiagnostico = '$id_historiaclinicadiagnostico'
+		";
+		return Connection::rowQuery($sql);
 		}
 		
 		public static function ultimo_id(){
-			$sql = "SELECT MAX(id_historiaclinicadiagnostico) AS id_historiaclinicadiagnostico FROM historiaclinicadiagnostico";
-			return Connection::rowQuery($sql);
+		$sql = "SELECT MAX(id_historiaclinicadiagnostico) AS id_historiaclinicadiagnostico FROM historiaclinicadiagnostico";
+		return Connection::rowQuery($sql);
 		}
 		
-	}
-	
-?>
+		}
+		
+		?>
+				

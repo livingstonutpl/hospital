@@ -17,6 +17,15 @@
 			return Connection::runQuery($sql);
 		}
 		
+		// CLIENTE Y MEDICO PARA REPORTAR RECETAS EN EL PANEL HISTORIAL (receta-read.php)
+		public static function read2($id_historiaclinica){
+			$sql = "SELECT * FROM receta
+			WHERE id_historiaclinica1 = $id_historiaclinica
+			ORDER BY fecha_rec DESC 
+			";
+			return Connection::runQuery($sql);
+		}
+		
 		public static function read3($id_usuario){
 			$sql = "SELECT * FROM receta
 			INNER JOIN HistoriaClinica on HistoriaClinica.id_historiaclinica = Receta.id_historiaclinica1
@@ -47,11 +56,20 @@
 			return Connection::rowQuery($sql);
 		}
 		
-		public static function ultimo_id(){
-			$sql = "SELECT MAX(id_receta) AS id_receta FROM receta";
-			return Connection::rowQuery($sql);
-		}
-		
+	public static function single_row2($id_receta){
+	$sql = "SELECT * FROM receta
+	INNER JOIN HistoriaClinica on HistoriaClinica.id_historiaclinica = Receta.id_historiaclinica1
+	INNER JOIN Persona on Persona.id_persona = HistoriaClinica.id_persona3
+	WHERE id_receta = '$id_receta'";
+	return Connection::rowQuery($sql);
 	}
 	
-?>
+	public static function ultimo_id(){
+	$sql = "SELECT MAX(id_receta) AS id_receta FROM receta";
+	return Connection::rowQuery($sql);
+	}
+	
+	}
+	
+	?>
+		

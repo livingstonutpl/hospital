@@ -30,7 +30,9 @@
 		}
 		
 		public static function single_row($id_medico){
-			$sql = "SELECT * FROM medico WHERE id_medico = '$id_medico'";
+			$sql = "SELECT * FROM medico
+			INNER JOIN Persona on Persona.id_persona = Medico.id_persona2
+			WHERE id_medico = '$id_medico'";
 			return Connection::rowQuery($sql);
 		}
 		

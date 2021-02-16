@@ -11,9 +11,18 @@
 		}
 		
 		public static function read(){
-			$sql = "SELECT * FROM personarol
+			$sql = "SELECT * FROM PersonaRol
+			INNER JOIN Persona on Persona.id_persona = PersonaRol.id_persona1
+			INNER JOIN Rol on Rol.id_rol = PersonaRol.id_rol1
 			";
 			return Connection::runQuery($sql);
+		}
+		
+		public static function leerrolconpersona($id_personarol){
+			$sql = "SELECT * FROM personarol
+			INNER JOIN Persona on Persona.id_persona = PersonaRol.id_persona1
+			WHERE id_personarol = '$id_personarol'";
+			return Connection::rowQuery($sql);
 		}
 		
 		public static function update($id_personarol, $id_persona1, $id_rol1, $verificador_perrol){

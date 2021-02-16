@@ -10,7 +10,12 @@
 			return Connection::runQuery($sql);
 		}
 		
-		//SOLUCION
+		public static function readadmin(){
+			$sql = "SELECT * FROM persona
+			";
+			return Connection::runQuery($sql);
+		}
+		
 		public static function read($id_usuario1){
 			$sql = "SELECT * FROM persona
 			WHERE id_usuario1 = '$id_usuario1
@@ -30,6 +35,21 @@
 			fechanaci_per = '$fechanaci_per',
 			genero_per = '$genero_per',
 			id_usuario1 = '$id_usuario1'
+			WHERE id_persona = $id_persona";
+			return Connection::runQuery($sql);
+		}
+		
+		public static function update2($id_persona, $cedula_per, $nombre_per, $apellido_per, $email_per, $telefono_per, $direccion_per, $ciudadresi_per, $fechanaci_per, $genero_per){
+			$sql = "UPDATE persona SET
+			cedula_per = '$cedula_per',
+			nombre_per = '$nombre_per',
+			apellido_per = '$apellido_per',
+			email_per = '$email_per',
+			telefono_per = '$telefono_per',
+			direccion_per = '$direccion_per',
+			ciudadresi_per = '$ciudadresi_per',
+			fechanaci_per = '$fechanaci_per',
+			genero_per = '$genero_per'
 			WHERE id_persona = $id_persona";
 			return Connection::runQuery($sql);
 		}

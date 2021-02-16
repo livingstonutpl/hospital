@@ -10,8 +10,25 @@
 			return Connection::runQuery($sql);
 		}
 		
+		// AGENDAMIENTO ADMINISTRADOR
 		public static function read(){
 			$sql = "SELECT * FROM persona
+			";
+			return Connection::runQuery($sql);
+		}
+		
+		// CLIENTE AGENDAMIENTO PARA MOSTRAR SOLO PACIENTES ASOCIADOS A SU CUENTA
+		public static function readagendamiento($id_usuario){
+			$sql = "SELECT * FROM persona
+			WHERE id_usuario1 = $id_usuario
+			";
+			return Connection::runQuery($sql);
+		}
+		
+		public static function readcliente(){
+			$sql = "SELECT * FROM persona
+			INNER JOIN PersonaRol on Persona.id_persona = PersonaRol.id_persona1
+			WHERE id_rol1 = 2
 			";
 			return Connection::runQuery($sql);
 		}
@@ -40,18 +57,18 @@
 		}
 		
 		public static function delete($id_persona){
-			$sql = "DELETE FROM persona WHERE id_persona = $id_persona";
-			return Connection::runQuery($sql);
+		$sql = "DELETE FROM persona WHERE id_persona = $id_persona";
+		return Connection::runQuery($sql);
 		}
 		
 		public static function single_row($id_persona){
-			$sql = "SELECT * FROM persona WHERE id_persona = '$id_persona'";
-			return Connection::rowQuery($sql);
+		$sql = "SELECT * FROM persona WHERE id_persona = '$id_persona'";
+		return Connection::rowQuery($sql);
 		}
 		
 		public static function ultimo_id(){
-			$sql = "SELECT MAX(id_persona) AS id_persona FROM persona";
-			return Connection::rowQuery($sql);
+		$sql = "SELECT MAX(id_persona) AS id_persona FROM persona";
+		return Connection::rowQuery($sql);
 		}
 		
 		}

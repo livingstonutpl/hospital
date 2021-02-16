@@ -45,13 +45,12 @@
 			$sql = "SELECT * FROM recetafarmaco WHERE id_recetafarmaco = '$id_recetafarmaco'";
 			return Connection::rowQuery($sql);
 		}
-	
-	public static function ultimo_id(){
-	$sql = "SELECT MAX(id_recetafarmaco) AS id_recetafarmaco FROM recetafarmaco";
-	return Connection::rowQuery($sql);
-	}
-	
-	}
-	
-	?>
 		
+		public static function ultimo_id(){
+			$sql = "SELECT MAX(id_recetafarmaco) AS id_recetafarmaco FROM recetafarmaco";
+			return Connection::rowQuery($sql);
+		}
+		
+	}
+	
+?>

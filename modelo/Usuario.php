@@ -16,6 +16,16 @@
 			return Connection::runQuery($sql);
 		}
 		
+		public static function readcrearpaciente(){
+			$sql = "SELECT * FROM usuario
+			INNER JOIN Persona on Persona.id_usuario1 = Usuario.id_usuario
+			INNER JOIN PersonaRol on PersonaRol.id_persona1 = Persona.id_persona 
+			INNER JOIN Rol on Rol.id_rol = PersonaRol.id_rol1
+			WHERE id_rol1 = 2
+			";
+			return Connection::runQuery($sql);
+		}
+		
 		public static function update($id_usuario, $nombre_usu, $password_usu){
 			$sql = "UPDATE usuario SET
 			nombre_usu = '$nombre_usu',

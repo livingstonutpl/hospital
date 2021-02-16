@@ -17,32 +17,46 @@
 			return Connection::runQuery($sql);
 		}
 		
-		public static function read2($estado){
+		// ADMINISTRADOR
+		public static function read2(){
 			$sql = "SELECT * FROM historiaclinica
 			INNER JOIN Persona on Persona.id_persona = HistoriaClinica.id_persona3
-			WHERE estado_his = '$estado'";
-			return Connection::runQuery($sql);
-		}
-		
-		public static function read3($estado, $id_usuario){
-			$sql = "SELECT * FROM historiaclinica
-			INNER JOIN Persona on Persona.id_persona = HistoriaClinica.id_persona3
-			WHERE estado_his = '$estado'
-			AND id_usuario1 = '$id_usuario'	
+			WHERE estado_his <> 'disponible'
 			";
 			return Connection::runQuery($sql);
 		}
 		
-		public static function read4($estado, $id_medico){
+		// CLIENTE LECTURA DE HISTORIAL (historiaclinica-read.php)
+		public static function read3($id_usuario){
 			$sql = "SELECT * FROM historiaclinica
-			INNER JOIN MedicoEspecialidad on MedicoEspecialidad.id_medicoespecialidad = HistoriaClinica.id_medicoespecialidad1
-			WHERE estado_his = '$estado'
-			AND id_medico1 = '$id_medico'	
-			";			
+			INNER JOIN Persona on Persona.id_persona = HistoriaClinica.id_persona3
+			WHERE id_usuario1 = '$id_usuario'
+			AND estado_his = 'atendido'
+			";
 			return Connection::runQuery($sql);
 		}
 		
-		//public static function update($id_historiaclinica, $id_persona3, $id_medicoespecialidad1, $anamnesis_his, $examenfisico_his, $tratamiento_his, $fechaatencion_his, $horaatencion_his, $estado_his, $verificador_his, $verificador2_his){
+		// MEDICO SOLO AGENDA DE HOY
+		public static function read4($id_medico){
+			$sql = "SELECT * FROM historiaclinica
+			INNER JOIN MedicoEspecialidad on MedicoEspecialidad.id_medicoespecialidad = HistoriaClinica.id_medicoespecialidad1
+			WHERE id_medico1 = '$id_medico'
+			AND estado_his <> 'disponible'
+			AND fechaatencion_his = CURDATE()
+			";
+			return Connection::runQuery($sql);
+		}
+		
+		// MEDICO TODA LA AGENDA
+		public static function read5($id_medico){
+			$sql = "SELECT * FROM historiaclinica
+			INNER JOIN MedicoEspecialidad on MedicoEspecialidad.id_medicoespecialidad = HistoriaClinica.id_medicoespecialidad1
+			WHERE id_medico1 = '$id_medico'
+			AND estado_his <> 'disponible'
+			";
+			return Connection::runQuery($sql);
+		}
+		
 		public static function update($id_historiaclinica, $anamnesis_his, $examenfisico_his, $tratamiento_his, $estado_his){
 			$sql = "UPDATE historiaclinica SET
 			-- id_persona3 = '$id_persona3',
@@ -66,6 +80,15 @@
 		
 		public static function single_row($id_historiaclinica){
 			$sql = "SELECT * FROM historiaclinica WHERE id_historiaclinica = '$id_historiaclinica'";
+			return Connection::rowQuery($sql);
+		}
+		
+		public static function single_row2($id_historiaclinica){
+			$sql = "SELECT * FROM historiaclinica
+			INNER JOIN Persona on Persona.id_persona = HistoriaClinica.id_persona3
+			INNER JOIN MedicoEspecialidad on MedicoEspecialidad.id_medicoespecialidad = HistoriaClinica.id_medicoespecialidad1
+			INNER JOIN Especialidad on Especialidad.id_especialidad = MedicoEspecialidad.id_especialidad1
+			WHERE id_historiaclinica = '$id_historiaclinica'";
 			return Connection::rowQuery($sql);
 		}
 		
