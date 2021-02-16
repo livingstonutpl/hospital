@@ -5,7 +5,7 @@
 		header("Location: login.php");
 		}else{
 		require_once("header.php");
-		if ($_SESSION["rol"] == "cliente"){
+		if ($_SESSION["rol"] == "cliente" or $_SESSION["rol"] == "administrador"){
 		?>
 		
 		<div class="content-wrapper">
@@ -72,7 +72,7 @@
 							<div class="form-group">
 								<label class="col-sm-2 control-label">Fecha de Nacimiento:</label>
 								<div class="col-sm-10">
-									<input type="date" name="fechanaci_per" placeholder="Fecha de nacimiento" class="form-control" required>
+									<input type="date" name="fechanaci_per" placeholder="Fecha de nacimiento" class="form-control" max="<?php echo gmdate("Y-m-d",time() + 3600*(-5+date("I"))); ?>" required>
 								</div>
 							</div>
 							
@@ -88,7 +88,35 @@
 								</div>
 							</div>
 							
-							<input type="hidden" name="id_usuario1" value="<?php echo $_SESSION["id_usuario1"]; ?>">
+							<?php
+								if ($_SESSION["rol"] == "administrador"){
+								?>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Usuario:</label>
+									<div class="col-sm-10">
+										<select name="id_usuario1" class="form-control select2" style="width: 100%;" required>
+											<option value=''>Usuario</option>
+											<?php
+												require_once("../modelo/Usuario.php");
+												$res2 = Usuario::readcrearpaciente();
+												while ($dato2 = mysqli_fetch_object($res2)){
+													echo "<option value='".$dato2->id_usuario."'>".$dato2->cedula_per." - ".$dato2->nombre_per." ".$dato2->apellido_per."</option>";
+												}
+											?>
+										</select>
+									</div>
+								</div>
+								<?php
+								}
+							?>
+							
+							<?php
+								if ($_SESSION["rol"] == "cliente"){
+								?>
+								<input type="hidden" name="id_usuario1" value="<?php echo $_SESSION["id_usuario1"]; ?>">
+								<?php
+								}
+							?>
 							
 						</div>
 						<div class="box-footer">
@@ -104,15 +132,16 @@
 			}else{
 			require_once("noacceso.php");
 		}
-		require_once("footer.php");
+	require_once("footer.php");
 	?>
 	
 	<?php
-		require_once("../controlador/ControladorPaciente.php");
-		ControladorPaciente::create();
+	require_once("../controlador/ControladorPaciente.php");
+	ControladorPaciente::create();
 	?>
 	
 	<?php
 	}
 	ob_end_flush();
-?>
+	?>
+		

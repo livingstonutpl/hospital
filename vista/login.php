@@ -72,7 +72,7 @@
 							<input type="password" name="password_usu" value="" placeholder="Password" class="form-control unmaskpassword" minlength="6" required>
 						</div>
 						
-						<div class="form-group has-feedback">							
+						<div class="form-group has-feedback">
 							<input class="form-check-input showPassword" type="checkbox">
 							Mostrar contraseña
 						</div>
@@ -81,15 +81,25 @@
 							<label>Rol:</label>
 							<select name="id_rol1" class="form-control select2" style="width: 100%;" required>
 								<option value=''>Seleccione su rol</option>
-								<option value='1'>Administrador</option>
-								<option value='2'>Cliente</option>								
-								<option value='3'>Médico</option>
+								<?php
+									require_once("../modelo/Rol.php");
+									$res2 = Rol::read();
+									while ($dato2 = mysqli_fetch_object($res2)){
+										echo "<option value='".$dato2->id_rol."'>".$dato2->nombre_rol."</option>";
+									}
+								?>
 							</select>
 						</div>
 						
 						<div class="row">
 							<div class="col-xs-5">
 								<button type="submit" class="btn btn-primary btn-block btn-flat"><i class="fas fa-user-check"></i> Login</button>
+								<!-- LOGEO AUTOMATICO -->
+								<!-- <input type="button" onclick="admin()" value="admin">
+									<input type="button" onclick="medico1()" value="medico1">
+									<input type="button" onclick="medico2()" value="medico2">
+								<input type="button" onclick="cliente1()" value="cliente1"> -->
+								<!-- LOGEO AUTOMATICO -->
 								<button type="reset" class="btn btn-warning btn-block btn-flat"><i class="fas fa-times"></i> Reset</button>
 							</div>
 						</div>
@@ -111,40 +121,70 @@
 			<!-- SlideToTop -->
 			<script src="../plugins/slidetotop/slideToTop.js"></script>
 			
-			<script type="text/javascript">				
+			<script type="text/javascript">
 				$(document).ready(function(){
 					$('.showPassword').on('change',function(){
 						var isChecked = $(this).prop('checked');
 						if (isChecked) {
-							$('.unmaskpassword').attr('type','text');
-							} else {
-							$('.unmaskpassword').attr('type','password');
+						$('.unmaskpassword').attr('type','text');
+						} else {
+						$('.unmaskpassword').attr('type','password');
 						}
-					});
-				});
-			</script>
-			
-			<?php
-				if(isset($_GET["msg"]) and !empty($_GET["msg"])){
-					echo base64_decode($_GET["msg"]);
-				}
-			?>
-			
-			
-			<?php
-				if(isset($_POST) and !empty($_POST)){
-					require_once("../modelo/Varios.php");
-					$nombre_usu = Connection::sanitize($_POST["nombre_usu"]);
-					$password_usu = md5(Connection::sanitize($_POST["password_usu"]));
-					$id_rol1 = Connection::sanitize($_POST["id_rol1"]);
-					
-					if($id_rol1  == "3"){
+						});
+						});
+						</script>
+						
+						<script type="text/javascript">
+						function admin(){
+						document.quickForm.nombre_usu.value = "admin"
+						document.quickForm.password_usu.value = "123456"
+						document.quickForm.id_rol1.value = "1"
+						document.quickForm.submit()
+						};
+						
+						function medico1(){
+						document.quickForm.nombre_usu.value = "medico1"
+						document.quickForm.password_usu.value = "123456"
+						document.quickForm.id_rol1.value = "3"
+						document.quickForm.submit()
+						};
+						
+						function medico2(){
+						document.quickForm.nombre_usu.value = "medico2"
+						document.quickForm.password_usu.value = "123456"
+						document.quickForm.id_rol1.value = "3"
+						document.quickForm.submit()
+						};
+						
+						function cliente1(){
+						document.quickForm.nombre_usu.value = "cliente1"
+						document.quickForm.password_usu.value = "123456"
+						document.quickForm.id_rol1.value = "2"
+						document.quickForm.submit()
+						};
+						</script>
+						
+						<?php
+						if(isset($_GET["msg"]) and !empty($_GET["msg"])){
+						echo base64_decode($_GET["msg"]);
+						}
+						?>
+						
+						
+						<?php
+						if(isset($_POST) and !empty($_POST)){
+						require_once("../modelo/Varios.php");
+						$nombre_usu = Connection::sanitize($_POST["nombre_usu"]);
+						$password_usu = md5(Connection::sanitize($_POST["password_usu"]));
+						$id_rol1 = Connection::sanitize($_POST["id_rol1"]);
+						
+						if($id_rol1 == "3"){
 						$res = Varios::loginUsuarioMedico($nombre_usu, $password_usu, $id_rol1);
 						}else{
 						$res = Varios::loginUsuario($nombre_usu, $password_usu, $id_rol1);
-					}
-					
-					if($res){
+						}
+						
+						if($res){
 						// Variables de Sesión de la Tabla Usuario
 						$_SESSION["id_usuario"] = $res->id_usuario;
 						$_SESSION["nombre_usu"] = $res->nombre_usu;
@@ -171,33 +211,33 @@
 						// Variables de Sesión de la Tabla Rol
 						$_SESSION["id_personarol"] = $res->id_personarol;
 						$_SESSION["id_rol"] = $res->id_rol;
-					$_SESSION["nombre_rol"] = $res->nombre_rol;
-					
-					// Variables de Sesión de la Tabla Medico
-					if($res->nombre_rol == "medico"){
+						$_SESSION["nombre_rol"] = $res->nombre_rol;
+						
+						// Variables de Sesión de la Tabla Medico
+						if($res->nombre_rol == "medico"){
 						$_SESSION["id_medico"] = $res->id_medico;
 						$_SESSION["id_persona2"] = $res->id_persona2;
-					}
-					
-					// Variables de Sesión 
-					$_SESSION["sesion"] = true;
-					$_SESSION["rol"] = $res->nombre_rol;
-					$_SESSION["token"] = md5(uniqid(mt_rand(), true));
-					
-					// Entrar a principal
-					header ("Location: principal.php");
-					}
-				}
-			?>
-			
-			
-		</body>
-	</html>
-	
-	
-	<?php
-		}else{
-		header ("Location: principal.php");
-	}
-	ob_end_flush();
-?>																																																																																																																		
+						}
+						
+						// Variables de Sesión 
+						$_SESSION["sesion"] = true;
+						$_SESSION["rol"] = $res->nombre_rol;
+						$_SESSION["token"] = md5(uniqid(mt_rand(), true));
+						
+						// Entrar a principal
+						header ("Location: principal.php");
+						}
+						}
+						?>
+						
+						
+						</body>
+						</html>
+						
+						
+						<?php
+						}else{
+						header ("Location: principal.php");
+						}
+						ob_end_flush();
+						?>						

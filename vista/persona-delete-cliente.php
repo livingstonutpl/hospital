@@ -5,14 +5,14 @@
 		header("Location: login.php");
 		}else{
 		require_once("header.php");
-		if ($_SESSION["rol"] == "cliente" or $_SESSION["rol"] == "administrador"){
+		if ($_SESSION["rol"] == "administrador"){
 		?>
 		
 		<div class="content-wrapper">
 			<section class="content">
 				<div class="box box-danger">
 					<div class="box-header with-border">
-						<h3 class="box-title">Eliminar Persona</h3>
+						<h3 class="box-title">Eliminar Cliente</h3>
 					</div>
 					
 					<!-- <?php
@@ -98,11 +98,27 @@
 								</div>
 							</div>
 							
+							<!-- <div class="form-group">
+								<label class="col-sm-2 control-label">Usuario:</label>
+								<div class="col-sm-10">
+								<?php
+									// require_once("../modelo/Usuario.php");
+									// $res2 = Usuario::read();
+									// while ($dato2 = mysqli_fetch_object($res2)){
+									// if ($res->id_usuario1 == $dato2->id_usuario){
+									// $id_usuario1 = $dato2->id_usuario." - ".$dato2->nombre_usu;
+									// }
+									// }
+								?>
+								<input type="text" name="id_usuario1" value="<?php echo $id_usuario1;?>" class="form-control" readonly>
+								</div>
+							</div> -->
+							
 						</div>
 						<div class="box-footer">
 							<p>¿Está seguro que desea eliminar el registro?</p>
 							<button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i> Eliminar</button>
-							<a class="btn btn-info" href="paciente-read.php" role="button"><i class="fas fa-times"></i> Cancelar</a>
+							<a class="btn btn-info" href="persona-read-cliente.php" role="button"><i class="fas fa-times"></i> Cancelar</a>
 						</div>
 					</form>
 				</div>
@@ -117,8 +133,8 @@
 	?>
 	
 	<?php
-		require_once("../controlador/ControladorPaciente.php");
-		ControladorPaciente::delete();
+		require_once("../controlador/ControladorPersonaCliente.php");
+		ControladorPersonaCliente::delete();
 	?>
 	
 	<?php

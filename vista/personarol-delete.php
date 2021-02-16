@@ -12,7 +12,7 @@
 			<section class="content">
 				<div class="box box-danger">
 					<div class="box-header with-border">
-						<h3 class="box-title">Eliminar Persona Rol</h3>
+						<h3 class="box-title">Eliminar Rol de Persona</h3>
 					</div>
 					
 					<!-- <?php
@@ -36,61 +36,78 @@
 							</div>
 							
 							<div class="form-group">
-								<label class="col-sm-2 control-label">Persona:</label>
+								<label class="col-sm-2 control-label">Cédula:</label>
 								<div class="col-sm-10">
 									<?php
 										require_once("../modelo/Persona.php");
 										$res2 = Persona::read();
 										while ($dato2 = mysqli_fetch_object($res2)){
 											if ($res->id_persona1 == $dato2->id_persona){
-												$id_persona1 = $dato2->cedula_per." - ".$dato2->nombre_per." - ".$dato2->apellido_per;
+												$id_persona1 = $dato2->cedula_per;
 											}
 										}
 									?>
 									<input type="text" name="id_persona1" value="<?php echo $id_persona1;?>" class="form-control" readonly>
 								</div>
-							</div>
-							
-							<div class="form-group">
+								</div>
+								
+								<div class="form-group">
+								<label class="col-sm-2 control-label">Persona:</label>
+								<div class="col-sm-10">
+								<?php
+								require_once("../modelo/Persona.php");
+								$res2 = Persona::read();
+								while ($dato2 = mysqli_fetch_object($res2)){
+								if ($res->id_persona1 == $dato2->id_persona){
+								$id_persona1 = $dato2->nombre_per." ".$dato2->apellido_per;
+								}
+								}
+								?>
+								<input type="text" name="id_persona1" value="<?php echo $id_persona1;?>" class="form-control" readonly>
+								</div>
+								</div>
+								
+								<div class="form-group">
 								<label class="col-sm-2 control-label">Rol:</label>
 								<div class="col-sm-10">
-									<?php
-										require_once("../modelo/Rol.php");
-										$res2 = Rol::read();
-										while ($dato2 = mysqli_fetch_object($res2)){
-											if ($res->id_rol1 == $dato2->id_rol){
-												$id_rol1 = $dato2->id_rol." - ".$dato2->nombre_rol;
-											}
-										}
-									?>
-									<input type="text" name="id_rol1" value="<?php echo $id_rol1;?>" class="form-control" readonly>
+								<?php
+								require_once("../modelo/Rol.php");
+								$res2 = Rol::read();
+								while ($dato2 = mysqli_fetch_object($res2)){
+								if ($res->id_rol1 == $dato2->id_rol){
+								$id_rol1 = $dato2->nombre_rol;
+								}
+								}
+								?>
+								<input type="text" name="id_rol1" value="<?php echo $id_rol1;?>" class="form-control" readonly>
 								</div>
-							</div>
-							
-						</div>
-						<div class="box-footer">
-							<p>¿Está seguro que desea eliminar el registro?</p>
-							<button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i> Eliminar</button>
-							<a class="btn btn-info" href="personarol-read.php" role="button"><i class="fas fa-times"></i> Cancelar</a>
-						</div>
-					</form>
-				</div>
-			</section>
-		</div>
-		
-		<?php
-			}else{
-			require_once("noacceso.php");
-		}
-		require_once("footer.php");
-	?>
-	
-	<?php
-		require_once("../controlador/ControladorPersonarol.php");
-		ControladorPersonarol::delete();
-	?>
-	
-	<?php
-	}
-	ob_end_flush();
-?>
+								</div>
+								
+								</div>
+								<div class="box-footer">
+								<p>¿Está seguro que desea eliminar el registro?</p>
+								<button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i> Eliminar</button>
+								<a class="btn btn-info" href="personarol-read.php" role="button"><i class="fas fa-times"></i> Cancelar</a>
+								</div>
+								</form>
+								</div>
+								</section>
+								</div>
+								
+								<?php
+								}else{
+								require_once("noacceso.php");
+								}
+								require_once("footer.php");
+								?>
+								
+								<?php
+								require_once("../controlador/ControladorPersonarol.php");
+								ControladorPersonarol::delete();
+								?>
+								
+								<?php
+								}
+								ob_end_flush();
+								?>
+																

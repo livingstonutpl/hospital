@@ -15,10 +15,16 @@
 			<section class="content">
 				<div class="box box-primary">
 					<div class="box-header with-border">
-						<a href="agendamiento-create.php" class="btn btn-primary"><i class="fas fa-plus"></i> Agendar Cita</a>
-						<a href="agendamiento-read.php?estado=agendado" class="btn btn-success"><i class="fas fa-user-clock"></i> Agendado</a>
-						<a href="agendamiento-read.php?estado=atendido" class="btn btn-danger"><i class="fas fa-user-check"></i> Atendido</a>
-						<a href="agendamiento-read.php?estado=ausente" class="btn btn-warning"><i class="fas fa-user-alt-slash"></i> Ausente</a>
+						<a href="agendamiento-create.php" class="btn btn-primary"><i class="fas fa-plus"></i> Agendar Cita Médica</a>
+						
+						<?php
+							if ($_SESSION["rol"] == "administrador"){
+							?>
+							<a href="agendamiento-disponibilidad.php" class="btn btn-warning"><i class="fas fa-plus"></i> Crear disponibilidad</a>
+							<?php
+							}
+						?>						
+						
 					</div>
 					<div class="box-body table-responsive">
 						<table id="myTable" class="display table table-bordered table-striped table-condensed table-hover" width="100%">
@@ -26,8 +32,10 @@
 								
 								<tr>
 									<th>Id</th> 
+									<th>Cédula</th>
 									<th>Paciente</th>
 									<th>Médico</th>
+									<th>Especialidad</th>
 									<th>Fecha de Atención</th>
 									<th>Hora de Atención</th>
 									<th>Estado</th>
@@ -36,21 +44,13 @@
 							</thead>
 							<tbody>
 								
-								<?php
-									if(isset($_GET["estado"]) and !empty($_GET["estado"])){
-										$estado = $_GET["estado"];
-										}else{
-										$estado = "agendado";
-									}
-								?>
-								
 								<!-- <?php
 									if ($_SESSION["rol"] == "cliente"){
 										require_once("../modelo/Agendamiento.php");
-										$res = Agendamiento::read3($estado, $_SESSION["id_usuario1"]);
+										$res = Agendamiento::read3("agendado", $_SESSION["id_usuario1"]);
 										}else{
 										require_once("../modelo/Agendamiento.php");
-										$res = Agendamiento::read2($estado);
+										$res = Agendamiento::read("agendado");
 									}
 								?> -->
 								
@@ -66,7 +66,16 @@
 										$res2 = Persona::read();
 										while ($dato2 = mysqli_fetch_object($res2)){
 											if ($dato->id_persona3 == $dato2->id_persona){
-												echo "<td>".$dato2->cedula_per." - ".$dato2->nombre_per." ".$dato2->apellido_per."</td>";
+												echo "<td>".$dato2->cedula_per."</td>";
+											}
+										}
+										
+										// VARIABLE TIPO FK
+										require_once("../modelo/Persona.php");
+										$res2 = Persona::read();
+										while ($dato2 = mysqli_fetch_object($res2)){
+											if ($dato->id_persona3 == $dato2->id_persona){
+												echo "<td>".$dato2->nombre_per." ".$dato2->apellido_per."</td>";
 											}
 										}
 										
@@ -75,7 +84,16 @@
 										$res2 = MedicoEspecialidad::read();
 										while ($dato2 = mysqli_fetch_object($res2)){
 											if ($dato->id_medicoespecialidad1 == $dato2->id_medicoespecialidad){
-												echo "<td>".$dato2->nombre_per." ".$dato2->apellido_per." - ".$dato2->nombre_esp."</td>";
+												echo "<td>".$dato2->nombre_per." ".$dato2->apellido_per."</td>";
+											}
+										}
+										
+										// VARIABLE TIPO FK
+										require_once("../modelo/MedicoEspecialidad.php");
+										$res2 = MedicoEspecialidad::read();
+										while ($dato2 = mysqli_fetch_object($res2)){
+											if ($dato->id_medicoespecialidad1 == $dato2->id_medicoespecialidad){
+												echo "<td>".$dato2->nombre_esp."</td>";
 											}
 										}
 										
@@ -95,11 +113,14 @@
 										if ($dato->estado_his == "ausente"){
 											echo "<td><span class='label label-warning'>ausente</span></td>";
 										}
+										if ($dato->estado_his == "disponible"){
+											echo "<td><span class='label label-info'>disponible</span></td>";
+										}
 										
 										// OPCIONES
 										echo "<td>";
-										if ($dato->estado_his <> "atendido"){
-											echo "<a href='agendamiento-update.php?id_historiaclinica=".$dato->id_historiaclinica."' title='Actualizar'><i class='fas fa-pen text-green'></i></a>&nbsp;&nbsp;";
+										if ($dato->estado_his == "agendado"){
+											//echo "<a href='agendamiento-update.php?id_historiaclinica=".$dato->id_historiaclinica."' title='Actualizar'><i class='fas fa-pen text-green'></i></a>&nbsp;&nbsp;";
 											echo "<a href='agendamiento-delete.php?id_historiaclinica=".$dato->id_historiaclinica."' title='Eliminar'><i class='fas fa-trash text-red'></i></a>";
 										}
 										echo "</td>";

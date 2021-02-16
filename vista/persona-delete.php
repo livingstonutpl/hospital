@@ -98,21 +98,21 @@
 								</div>
 							</div>
 							
-							<div class="form-group">
+							<!-- <div class="form-group">
 								<label class="col-sm-2 control-label">Usuario:</label>
 								<div class="col-sm-10">
-									<?php
-										require_once("../modelo/Usuario.php");
-										$res2 = Usuario::read();
-										while ($dato2 = mysqli_fetch_object($res2)){
-											if ($res->id_usuario1 == $dato2->id_usuario){
-												$id_usuario1 = $dato2->id_usuario." - ".$dato2->nombre_usu;
-											}
-										}
-									?>
-									<input type="text" name="id_usuario1" value="<?php echo $id_usuario1;?>" class="form-control" readonly>
+								<?php
+									// require_once("../modelo/Usuario.php");
+									// $res2 = Usuario::read();
+									// while ($dato2 = mysqli_fetch_object($res2)){
+									// if ($res->id_usuario1 == $dato2->id_usuario){
+									// $id_usuario1 = $dato2->id_usuario." - ".$dato2->nombre_usu;
+									// }
+									// }
+								?>
+								<input type="text" name="id_usuario1" value="<?php echo $id_usuario1;?>" class="form-control" readonly>
 								</div>
-							</div>
+							</div> -->
 							
 						</div>
 						<div class="box-footer">
@@ -139,5 +139,5 @@
 	
 	<?php
 	}
-	ob_end_flush();
+ob_end_flush();
 ?>

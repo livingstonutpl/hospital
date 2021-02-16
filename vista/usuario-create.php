@@ -45,19 +45,18 @@
 		</div>
 		
 		<?php
-		}else{
-		require_once("noacceso.php");
+			}else{
+			require_once("noacceso.php");
 		}
 		require_once("footer.php");
-		?>
-		
-		<?php
+	?>
+	
+	<?php
 		require_once("../controlador/ControladorUsuario.php");
 		ControladorUsuario::create();
-		?>
-		
-		<?php
-		}
-		ob_end_flush();
-		?>
-				
+	?>
+	
+	<?php
+	}
+	ob_end_flush();
+?>

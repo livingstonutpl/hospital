@@ -12,7 +12,7 @@
 			<section class="content">
 				<div class="box box-primary">
 					<div class="box-header with-border">
-						<h3 class="box-title">Nuevo Médico Especialidad</h3>
+						<h3 class="box-title">Asignar Especialidad a Médico</h3>
 					</div>
 					
 					<form action="#" class="form-horizontal" method="POST" enctype="multipart/form-data">
@@ -29,7 +29,7 @@
 											require_once("../modelo/Medico.php");
 											$res2 = Medico::read();
 											while ($dato2 = mysqli_fetch_object($res2)){
-												echo "<option value='".$dato2->id_medico."'>".$dato2->id_medico." - ".$dato2->cedula_per." - ".$dato2->nombre_per." ".$dato2->apellido_per."</option>";
+												echo "<option value='".$dato2->id_medico."'>".$dato2->cedula_per." - ".$dato2->nombre_per." ".$dato2->apellido_per."</option>";
 											}
 										?>
 									</select>
@@ -45,37 +45,37 @@
 											require_once("../modelo/Especialidad.php");
 											$res2 = Especialidad::read();
 											while ($dato2 = mysqli_fetch_object($res2)){
-											echo "<option value='".$dato2->id_especialidad."'>".$dato2->id_especialidad." - ".$dato2->nombre_esp."</option>";
+												echo "<option value='".$dato2->id_especialidad."'>".$dato2->nombre_esp."</option>";
 											}
-											?>
-											</select>
-											</div>
-											</div>							
-											
-											</div>
-											<div class="box-footer">
-											<button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Guardar</button>
-											<a class="btn btn-info" href="medicoespecialidad-read.php" role="button"><i class="fas fa-times"></i> Cancelar</a>
-											</div>
-											</form> 
-											</div>
-											</section>
-											</div>
-											
-											<?php
-											}else{
-											require_once("noacceso.php");
-											}
-											require_once("footer.php");
-											?>
-											
-											<?php
-											require_once("../controlador/ControladorMedicoespecialidad.php");
-											ControladorMedicoespecialidad::create();
-											?>
-											
-											<?php
-											}
-											ob_end_flush();
-											?>
-																						
+										?>
+									</select>
+								</div>
+							</div>							
+							
+						</div>
+						<div class="box-footer">
+							<button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Guardar</button>
+							<a class="btn btn-info" href="medicoespecialidad-read.php" role="button"><i class="fas fa-times"></i> Cancelar</a>
+						</div>
+					</form> 
+				</div>
+				</section>
+				</div>
+						
+						<?php
+						}else{
+						require_once("noacceso.php");
+						}
+						require_once("footer.php");
+						?>
+						
+						<?php
+						require_once("../controlador/ControladorMedicoespecialidad.php");
+						ControladorMedicoespecialidad::create();
+						?>
+						
+						<?php
+						}
+						ob_end_flush();
+						?>
+												

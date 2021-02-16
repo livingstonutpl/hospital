@@ -12,7 +12,7 @@
 			<section class="content">
 				<div class="box box-primary">
 					<div class="box-header with-border">
-						<h3 class="box-title">Nuevo Médico</h3>
+						<h3 class="box-title">Nuevo Cliente</h3>
 					</div>
 					
 					<form action="#" class="form-horizontal" method="POST" enctype="multipart/form-data">
@@ -110,19 +110,16 @@
 								</div>
 							</div>
 							
-							
-							
-							
 							<!-- <div class="form-group">
-								<label class="col-sm-2 control-label">Médico:</label>
+								<label class="col-sm-2 control-label">Usuario:</label>
 								<div class="col-sm-10">
-								<select name="id_persona2" class="form-control select2" style="width: 100%;" required autofocus>
-								<option value=''>Médico</option>
+								<select name="id_usuario1" class="form-control select2" style="width: 100%;" required>
+								<option value=''>Usuario</option>
 								<?php
-									// require_once("../modelo/Persona.php");
-									// $res2 = Persona::read();
+									// require_once("../modelo/Usuario.php");
+									// $res2 = Usuario::read();
 									// while ($dato2 = mysqli_fetch_object($res2)){
-									// echo "<option value='".$dato2->id_persona."'>".$dato2->cedula_per." - ".$dato2->nombre_per." ".$dato2->apellido_per."</option>";
+									// echo "<option value='".$dato2->id_usuario."'>".$dato2->id_usuario." - ".$dato2->nombre_usu."</option>";
 									// }
 								?>
 								</select>
@@ -132,7 +129,7 @@
 						</div>
 						<div class="box-footer">
 							<button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Guardar</button>
-							<a class="btn btn-info" href="medico-read.php" role="button"><i class="fas fa-times"></i> Cancelar</a>
+							<a class="btn btn-info" href="persona-read.php" role="button"><i class="fas fa-times"></i> Cancelar</a>
 						</div>
 					</form> 
 				</div>
@@ -147,7 +144,6 @@
 	?>
 	
 	<?php
-		
 		
 		if(isset($_POST) && !empty($_POST)){
 			
@@ -186,30 +182,21 @@
 			
 			require_once("../modelo/Personarol.php");
 			$id_persona1 = $ultimo_id_persona;
-			$id_rol1 = 3;
+			$id_rol1 = 2;
 			$res3 = Personarol::create($id_persona1, $id_rol1, $id_persona1."-".$id_rol1);
 			
-			// **********************
-			// MEDICO
-			// **********************
-			
-			require_once("../modelo/Medico.php");
-			$id_persona2 = $ultimo_id_persona;
-			$res4 = Medico::create($id_persona2);
-			
-			if($res1 and $res2 and res3 and res4){
+			if($res1 and $res2 and res3){
 				$msg = base64_encode("<script>toastr.success('Registro guardado correctamente');</script>");
 				}else{
 				$msg = base64_encode("<script>toastr.error('El registro no se pudo guardar');</script>");
 			}
 			
-			header ("Location: medico-read.php?msg=$msg");
-		}
-		
+			header ("Location: persona-read.php?msg=$msg");
+		}	
 		
 		// ESTE CODIGO ESTABA ORIGINAL DE ESTE CRUD
-		// require_once("../controlador/ControladorMedico.php");
-		// ControladorMedico::create();
+		// require_once("../controlador/ControladorPersona.php");
+		// ControladorPersona::create();
 	?>
 	
 	<?php

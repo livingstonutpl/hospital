@@ -36,20 +36,83 @@
 							</div>
 							
 							<div class="form-group">
-								<label class="col-sm-2 control-label">Médico:</label>
+								<label class="col-sm-2 control-label">Cedula:</label>
 								<div class="col-sm-10">
-									<?php
-										require_once("../modelo/Persona.php");
-										$res2 = Persona::read();
-										while ($dato2 = mysqli_fetch_object($res2)){
-											if ($res->id_persona2 == $dato2->id_persona){
-												$id_persona2 = $dato2->cedula_per." - ".$dato2->nombre_per." ".$dato2->apellido_per;
-											}
-										}
-									?>
-									<input type="text" name="id_persona2" value="<?php echo $id_persona2;?>" class="form-control" readonly>
+									<input type="text" name="cedula_per" value="<?php echo $res->cedula_per;?>" class="form-control" readonly>
 								</div>
 							</div>
+							
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Nombre:</label>
+								<div class="col-sm-10">
+									<input type="text" name="nombre_per" value="<?php echo $res->nombre_per;?>" class="form-control" readonly>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Apellido:</label>
+								<div class="col-sm-10">
+									<input type="text" name="apellido_per" value="<?php echo $res->apellido_per;?>" class="form-control" readonly>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Email:</label>
+								<div class="col-sm-10">
+									<input type="text" name="email_per" value="<?php echo $res->email_per;?>" class="form-control" readonly>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Teléfono:</label>
+								<div class="col-sm-10">
+									<input type="text" name="telefono_per" value="<?php echo $res->telefono_per;?>" class="form-control" readonly>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Dirección:</label>
+								<div class="col-sm-10">
+									<textarea rows="3" name="direccion_per" class="form-control" readonly><?php echo $res->direccion_per;?></textarea>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Ciudad de Residencia:</label>
+								<div class="col-sm-10">
+									<input type="text" name="ciudadresi_per" value="<?php echo $res->ciudadresi_per;?>" class="form-control" readonly>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Fecha de Nacimiento:</label>
+								<div class="col-sm-10">
+									<input type="text" name="fechanaci_per" value="<?php echo $res->fechanaci_per;?>" class="form-control" readonly>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Género:</label>
+								<div class="col-sm-10">
+									<input type="text" name="genero_per" value="<?php echo $res->genero_per;?>" class="form-control" readonly>
+								</div>
+							</div>
+							
+							<!-- <div class="form-group">
+								<label class="col-sm-2 control-label">Médico:</label>
+								<div class="col-sm-10">
+								<?php
+									// require_once("../modelo/Persona.php");
+									// $res2 = Persona::read();
+									// while ($dato2 = mysqli_fetch_object($res2)){
+									// if ($res->id_persona2 == $dato2->id_persona){
+									// $id_persona2 = $dato2->cedula_per." - ".$dato2->nombre_per." ".$dato2->apellido_per;
+									// }
+									// }
+								?>
+								<input type="text" name="id_persona2" value="<?php echo $id_persona2;?>" class="form-control" readonly>
+								</div>
+							</div> -->
 							
 						</div>
 						<div class="box-footer">

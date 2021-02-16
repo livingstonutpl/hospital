@@ -12,7 +12,7 @@
 			<section class="content">
 				<div class="box box-danger">
 					<div class="box-header with-border">
-						<h3 class="box-title">Eliminar Médico Especialidades</h3>
+						<h3 class="box-title">Eliminar Especialidad de Médico</h3>
 					</div>
 					
 					<!-- <?php
@@ -36,6 +36,22 @@
 							</div>
 							
 							<div class="form-group">
+								<label class="col-sm-2 control-label">Cédula:</label>
+								<div class="col-sm-10">
+									<?php
+										require_once("../modelo/Medico.php");
+										$res2 = Medico::read();
+										while ($dato2 = mysqli_fetch_object($res2)){
+											if ($res->id_medico1 == $dato2->id_medico){
+												$id_medico1 = $dato2->cedula_per;
+											}
+										}
+									?>
+									<input type="text" name="id_medico1" value="<?php echo $id_medico1;?>" class="form-control" readonly>
+								</div>
+							</div>
+							
+							<div class="form-group">
 								<label class="col-sm-2 control-label">Médico:</label>
 								<div class="col-sm-10">
 									<?php
@@ -43,7 +59,7 @@
 										$res2 = Medico::read();
 										while ($dato2 = mysqli_fetch_object($res2)){
 											if ($res->id_medico1 == $dato2->id_medico){
-												$id_medico1 = $dato2->id_medico." - ".$dato2->cedula_per." - ".$dato2->nombre_per." ".$dato2->apellido_per;
+												$id_medico1 = $dato2->nombre_per." ".$dato2->apellido_per;
 											}
 										}
 									?>
@@ -59,7 +75,7 @@
 										$res2 = Especialidad::read();
 										while ($dato2 = mysqli_fetch_object($res2)){
 											if ($res->id_especialidad1 == $dato2->id_especialidad){
-												$id_especialidad1 = $dato2->id_especialidad." - ".$dato2->nombre_esp;
+												$id_especialidad1 = $dato2->nombre_esp;
 											}
 										}
 									?>
@@ -80,17 +96,18 @@
 		
 		<?php
 			}else{
-			require_once("noacceso.php");
+		require_once("noacceso.php");
 		}
 		require_once("footer.php");
-	?>
-	
-	<?php
+		?>
+		
+		<?php
 		require_once("../controlador/ControladorMedicoespecialidad.php");
 		ControladorMedicoespecialidad::delete();
-	?>
-	
-	<?php
-	}
-	ob_end_flush();
-?>
+		?>
+		
+		<?php
+		}
+		ob_end_flush();
+		?>
+				

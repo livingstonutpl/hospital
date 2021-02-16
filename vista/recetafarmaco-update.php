@@ -79,48 +79,48 @@
 							<div class="form-group">
 								<label class="col-sm-2 control-label">Posologia:</label>
 								<div class="col-sm-10">
-								<textarea rows="3" name="posologia_recfar" class="form-control" required><?php echo $res->posologia_recfar;?></textarea>
+									<textarea rows="3" name="posologia_recfar" class="form-control" required><?php echo $res->posologia_recfar;?></textarea>
 								</div>
-								</div>
-								
-								<div class="form-group">
+							</div>
+							
+							<div class="form-group">
 								<label class="col-sm-2 control-label">Duracion:</label>
 								<div class="col-sm-10">
-								<textarea rows="3" name="duracion_recfar" class="form-control" required><?php echo $res->duracion_recfar;?></textarea>
+									<textarea rows="3" name="duracion_recfar" class="form-control" required><?php echo $res->duracion_recfar;?></textarea>
 								</div>
-								</div>
-								
-								<div class="form-group">
-								<label class="col-sm-2 control-label">Indicaciones:</label>
-								<div class="col-sm-10">
-								<textarea rows="3" name="indicaciones_recfar" class="form-control" required><?php echo $res->indicaciones_recfar;?></textarea>
-								</div>
-								</div>
-								
-								</div>
-								<div class="box-footer">
-								<button type="submit" class="btn btn-success"><i class="fas fa-sync-alt"></i> Actualizar</button>
-								<a class="btn btn-info" href="recetafarmaco-read.php" role="button"><i class="fas fa-times"></i> Cancelar</a>
-								</div>
-								</form>
-								</div>
-								</section>
-								</div>
-								
-								<?php
-								}else{
-								require_once("noacceso.php");
-								}
-								require_once("footer.php");
-								?>
-								
-								<?php
-								require_once("../controlador/ControladorRecetafarmaco.php");
-								ControladorRecetafarmaco::update();
-								?>
-								
-								<?php
-								}
-								ob_end_flush();
-								?>
-																
+							</div>
+							
+						<div class="form-group">
+						<label class="col-sm-2 control-label">Indicaciones:</label>
+						<div class="col-sm-10">
+						<textarea rows="3" name="indicaciones_recfar" class="form-control" required><?php echo $res->indicaciones_recfar;?></textarea>
+						</div>
+						</div>
+						
+						</div>
+						<div class="box-footer">
+						<button type="submit" class="btn btn-success"><i class="fas fa-sync-alt"></i> Actualizar</button>
+						<a class="btn btn-info" href="recetafarmaco-read.php" role="button"><i class="fas fa-times"></i> Cancelar</a>
+						</div>
+						</form>
+						</div>
+						</section>
+						</div>
+						
+						<?php
+						}else{
+						require_once("noacceso.php");
+						}
+						require_once("footer.php");
+						?>
+						
+						<?php
+						require_once("../controlador/ControladorRecetafarmaco.php");
+						ControladorRecetafarmaco::update();
+						?>
+						
+						<?php
+						}
+						ob_end_flush();
+						?>
+												

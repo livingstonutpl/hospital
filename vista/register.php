@@ -123,107 +123,107 @@
 						
 						<div class="form-group has-feedback">
 							<label>Password:</label>
-							<input type="password" name="password_usu" placeholder="Password" class="form-control unmaskpassword" required>
+						<input type="password" name="password_usu" placeholder="Password" class="form-control unmaskpassword" required>
 						</div>
 						
 						<div class="form-group has-feedback">							
-							<input class="form-check-input showPassword" type="checkbox">
-							Mostrar contraseña
+						<input class="form-check-input showPassword" type="checkbox">
+						Mostrar contraseña
 						</div>
 						
 						<!-- <div class="form-group has-feedback">
-							<label>Repita el Password:</label>
-							<input type="password" name="password_usux" placeholder="Repita el Password" class="form-control">
+						<label>Repita el Password:</label>
+						<input type="password" name="password_usux" placeholder="Repita el Password" class="form-control">
 						</div> -->
 						
 						<div class="row">
-							<div class="col-xs-5">
-								<button type="submit" class="btn btn-primary btn-block btn-flat"><i class="fas fa-user-edit"></i> Registrarse</button>
-								<button type="reset" class="btn btn-warning btn-block btn-flat"><i class="fas fa-times"></i> Reset</button>
-							</div>
+						<div class="col-xs-5">
+						<button type="submit" class="btn btn-primary btn-block btn-flat"><i class="fas fa-user-edit"></i> Registrarse</button>
+						<button type="reset" class="btn btn-warning btn-block btn-flat"><i class="fas fa-times"></i> Reset</button>
+						</div>
 						</div>
 						
-					</form>
-				</div>
-			</div>
-			
-			
-			<!-- jQuery 3 -->
-			<script src="../plugins/jquery/jquery.min.js"></script>
-			<!-- jQuery Validation -->
-			<script src="../plugins/jquery-validation/jquery.validate.js"></script>
-			<script src="../plugins/jquery-validation/additional-methods.js"></script>
-			<!-- Bootstrap -->
-			<script src="../plugins/bootstrap/bootstrap.js"></script>
-			<!-- Toastr -->
-			<script src="../plugins/toastr/toastr.min.js"></script>
-			<script src="../plugins/toastr/config.js"></script> 
-			<!-- AdminLTE -->
-			<script src="../plugins/adminlte/adminlte.js"></script>
-			<!-- SlideToTop -->
-			<script src="../plugins/slidetotop/slideToTop.js"></script>
-			
-			<script type="text/javascript">				
-				$(document).ready(function(){
-					$('.showPassword').on('change',function(){
+						</form>
+						</div>
+						</div>
+						
+						
+						<!-- jQuery 3 -->
+						<script src="../plugins/jquery/jquery.min.js"></script>
+						<!-- jQuery Validation -->
+						<script src="../plugins/jquery-validation/jquery.validate.js"></script>
+						<script src="../plugins/jquery-validation/additional-methods.js"></script>
+						<!-- Bootstrap -->
+						<script src="../plugins/bootstrap/bootstrap.js"></script>
+						<!-- Toastr -->
+						<script src="../plugins/toastr/toastr.min.js"></script>
+						<script src="../plugins/toastr/config.js"></script> 
+						<!-- AdminLTE -->
+						<script src="../plugins/adminlte/adminlte.js"></script>
+						<!-- SlideToTop -->
+						<script src="../plugins/slidetotop/slideToTop.js"></script>
+						
+						<script type="text/javascript">				
+						$(document).ready(function(){
+						$('.showPassword').on('change',function(){
 						var isChecked = $(this).prop('checked');
 						if (isChecked) {
-							$('.unmaskpassword').attr('type','text');
-							} else {
-							$('.unmaskpassword').attr('type','password');
+						$('.unmaskpassword').attr('type','text');
+						} else {
+						$('.unmaskpassword').attr('type','password');
 						}
-					});
-				});
-			</script>
-			
-			
-			<?php
-				if(isset($_POST) and !empty($_POST)){
-					require_once("../modelo/Usuario.php");
-					$nombre_usu = Connection::sanitize($_POST["nombre_usu"]);
-					$password_usu = md5(Connection::sanitize($_POST["password_usu"]));
-					$res1 = Usuario::create($nombre_usu, $password_usu);
-					
-					$ultimo_id_usuario = Usuario::ultimo_id()->id_usuario;
-					
-					require_once("../modelo/Persona.php");
-					$cedula_per = Connection::sanitize($_POST["cedula_per"]);
-					$nombre_per = Connection::sanitize($_POST["nombre_per"]);
-					$apellido_per = Connection::sanitize($_POST["apellido_per"]);
-					$email_per = Connection::sanitize($_POST["email_per"]);
-					$telefono_per = Connection::sanitize($_POST["telefono_per"]);
-					$direccion_per = Connection::sanitize($_POST["direccion_per"]);
-					$ciudadresi_per = Connection::sanitize($_POST["ciudadresi_per"]);
-					$fechanaci_per = Connection::sanitize($_POST["fechanaci_per"]);
-					$genero_per = Connection::sanitize($_POST["genero_per"]);
-					$id_usuario1 = $ultimo_id_usuario;
-					$res2 = Persona::create($cedula_per, $nombre_per, $apellido_per, $email_per, $telefono_per, $direccion_per, $ciudadresi_per, $fechanaci_per, $genero_per, $id_usuario1);
-					
-					$ultimo_id_persona = Persona::ultimo_id()->id_persona;
-					
-					require_once("../modelo/Personarol.php");
-					$id_persona1 = $ultimo_id_persona;
-					$id_rol1 = 2;
-					$res3 = Personarol::create($id_persona1, $id_rol1, $id_persona1."-2");
-				
-				if($res1 and $res2 and res3){
-				$msg = base64_encode("<script>toastr.success('Registro guardado correctamente');</script>");
-				}else{
-				$msg = base64_encode("<script>toastr.error('El registro no se pudo guardar');</script>");
-				}
-				
-				header ("Location: login.php?msg=$msg");
-				}
-				?>
-				
-				
-				</body>
-				</html>
-				
-				
-				<?php
-				}else{
-				header ("Location: principal.php");
-				}
-				ob_end_flush();
-				?>																																																																																																																																																																																																																																																																																																																																																																																																																																																																					
+						});
+						});
+						</script>
+						
+						<?php
+						if(isset($_POST) and !empty($_POST)){
+						require_once("../modelo/Usuario.php");
+						$nombre_usu = Connection::sanitize($_POST["nombre_usu"]);
+						$password_usu = md5(Connection::sanitize($_POST["password_usu"]));
+						$res1 = Usuario::create($nombre_usu, $password_usu);
+						
+						$ultimo_id_usuario = Usuario::ultimo_id()->id_usuario;
+						
+						require_once("../modelo/Persona.php");
+						$cedula_per = Connection::sanitize($_POST["cedula_per"]);
+						$nombre_per = Connection::sanitize($_POST["nombre_per"]);
+						$apellido_per = Connection::sanitize($_POST["apellido_per"]);
+						$email_per = Connection::sanitize($_POST["email_per"]);
+						$telefono_per = Connection::sanitize($_POST["telefono_per"]);
+						$direccion_per = Connection::sanitize($_POST["direccion_per"]);
+						$ciudadresi_per = Connection::sanitize($_POST["ciudadresi_per"]);
+						$fechanaci_per = Connection::sanitize($_POST["fechanaci_per"]);
+						$genero_per = Connection::sanitize($_POST["genero_per"]);
+						$id_usuario1 = $ultimo_id_usuario;
+						$res2 = Persona::create($cedula_per, $nombre_per, $apellido_per, $email_per, $telefono_per, $direccion_per, $ciudadresi_per, $fechanaci_per, $genero_per, $id_usuario1);
+						
+						$ultimo_id_persona = Persona::ultimo_id()->id_persona;
+						
+						require_once("../modelo/Personarol.php");
+						$id_persona1 = $ultimo_id_persona;
+						$id_rol1 = 2;
+						$res3 = Personarol::create($id_persona1, $id_rol1, $id_persona1."-2");
+						
+						if($res1 and $res2 and res3){
+						$msg = base64_encode("<script>toastr.success('Registro guardado correctamente');</script>");
+						}else{
+						$msg = base64_encode("<script>toastr.error('El registro no se pudo guardar');</script>");
+						}
+						
+						header ("Location: login.php?msg=$msg");
+						}
+						?>
+						
+						
+						
+						</body>
+						</html>
+						
+						
+						<?php
+						}else{
+						header ("Location: principal.php");
+						}
+						ob_end_flush();
+						?>																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																				

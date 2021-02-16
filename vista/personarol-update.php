@@ -62,7 +62,7 @@
 											$res2 = Rol::read();
 											while ($dato2 = mysqli_fetch_object($res2)){ 
 												$selected = ($res->id_rol1 == $dato2->id_rol) ? "selected" : "" ;
-												echo "<option ".$selected." value='".$dato2->id_rol."'>".$dato2->id_rol." - ".$dato2->nombre_rol."</option>";
+												echo "<option ".$selected." value='".$dato2->id_rol."'>".$dato2->nombre_rol."</option>";
 											}
 										?>
 									</select>
@@ -94,4 +94,5 @@
 	<?php
 	}
 	ob_end_flush();
-?>
+	?>
+		

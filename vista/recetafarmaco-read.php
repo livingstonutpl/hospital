@@ -75,10 +75,14 @@
 										echo "<td>".$dato->indicaciones_recfar."</td>";
 										
 										// OPCIONES
-										echo "<td>";
-										echo "<a href='recetafarmaco-update.php?id_recetafarmaco=".$dato->id_recetafarmaco."' title='Actualizar'><i class='fas fa-pen text-green'></i></a>&nbsp;&nbsp;";
-										echo "<a href='recetafarmaco-delete.php?id_recetafarmaco=".$dato->id_recetafarmaco."' title='Eliminar'><i class='fas fa-trash text-red'></i></a>";
-										echo "</td>";
+										echo "<td>";										
+										// OPCIONES ADMINISTRADOR Y MEDICO
+										if ($_SESSION["rol"] == "medico"){											
+											echo "<a href='recetafarmaco-update.php?id_recetafarmaco=".$dato->id_recetafarmaco."' title='Actualizar'><i class='fas fa-pen text-green'></i></a>&nbsp;&nbsp;";
+											echo "<a href='recetafarmaco-delete.php?id_recetafarmaco=".$dato->id_recetafarmaco."' title='Eliminar'><i class='fas fa-trash text-red'></i></a>";
+										}
+										echo "</td>";						
+										
 										echo "</tr>";
 									}
 								?>
@@ -107,14 +111,14 @@
 		}
 		require_once("footer.php");
 	?>
-	
-	<?php
-		if(isset($_GET["msg"]) and !empty($_GET["msg"])){
-			echo base64_decode($_GET["msg"]);
-		}
-	?>
-	
-	<?php
-	}
-	ob_end_flush();
+
+<?php
+if(isset($_GET["msg"]) and !empty($_GET["msg"])){
+echo base64_decode($_GET["msg"]);
+}
+?>
+
+<?php
+}
+ob_end_flush();
 ?>

@@ -12,7 +12,7 @@
 			<section class="content">
 				<div class="box box-success">
 					<div class="box-header with-border">
-						<h3 class="box-title">Actualizar Historial</h3>
+						<h3 class="box-title">Atención Médica</h3>
 					</div>
 					
 					<!-- <?php
@@ -36,6 +36,22 @@
 							</div>
 							
 							<div class="form-group">
+								<label class="col-sm-2 control-label">Cédula:</label>
+								<div class="col-sm-10">
+									<?php
+										require_once("../modelo/Persona.php");
+										$res2 = Persona::read();
+										while ($dato2 = mysqli_fetch_object($res2)){
+											if ($res->id_persona3 == $dato2->id_persona){
+												$id_persona3 = $dato2->cedula_per;
+											}
+										}
+									?>
+									<input type="text" name="id_persona3" value="<?php echo $id_persona3;?>" class="form-control" readonly>
+								</div>
+							</div>
+							
+							<div class="form-group">
 								<label class="col-sm-2 control-label">Paciente:</label>
 								<div class="col-sm-10">
 									<?php
@@ -43,7 +59,7 @@
 										$res2 = Persona::read();
 										while ($dato2 = mysqli_fetch_object($res2)){
 											if ($res->id_persona3 == $dato2->id_persona){
-												$id_persona3 = $dato2->cedula_per." - ".$dato2->nombre_per." ".$dato2->apellido_per;
+												$id_persona3 = $dato2->nombre_per." ".$dato2->apellido_per;
 											}
 										}
 									?>
@@ -59,7 +75,23 @@
 										$res2 = MedicoEspecialidad::read();
 										while ($dato2 = mysqli_fetch_object($res2)){
 											if ($res->id_medicoespecialidad1 == $dato2->id_medicoespecialidad){
-												$id_medicoespecialidad1 = $dato2->nombre_per." ".$dato2->apellido_per." - ".$dato2->nombre_esp;
+												$id_medicoespecialidad1 = $dato2->nombre_per." ".$dato2->apellido_per;
+											}
+										}
+									?>
+									<input type="text" name="id_medicoespecialidad1" value="<?php echo $id_medicoespecialidad1;?>" class="form-control" readonly>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Especialidad:</label>
+								<div class="col-sm-10">
+									<?php
+										require_once("../modelo/MedicoEspecialidad.php");
+										$res2 = MedicoEspecialidad::read();
+										while ($dato2 = mysqli_fetch_object($res2)){
+											if ($res->id_medicoespecialidad1 == $dato2->id_medicoespecialidad){
+												$id_medicoespecialidad1 = $dato2->nombre_esp;
 											}
 										}
 									?>
@@ -104,80 +136,122 @@
 								</div>
 							</div> -->
 							
+							<?php
+								// PERMISOS PARA MOSTRAR CAMPOS
+								if ($_SESSION["rol"] == "medico"){
+									$varmostrar = "required";
+								}
+								if ($_SESSION["rol"] == "cliente"){
+									$varmostrar = "readonly";
+								}
+							?>
+							
 							<div class="form-group">
 								<label class="col-sm-2 control-label">Anamnesis:</label>
 								<div class="col-sm-10">
-									<textarea rows="3" name="anamnesis_his" class="form-control" required><?php echo $res->anamnesis_his;?></textarea>
+									<textarea rows="3" name="anamnesis_his" class="form-control" <?php echo $varmostrar; ?>><?php echo $res->anamnesis_his;?></textarea>
 								</div>
 							</div>
 							
 							<div class="form-group">
 								<label class="col-sm-2 control-label">Examen Físico:</label>
 								<div class="col-sm-10">
-									<textarea rows="3" name="examenfisico_his" class="form-control" required><?php echo $res->examenfisico_his;?></textarea>
+									<textarea rows="3" name="examenfisico_his" class="form-control" <?php echo $varmostrar; ?>><?php echo $res->examenfisico_his;?></textarea>
 								</div>
 							</div>
 							
 							<div class="form-group">
 								<label class="col-sm-2 control-label">Tratamiento:</label>
 								<div class="col-sm-10">
-									<textarea rows="3" name="tratamiento_his" class="form-control" required><?php echo $res->tratamiento_his;?></textarea>
+									<textarea rows="3" name="tratamiento_his" class="form-control" <?php echo $varmostrar; ?>><?php echo $res->tratamiento_his;?></textarea>
 								</div>
 							</div>
 							
+							<?php
+								if ($_SESSION["rol"] == "medico"){
+								?>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Próximo Control:</label>
+									<div class="col-sm-10">
+										<input type="date" name="proximocontrol" value="" class="form-control" min="<?php echo gmdate("Y-m-d",time() + 3600*(-5+date("I"))); ?>" required>
+									</div>
+								</div>
+								<?php
+								}
+							?>
+							
 							<div class="form-group">
-								<label class="col-sm-2 control-label">Fecha de Atención:</label>
+								<label class="col-sm-2 control-label">Fecha:</label>
 								<div class="col-sm-10">
 									<input type="text" name="fechaatencion_his" value="<?php echo $res->fechaatencion_his;?>" class="form-control" readonly>
 								</div>
 							</div>
 							
 							<div class="form-group">
-								<label class="col-sm-2 control-label">Hora de Atención:</label>
+								<label class="col-sm-2 control-label">Hora:</label>
 								<div class="col-sm-10">
 									<input type="text" name="horaatencion_his" value="<?php echo $res->horaatencion_his;?>" class="form-control" readonly>
 								</div>
 							</div>
 							
-							<div class="form-group">
-								<label class="col-sm-2 control-label">Estado:</label>
-								<div class="col-sm-10">
-									<div class="radio">
-										<label><input <?php if($res->estado_his == "agendado"){ echo "checked"; } ?> type="radio" name="estado_his" value="agendado" required>agendado</label>
-									</div>
-									<div class="radio">
-										<label><input <?php if($res->estado_his == "atendido"){ echo "checked"; } ?> type="radio" name="estado_his" value="atendido" required>atendido</label>
-									</div>
-									<div class="radio">
-										<label><input <?php if($res->estado_his == "ausente"){ echo "checked"; } ?> type="radio" name="estado_his" value="ausente" required>ausente</label>
+							<?php
+								if ($_SESSION["rol"] == "medico"){
+								?>							
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Estado:</label>
+									<div class="col-sm-10">
+										<div class="radio">
+											<label><input <?php if($res->estado_his == "agendado"){ echo "checked"; } ?> type="radio" name="estado_his" value="agendado" required>agendado</label>
+										</div> 
+										<div class="radio">
+											<label><input <?php if($res->estado_his == "atendido"){ echo "checked"; } ?> type="radio" name="estado_his" value="atendido" required>atendido</label>
+										</div>
+										<div class="radio">
+											<label><input <?php if($res->estado_his == "ausente"){ echo "checked"; } ?> type="radio" name="estado_his" value="ausente" required>ausente</label>
+										</div>
 									</div>
 								</div>
-							</div>
+								<?php
+								}
+							?>
 							
 						</div>
 						<div class="box-footer">
-							<button type="submit" class="btn btn-success"><i class="fas fa-sync-alt"></i> Actualizar</button>
-							<a class="btn btn-info" href="historiaclinica-read.php" role="button"><i class="fas fa-times"></i> Cancelar</a>
+							<?php
+								if ($_SESSION["rol"] == "medico"){
+								?>	
+								<button type="submit" class="btn btn-success"><i class="fas fa-sync-alt"></i> Registrar Atención</button>
+								<a class="btn btn-info" href="historiaclinica-read.php" role="button"><i class="fas fa-times"></i> Cancelar</a>
+								<?php
+								}
+							?>
+							
+							<?php
+								if ($_SESSION["rol"] == "cliente"){
+								?>	
+								<a class="btn btn-info" href="historiaclinica-read.php" role="button"><i class="fas fa-undo-alt"></i> Regresar</a>
+								<?php
+								}
+							?>
 						</div>
 					</form>
 				</div>
 			</section>
 		</div>
-	
-	<?php
-	}else{
-	require_once("noacceso.php");
-	}
-	require_once("footer.php");
+		
+		<?php
+			}else{
+			require_once("noacceso.php");
+		}
+		require_once("footer.php");
 	?>
 	
 	<?php
-	require_once("../controlador/ControladorHistoriaclinica.php");
-	ControladorHistoriaclinica::update();
+		require_once("../controlador/ControladorHistoriaclinica.php");
+		ControladorHistoriaclinica::update();
 	?>
 	
 	<?php
 	}
 	ob_end_flush();
-	?>
-		
+?>

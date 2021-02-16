@@ -51,11 +51,17 @@
 								</a>
 							</li>
 							
+							<!-- <li class="dropdown messages-menu">
+								<a href="logout.php?msg=salir">
+								<i class="fas fa-power-off"></i> Salir
+								</a> 
+							</li> -->
+							
 							<li class="dropdown messages-menu">
 								<a href="logout.php">
 									<i class="fas fa-power-off"></i> Salir
 								</a> 
-							</li>
+							</li> 
 							
 						</ul>
 					</div>
@@ -73,4 +79,4 @@
 						
 					</ul>
 				</section>
-			</aside>																																																																																																																																																																																																																																																															
+			</aside>			

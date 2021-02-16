@@ -15,7 +15,8 @@
 			<section class="content">
 				<div class="box box-primary">
 					<div class="box-header with-border">
-						<a href="rol-create.php" class="btn btn-primary"><i class="fas fa-plus"></i> Nuevo</a>
+						<a href="rol-create.php" class="btn btn-primary"><i class="fas fa-plus"></i> Nuevo Rol</a>
+						<a href="personarol-read.php" class="btn btn-danger"><i class="fas fa-plus"></i> Nuevo Rol de Persona</a>
 					</div>
 					<div class="box-body table-responsive">
 						<table id="myTable" class="display table table-bordered table-striped table-condensed table-hover" width="100%">
@@ -44,7 +45,7 @@
 										
 										// OPCIONES
 										echo "<td>";
-										echo "<a href='rol-update.php?id_rol=".$dato->id_rol."' title='Actualizar'><i class='fas fa-pen text-green'></i></a>&nbsp;&nbsp;";
+									echo "<a href='rol-update.php?id_rol=".$dato->id_rol."' title='Actualizar'><i class='fas fa-pen text-green'></i></a>&nbsp;&nbsp;";
 									echo "<a href='rol-delete.php?id_rol=".$dato->id_rol."' title='Eliminar'><i class='fas fa-trash text-red'></i></a>";
 									echo "</td>";
 									echo "</tr>";
